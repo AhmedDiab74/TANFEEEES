@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "954615029850",
+    "project_id": "wowonder-flutter",
+    "storage_bucket": "wowonder-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954615029850:android:43359d4f17ad34540f3863",
+        "android_client_info": {
+          "package_name": "app.wowonderflutter.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954615029850-9r90773end5gfv80pucdpt73a12a745a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.wowonderflutter.com",
+            "certificate_hash": "9eb506f91d17867a01ec4a642ebab93db5c86240"
+          }
+        },
+        {
+          "client_id": "954615029850-ortl8enutmgpi6biqetp4it5v27dp16c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCnVBZZR2ovE3Zy8Y_oDMi4vME5_PWD2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954615029850-ortl8enutmgpi6biqetp4it5v27dp16c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "954615029850-l2v45oenqocai4hqeralprh2inqvorlu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.wowonderflutter.com"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954615029850:android:7abd6422ef7a0b100f3863",
+        "android_client_info": {
+          "package_name": "asdasdas.asdasd.wewewe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954615029850-ortl8enutmgpi6biqetp4it5v27dp16c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCnVBZZR2ovE3Zy8Y_oDMi4vME5_PWD2U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954615029850-ortl8enutmgpi6biqetp4it5v27dp16c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "954615029850-l2v45oenqocai4hqeralprh2inqvorlu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.wowonderflutter.com"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,125 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.wowonderflutter.com"
+     xmlns:tools="http://schemas.android.com/tools">
+        
+
+    
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!--الموقع-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    
+ <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+     android:maxSdkVersion="31" />
+      <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/> //This line add
+    <uses-permission android:name="android.permission.RECORD_AUDIO" /> //microfne
+
+<!-- Permission is Agora -->
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <!-- <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
+ <!-- <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE"
+    tools:ignore="ProtectedPermissions" /> -->
+    <uses-feature android:name="android.hardware.camera" />
+<uses-feature android:name="android.hardware.camera.autofocus" />
+
+<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+
+
+
+<!-- Permission is Agora -->
+
+<!-- ++++++++++++++++++++++++++++++++++++++ -->
+  <!-- Permission is required if you are targeting android 33 and above -->
+ <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+     <!-- <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/> -->
+     <!--   <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/> -->
+<queries>
+  <!-- If your app checks for SMS support -->
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="sms" />
+  </intent>
+  <!-- If your app checks for call support -->
+  <intent>
+    <action android:name="android.intent.action.VIEW" />
+    <data android:scheme="tel" />
+  </intent>
+</queries>
+   <application
+   tools:replace="android:label"
+        android:label="Wowonder Flutter"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+
+        <!-- add mob chnge-->
+         <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5148326721676561~6368774329"/>
+               <!-- add mob chnge-->
+           <activity
+    android:name="com.yalantis.ucrop.UCropActivity"
+    android:screenOrientation="portrait"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+           
+             android:showWhenLocked="true"
+               android:turnScreenOn="true"
+            android:windowSoftInputMode="adjustResize">
+            <!-- Specifies an Android theme to apply to this Activity as soon as
+                 the Android process has started. This theme is visible to the user
+                 while the Flutter UI initializes. After that, this theme continues
+                 to determine the Window background behind the Flutter UI. -->
+
+                <!-- faceboo -->
+                
+            <meta-data
+         android:name="io.flutter.embedding.android.SplashScreenDrawable"
+ android:resource="@drawable/launch_background"
+              />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+           
+           
+            </intent-filter>
+        </activity>
+        <activity
+    android:name="com.aboutyou.dart_packages.sign_in_with_apple.SignInWithAppleCallback"
+    android:exported="true"
+>
+    <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data android:scheme="signinwithapple" />
+        <data android:path="callback" />
+    </intent-filter>
+</activity>
+        <!-- Don't delete the meta-data below.
+             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+                   <meta-data
+           android:name="com.facebook.sdk.ApplicationId"
+           android:value="@string/facebook_app_id" />
+       <meta-data 
+           android:name="com.facebook.sdk.ClientToken" 
+           android:value="@string/facebook_client_token"/>
+    </application>
+</manifest>

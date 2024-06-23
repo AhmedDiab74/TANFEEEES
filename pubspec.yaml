@@ -1,0 +1,296 @@
+name: wowondertimelineflutterapp
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.2.7+27
+
+environment:
+  sdk: '>=2.19.6 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  
+  fluttertoast:
+  cupertino_icons: 
+  get: 
+  chewie: 
+  permission_handler: 
+  image_picker: 
+  
+  image_stack: 
+  
+  material_buttonx:
+  photo_manager:
+  story:
+  flutter_social_textfield:
+  encrypt: ^5.0.1
+  google_fonts: 
+  get_storage:
+  flutter_svg: 
+  shared_preferences: ^2.2.2
+
+  blurry_modal_progress_hud: 
+  flutter_spinkit: 
+  cached_network_image: ^3.3.1
+  circle_nav_bar: 
+  native_video_player: 
+  appinio_video_player: 
+  pull_to_refresh: 
+  shimmer_pro: 
+  url_launcher: 
+  photo_view: 
+  flutter_polls: 
+  # auto_size_text: 
+  image_cropper: 
+
+  share_plus: 
+  emoji_picker_flutter: 
+ 
+  # story_maker: 
+  flutter_staggered_animations: 
+  # video_player: 
+  # story_designer: 
+
+  flashy_tab_bar2: 
+  vs_story_designer: ^2.2.0 
+  flutter_portal: 
+  quickalert: 
+  flutter_otp_text_field: 
+  flutter_native_splash: 
+  google_sign_in: 
+  sign_in_button: 
+  provider: 
+  flutter_facebook_auth: 
+  sign_in_with_apple: 
+  onesignal_flutter: ^3.5.0
+  comment_tree: 
+  socket_io_client: 
+  flutter_io_socket: 
+  flutter_local_notifications: 
+  # flutter_background_service: 
+  device_info_plus: 
+  adaptive_action_sheet: 
+  flutter_rating_bar: 
+  flutter_html:
+  step_progress_indicator: 
+  keyboard_actions: 
+  iconforest_flat_icons_social: 
+  ionicons: 
+  flutter_parsed_text: 
+  animated_text_kit: 
+  flutter_keyboard_visibility: 
+  video_editor: ^1.5.1
+  record: ^4.4.4
+  chat_bubbles: 
+  flutter_emoji_gif_picker: 
+  youtube_player_iframe: 
+  like_button: 
+  flutter_barcode_scanner: 
+  pretty_qr_code: 
+  webview_flutter: 
+  rating_dialog:
+
+  store_redirect: 
+
+  flutter_hashtags: 
+  vimeo_video_player: ^0.0.10
+  # agora_rtc_engine: 
+
+  flutter_dotenv: 
+  # omni_jitsi_meet: 
+  # google_mobile_ads: 
+  uuid: 
+  flutter_custom_clippers: 
+  # agora_rtm: 
+  flutter_aes_ecb_pkcs5: ^0.1.3
+  pointycastle: ^3.7.4
+  auto_size_text: ^3.0.0
+  # circular_menu: 
+  expandable_menu: 
+  just_audio: ^0.9.31
+
+  agora_rtc_engine:
+  # agora_uikit: ^1.0.4
+  flutter_paypal_payment: ^1.0.6 
+  internet_connection_checker: 
+  weather: 
+  geolocator: 
+  geocoding: 
+  advstory: 
+  # google_one_tap_sign_in: 
+  # firebase_auth: 
+  extension_google_sign_in_as_googleapis_auth: 
+  googleapis: 
+  googleapis_auth:
+  material_dialogs: 
+  lottie: 
+  chat_gpt_sdk: 
+  smooth_scroll_multiplatform: 
+  google_vision: 
+  swipe_to: 
+  flutter_inappwebview: 
+  audio_waveforms: 
+  just_waveform: 
+  dotlottie_loader: 
+
+  nb_utils: 
+  flutter_staggered_grid_view: 
+  floating_frosted_bottom_bar: 
+  # flutter_audio_recorder3: 
+  wav: 
+  flutter_easyloading: 
+  dart_openai: 
+  sp_util: 
+  flutter_markdown: 
+  flutter_tts: 
+
+
+  drop_shadow: 
+  pip_view: 
+  flutter_quill: 
+  simple_ripple_animation: 
+  card_swiper: 
+  top_snackbar_flutter: 
+  vs_media_picker:
+  agora_uikit: ^1.3.10
+  cached_video_player_plus: ^2.0.0
+
+  # video_editor: 
+  # ffmpeg_kit_flutter: 
+  # agora_rtm: 
+  # agora_uikit: 
+
+  # animated_bottom_navigation_bar: 
+  # circular_reveal_animation: 
+  # flutter_webrtc: 
+  # flutter_webrtc_wrapper: 
+  # snippet_coder_utils: 
+  # agora_rtm: 
+  # flutter_state_notifier: 
+  # spincircle_bottom_bar: 
+  # flutter_speed_dial: 
+  # custom_jitsi_meet: 
+
+
+  # custom_floating_action_button: 
+  # floating_action_bubble: 
+  # open_file: 
+  # flutter_file_downloader: 
+  # pdf: 
+
+
+
+dependency_overrides: 
+  photo_manager: ^3.0.0-dev.2
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: 
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logoSplash.png
+
+  color_dark: "#121212"
+  image_dark: assets/logoSplash.png
+
+
+  android_12:
+    image: assets/logoSplash.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/logoSplash.png
+    icon_background_color_dark: "#121212"
+
+  web: false
+
+flutter_icons:
+  android: true
+  remove_alpha_ios: true
+  ios: true
+  image_path_ios: "assets/icon.png"
+  image_path: "assets/icon.png"
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: 
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+   # To add assets to your application, add an assets section, like this:
+  assets:
+    #  - assets/images/
+    #  - assets/images/svg/
+    - assets/
+    - assets/images/
+    # Simple Svg Images Path
+    - assets/svg/
+    - assets/imagesNew/
+    - assets/ChatGPT/
+    - assets/svg/home/
+    - assets/svg/chat/
+    - assets/svg/home/publisherBox/
+    - assets/svg/reactions/
+    - assets/svg/postBottomButtons/
+    - assets/svg/profile/
+    - assets/svg/setting/
+    - assets/svg/setting/privacy/
+    - assets/svg/reactions/animated/
+    - assets/svg/authentication/
+    - assets/svg/menu/
+    - assets/svg/membership/
+    - assets/svg/chat/
+    # Colors Svg Images Path
+    - assets/color-svg/menu/
+    - assets/color-svg/home/
+    - assets/color-svg/chat/
+    - assets/color-svg/home/pro/
+    - assets/color-svg/post/
+    - assets/color-svg/post/bottom/
+    - assets/animations/
+    - assets/images/svg/
+    - assets/ImageNew/
+    - assets/sounds/
+    - .env
+    - assets/ChatBackground/
+    - assets/SvgNew/
+  # fonts:
+  #   - family: Urbanist
+  #     fonts:
+  #       - asset: assets/fonts/Urbanist-Black.ttf
+  #   - family: Urbanist-medium
+  #     fonts:
+  #       - asset: assets/fonts/Urbanist-Medium.ttf
+  #   - family: Urbanist-semibold
+  #     fonts:
+  #       - asset: assets/fonts/Urbanist-SemiBold.ttf
+  #   - family: Urbanist-bold
+  #     fonts:
+  #       - asset: assets/fonts/Urbanist-Bold.ttf
+  #   - family: Urbanist-regular
+  #     fonts:
+  #       - asset: assets/fonts/Urbanist-Regular.ttf

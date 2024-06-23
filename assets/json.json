@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.wowondertimelineflutterappplatform.com",
+      "sha256_cert_fingerprints": [
+        "2A:F8:74:1E:F8:E2:B2:C8:27:43:77:69:C0:46:D8:A1:46:B5:5C:97:66:CD:6E:DC:5B:97:25:CA:99:1D:FC:6A"
+      ]
+    }
+  }
+]

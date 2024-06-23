@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="facebook_app_id">1114801752268905</string>
+    <string name="facebook_client_token">bfdd7b9fbf7ffeca8c60568abcfc1c8e</string>
+</resources>
+
+
+<!-- <string name="facebook_app_id">Wowonder Flutter</string>
+<string name="fb_login_protocol_scheme">fb1234</string>
+<string name="facebook_client_token">56789</string> -->
+

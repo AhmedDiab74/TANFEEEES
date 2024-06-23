@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.65" height="26.65" viewBox="0 0 26.65 26.65">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Path" d="M0,8.357H1.343c4.449,0,6.081-3.682,6.085-8.22V0H3.492A3.528,3.528,0,0,0,0,3.562Z" transform="translate(18.571 17.643)" fill="#2a87ff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.65"/>
+    </clipPath>
+  </defs>
+  <g id="noun_swowondertimelineflutterapper_3357332" transform="translate(0.325 0.325)">
+    <path id="Path-2" data-name="Path" d="M18.571,0H7.429A7.437,7.437,0,0,0,0,7.429V18.571A7.437,7.437,0,0,0,7.429,26H17.643V20.893a4.271,4.271,0,0,1,4.271-4.271H26V7.429A7.437,7.437,0,0,0,18.571,0Z" fill="#2a87ff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.65"/>
+    <path id="Path-3" data-name="Path" d="M6.036,1.833A6.46,6.46,0,0,1,1.43.221.824.824,0,0,0,.25.279.991.991,0,0,0,.213,1.552,8.087,8.087,0,0,0,6.036,3.706a8.087,8.087,0,0,0,5.823-2.155A.991.991,0,0,0,11.821.279a.824.824,0,0,0-1.18-.058A6.46,6.46,0,0,1,6.036,1.833Z" transform="translate(6.909 14.455)" fill="#fff"/>
+    <path id="Shape" d="M3.343,1.671A1.671,1.671,0,1,0,1.671,3.343,1.671,1.671,0,0,0,3.343,1.671Z" transform="translate(6.5 6.5)" fill="#fff"/>
+    <path id="Shape-2" data-name="Shape" d="M1.671,0A1.671,1.671,0,1,0,3.343,1.671,1.671,1.671,0,0,0,1.671,0Z" transform="translate(16.187 6.484)" fill="#fff"/>
+    <path id="Path-4" data-name="Path" d="M0,8.357H1.343c4.449,0,6.081-3.682,6.085-8.22V0H3.492A3.528,3.528,0,0,0,0,3.562Z" transform="translate(18.571 17.643)" fill="#2a87ff" stroke="#fff" stroke-miterlimit="10" stroke-width="0.65"/>
+  </g>
+</svg>
