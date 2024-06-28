@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Screens/Advertising/AdvertisingScreen.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/share.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
@@ -528,7 +529,7 @@ class _MoreScreenState extends State<MoreScreen> {
                           if (Pages)
                             _continerMore(
                               ontap: () {
-                                Get.to(PageMoreAll());
+                                Get.to(AllPagesScreen());
                               },
                               title: 'Pages'.tr,
                               svg: SvgImages.Pages,
@@ -572,7 +573,9 @@ class _MoreScreenState extends State<MoreScreen> {
                           if (seMore)
                             if (Advertising)
                               _continerMore(
-                                ontap: () {},
+                                ontap: () {
+                                  Get.to(AdvertisingScreen());
+                                },
                                 title: 'Advertising'.tr,
                                 svg: SvgImages.Advertising,
                               ),

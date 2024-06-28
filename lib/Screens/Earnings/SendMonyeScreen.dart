@@ -396,7 +396,7 @@ class _SendMonyState extends State<_SendMony> {
                               onConfirmBtnTap: () async {
                                 var aa = await ApiAddWalletSendFrind.add(
                                     u: user_id, p: widget.p);
-                                if (aa.toString().isNotEmpty) {
+                                if (aa['api_status']=='400') {
                                   showCustomSnackbar(
                                     snackbar: 'error',
                                     context: context,

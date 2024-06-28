@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Screens/Pages/HomePagesScreen.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:flutter/material.dart';
 import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
 import 'package:wowondertimelineflutterapp/Widget/ScaffoldWidget.dart';
-import 'package:wowondertimelineflutterapp/Screens/Pages/HomePagesScreen.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiCreatePage.dart';
 import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 
@@ -268,7 +268,7 @@ class _CreatePageScreenState extends State<CreatePageScreen> {
                 if (creapi['page_data'] != null) {
                   Get.back(closeOverlays: true);
 
-                  Get.to(HomePagesScreen(
+                  Get.to(HomePageScreen(
                     page_id: creapi['page_data']['page_id'].toString(),
                   ));
                 }

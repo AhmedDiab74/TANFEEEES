@@ -630,6 +630,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  flutter_dialogs:
+    dependency: "direct main"
+    description:
+      name: flutter_dialogs
+      sha256: d654a7ca2080223a368b187b748ee9f06c0fe16a4e2d3bde455a0954b5ddb48d
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   flutter_dotenv:
     dependency: "direct main"
     description:
@@ -1448,6 +1456,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  line_icons:
+    dependency: "direct main"
+    description:
+      name: line_icons
+      sha256: "249d781d922f5437ac763d9c8f5a02cf5b499a6dc3f85e4b92e074cff0a932ab"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.3"
   lints:
     dependency: transitive
     description:

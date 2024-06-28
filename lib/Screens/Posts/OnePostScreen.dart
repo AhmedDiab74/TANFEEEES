@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Screens/Pages/HomePagesScreen.dart';
 import 'package:wowondertimelineflutterapp/Util/DetectbaleText.dart';
 import 'package:wowondertimelineflutterapp/Util/deetion.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
@@ -23,7 +24,6 @@ import 'package:wowondertimelineflutterapp/Screens/Groups/GroupsScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/Posts/ProductWidget.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiOnePosts.dart';
 import 'package:wowondertimelineflutterapp/Screens/Comment/CommentScreen.dart';
-import 'package:wowondertimelineflutterapp/Screens/Pages/HomePagesScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/Posts/ImageZoomWidget.dart';
 import 'package:wowondertimelineflutterapp/Screens/Posts/postYoutubeScree.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/PostsModel.dart';
@@ -399,12 +399,12 @@ class _OnePostScreenState extends State<OnePostScreen> {
                                 onTap: () {
                                   if (widget.adminPost) {
                                     if (widget.page_id.isNotEmpty)
-                                      Get.to(HomePagesScreen(
+                                      Get.to(HomePageScreen(
                                         page_id: widget.page_id,
                                       ));
                                   } else if (widget.group_id.isNotEmpty) {
                                   } else if (widget.page_id.isNotEmpty) {
-                                    Get.to(HomePagesScreen(
+                                    Get.to(HomePageScreen(
                                       page_id: widget.page_id,
                                     ));
                                   } else {
@@ -472,14 +472,14 @@ class _OnePostScreenState extends State<OnePostScreen> {
                                         onTap: () {
                                           if (widget.adminPost) {
                                             if (widget.page_id.isNotEmpty)
-                                              Get.to(HomePagesScreen(
+                                              Get.to(HomePageScreen(
                                                 page_id: widget.page_id,
                                               ));
                                           } else if (widget
                                               .group_id.isNotEmpty) {
                                           } else if (widget
                                               .page_id.isNotEmpty) {
-                                            Get.to(HomePagesScreen(
+                                            Get.to(HomePageScreen(
                                               page_id: widget.page_id,
                                             ));
                                           } else {
@@ -549,14 +549,14 @@ class _OnePostScreenState extends State<OnePostScreen> {
                                           onTap: () {
                                             if (widget.adminPost) {
                                               if (widget.page_id.isNotEmpty)
-                                                Get.to(HomePagesScreen(
+                                                Get.to(HomePageScreen(
                                                   page_id: widget.page_id,
                                                 ));
                                             } else if (widget
                                                 .group_id.isNotEmpty) {
                                             } else if (widget
                                                 .page_id.isNotEmpty) {
-                                              Get.to(HomePagesScreen(
+                                              Get.to(HomePageScreen(
                                                 page_id: widget.page_id,
                                               ));
                                             } else {

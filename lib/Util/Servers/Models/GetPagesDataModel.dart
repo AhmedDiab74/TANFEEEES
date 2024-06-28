@@ -5,15 +5,16 @@ class GetPagesDataModel {
   String avatar;
   String cover;
   String website;
+  String page_name;
   String company;
   String phone;
   String address;
   final is_reported;
   final is_page_onwer;
   final is_verified;
+  String page_category;
   String call_action_type_text;
   final likes_count;
-  final is_liked;
   final is_rated;
   String call_action_type_url;
   String users_post;
@@ -24,13 +25,32 @@ class GetPagesDataModel {
   String instgram;
   String youtube;
   String facebook;
-  int rating;
+  String likes;
+  final rating;
   String post_count;
-
+  String prices;
   String category;
   String page_id;
   String verified;
+
+  String sub;
+  String daily;
+  String weekly;
+  String monthly;
+  String quarterly;
+  String yearly;
+  String life;
+  String daily_price;
+  String weekly_price;
+  String monthly_price;
+  String quarterly_price;
+  String yearly_price;
+  String life_price;
+  bool is_liked;
+  bool paid;
   GetPagesDataModel({
+    required this.page_name,
+    required this.likes,
     required this.facebook,
     required this.is_reported,
     required this.call_action_type,
@@ -61,11 +81,47 @@ class GetPagesDataModel {
     required this.post_count,
     required this.page_id,
     required this.verified,
+    required this.paid,
+    required this.life_price,
+    required this.yearly_price,
+    required this.quarterly_price,
+    required this.monthly_price,
+    required this.weekly_price,
+    required this.daily_price,
+    required this.life,
+    required this.yearly,
+    required this.page_category,
+    required this.quarterly,
+    required this.monthly,
+    required this.weekly,
+    required this.daily,
+    required this.prices,
+    required this.sub,
+
     //
   });
 
   factory GetPagesDataModel.fromJson(Map<String, dynamic> map) =>
       GetPagesDataModel(
+        page_category: map['page_category'] == null ? '' : map['page_category'],
+        page_name: map['page_name'] == null ? '' : map['page_name'],
+        paid: map['paid'] == null ? false : map['paid'],
+        is_liked: map['is_liked'] == null ? false : map['is_liked'],
+        life_price: StringMap(map['life_price']),
+        yearly_price: StringMap(map['yearly_price']),
+        quarterly_price: StringMap(map['quarterly_price']),
+        monthly_price: StringMap(map['monthly_price']),
+        weekly_price: StringMap(map['weekly_price']),
+        daily_price: StringMap(map['daily_price']),
+        life: StringMap(map['life']),
+        yearly: StringMap(map['yearly']),
+        quarterly: StringMap(map['quarterly']),
+        monthly: StringMap(map['monthly']),
+        weekly: StringMap(map['weekly']),
+        daily: map['daily'] == null ? '' : map['daily'],
+        prices: map['prices'] == null ? '' : map['prices'],
+        sub: map['sub'] == null ? '' : map['sub'],
+        likes: map['likes'] == null ? '' : map['likes'],
         call_action_type:
             map['call_action_type'] == null ? '' : map['call_action_type'],
         page_title: map['page_title'] == null ? '' : map['page_title'],
@@ -85,7 +141,6 @@ class GetPagesDataModel {
             ? ''
             : map['call_action_type_text'],
         likes_count: map['likes_count'] == null ? '' : map['likes_count'],
-        is_liked: map['is_liked'] == null ? false : map['is_liked'],
         is_rated: map['is_rated'] == null ? false : map['is_rated'],
         call_action_type_url: map['call_action_type_url'] == null
             ? ''
@@ -112,8 +167,10 @@ class GetPagesDataModel {
 ///
 ///
 
-
 // To parse this JSON data, do
 //
 //     final welcome = welcomeFromMap(jsonString);
 
+StringMap(tit) {
+  return tit == null ? '' : tit;
+}

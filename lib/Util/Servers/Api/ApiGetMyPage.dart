@@ -6,7 +6,7 @@ import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetPagesDataModel
 
 
 class ApiGetMyPage {
-  static Future<List<GetPagesDataModel>> mypage() async {
+  static Future<List<GetPagesDataModel>> mypage(offset) async {
     var url = Uri.parse(accounts[0]['pagm'] + await SharedP.Get('tok'));
 
     List<GetPagesDataModel> posts = <GetPagesDataModel>[];
@@ -14,7 +14,7 @@ class ApiGetMyPage {
     var response = await http.post(url, body: {
       accounts[0]['sm1']: accounts[0]['sm2'],
       accounts[0]['ty']: 'my_pages',
-      'offset': '',
+      'offset':offset,
       'limit': '20'
     });
 

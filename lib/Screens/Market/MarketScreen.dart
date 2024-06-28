@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Screens/Market/OneScreenMarket.dart';
+import 'package:wowondertimelineflutterapp/Screens/Posts/MoreInfoProudct.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:flutter/material.dart';
@@ -169,42 +171,7 @@ class _MarketScreenState extends State<MarketScreen> {
                     Categories: "${Products_Categories['$i']!.toString()}",
                   ),
 
-                // _All(
-                //   category_id: '2',
-                //   Categories: 'Autos & Vehicles	'.tr,
-                // ),
-                // _All(
-                //   category_id: '3',
-                //   Categories: '	Baby & Children\'s Products'.tr,
-                // ),
-                // _All(
-                //   category_id: '4',
-                //   Categories: 'Beauty Products & Services	'.tr,
-                // ),
-                // _All(
-                //   category_id: '5',
-                //   Categories: 'Computers & Peripherals'.tr,
-                // ),
-                // _All(
-                //   category_id: '6',
-                //   Categories: 'Consumer Electronics	'.tr,
-                // ),
-                // _All(
-                //   category_id: '7',
-                //   Categories: 'Dating Services'.tr,
-                // ),
-                // _All(
-                //   category_id: '8',
-                //   Categories: 'Financial Services	'.tr,
-                // ),
-                // _All(
-                //   category_id: '9',
-                //   Categories: 'Gifts & Occasions'.tr,
-                // ),
-                // _All(
-                //   category_id: '10',
-                //   Categories: 'Home & Garden',
-                // ),
+
               ],
             ),
           ),
@@ -220,12 +187,7 @@ class _MarketScreenState extends State<MarketScreen> {
       decoration: BoxDecoration(
           color: color ? ColorTheme : Color.fromARGB(196, 255, 255, 255),
           borderRadius: BorderRadius.circular(50),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.grey,
-          //     blurRadius: 4,
-          //     spreadRadius: 2
-          //   )
+
           // ]
           border:
               Border.all(color: color ? Colors.white : ColorTheme, width: 1)),
@@ -320,155 +282,57 @@ class _AllState extends State<_All> {
             style: GoogleFonts.cairo(fontWeight: FontWeight.w700, fontSize: 17),
           ),
         ),
-        Container(
-            height: Get.height * 0.70,
-            child: SmartRefresher(
-              onRefresh: onRefresh,
-              onLoading: onLoding,
-              enablePullUp: true,
-              enablePullDown: true,
-              controller: refreshController,
-              child: GridView.count(
-                crossAxisCount: 2,
-                scrollDirection: Axis.vertical,
-                primary: false,
-                children: List.generate(data.length, (index) {
-                  var colorTextBordingDark1;
-                  // return Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Container(
-                  //     decoration: BoxDecoration(
-                  //         borderRadius: BorderRadius.circular(30),
-                  //         color: ColorTheme),
-                  //     child: Padding(
-                  //       padding: const EdgeInsets.all(1.0),
-                  //       child: InkWell(
-                  //         onTap: () {
-                  //           Get.to(_MoreInfoProudct(
-                  //             edit_description: data[index].edit_description,
-                  //             price: data[index].price,
-                  //             name: data[index].name,
-                  //             images: data[index].imagesAll,
-                  //             location: data[index].location,
-                  //             currency: data[index].currency,
-                  //           ));
-                  //         },
-                  //         child: Container(
-                  //           decoration: BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(30),
-                  //               color: Colors.white),
-                  //           child: Stack(
-                  //             children: [
-                  //               ClipRRect(
-                  //                 borderRadius: BorderRadius.circular(20),
-                  //                 child: CachedNetworkImage(
-                  //                   imageUrl: data[index].images,
-                  //                   fit: BoxFit.cover,
-                  //                 ),
-                  //               ),
-                  //               Positioned(
-                  //                   bottom: 0,
-                  //                   left: 0,
-                  //                   right: 0,
-                  //                   child: Container(
-                  //                     width: Get.width,
-                  //                     height: 40,
-                  //                     decoration: BoxDecoration(
-                  //                       borderRadius: BorderRadius.only(
-                  //                           bottomLeft: Radius.circular(20),
-                  //                           bottomRight: Radius.circular(20)),
-                  //                       color: Color.fromARGB(145, 0, 0, 0),
-                  //                     ),
-                  //                     child: Row(
-                  //                       mainAxisAlignment:
-                  //                           MainAxisAlignment.spaceBetween,
-                  //                       children: [
-                  //                         Text(
-                  //                           data[index].name,
-                  //                           style: GoogleFonts.cairo(
-                  //                             color: Colors.white,
-                  //                             fontWeight: FontWeight.bold,
-                  //                           ),
-                  //                           textAlign: TextAlign.right,
-                  //                         ),
-                  //                       ],
-                  //                     ),
-                  //                   )),
-                  //               Positioned(
-                  //                   child: Container(
-                  //                 margin: EdgeInsets.only(left: 10, top: 10),
-                  //                 height: Get.height * 0.03,
-                  //                 width: Get.width * 0.1,
-                  //                 decoration: BoxDecoration(
-                  //                   color: data[index].type == '1'
-                  //                       ? Colors.red
-                  //                       : Colors.blue,
-                  //                   borderRadius: BorderRadius.circular(50),
-                  //                 ),
-                  //                 child: Center(
-                  //                     child: Text(
-                  //                   data[index].type == '1'
-                  //                       ? 'Used'.tr
-                  //                       : 'New'.tr,
-                  //                   style:
-                  //                       GoogleFonts.cairo(color: Colors.white),
-                  //                 )),
-                  //               )),
-                  //               Row(
-                  //                 children: [
-                  //                   Text(
-                  //                     '\$' + data[index].price,
-                  //                     style: GoogleFonts.cairo(
-                  //                       color: Colors.white,
-                  //                       fontWeight: FontWeight.bold,
-                  //                     ),
-                  //                     textAlign: TextAlign.left,
-                  //                   )
-                  //                 ],
-                  //               ),
-                  //             ],
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // );
-                  return Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: Column(
-                      children: [
-                        Container(
-                          clipBehavior: Clip.hardEdge,
-                          margin: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                          ),
-                          // width: Get.width,
-                          // height: Get.height *0.1,
-                          child: Stack(children: [
-                            Container(
-                              margin: EdgeInsets.all(5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: CachedNetworkImage(
-                                  imageUrl: data[index].images,
-                                  fit: BoxFit.fitWidth,
-                                ),
+        Expanded(
+          child: SmartRefresher(
+            onRefresh: onRefresh,
+            onLoading: onLoding,
+            enablePullUp: true,
+            enablePullDown: true,
+            controller: refreshController,
+            child: GridView.count(
+              crossAxisCount: 2,
+              scrollDirection: Axis.vertical,
+              primary: false,
+              children: List.generate(data.length, (index) {
+          
+                return InkWell(
+                  onTap: (){
+                    Get.to(Onescreenmarket(title: data[index].name,));
+                  },
+                  child: Column(
+                    children: [
+                      Container(
+                        clipBehavior: Clip.hardEdge,
+                        margin: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+
+                        ),
+                        // width: Get.width,
+                        // height: Get.height *0.1,
+                        child: Stack(children: [
+                          Container(
+                            margin: EdgeInsets.all(5),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: CachedNetworkImage(
+                                imageUrl: data[index].images,
                               ),
                             ),
-                          ]),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        Text("Product"),
-                        Text("434")
-                      ],
-                    ),
-                  );
-                }),
-              ),
-            )),
+                          ),
+                        ]),
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.02,
+                      ),
+                      Text(data[index].name),
+                      Text(data[index].price)
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ),
+        ),
       ],
     );
   }

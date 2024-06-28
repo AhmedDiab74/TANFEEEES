@@ -33,6 +33,7 @@ final bool f_Social_Login_Page = true;
 /// If you want to Add Friend System Then make it true.
 final bool f_Friends_System = false;
 const String onesignal = 'f9e16221-bc9f-4d71-8001-a48d611b8940';
+
 /// Make you change the App Id in AndroidManifest.xml
 /// Android Banner ID
 final String f_ADMOB_ANDROID_BANNER_ID = 'ca-app-pub-5148326721676561/5665441234';

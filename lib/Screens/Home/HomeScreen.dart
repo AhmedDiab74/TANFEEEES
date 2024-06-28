@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wowondertimelineflutterapp/Colors2.dart';
+import 'package:wowondertimelineflutterapp/Screens/Chat/HomeScreenChat.dart';
 import 'package:wowondertimelineflutterapp/Screens/Stories/StoriesScreenView.dart';
 import 'package:wowondertimelineflutterapp/Widget/CustomPainterCir.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
@@ -264,8 +265,12 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     Row(
                                       children: [
-                                        SvgPicture.asset(
-                                            'assets/SvgNew/messages.svg'),
+                                        InkWell(
+                                          onTap:(){   Get.to(HomeScreenChat());},
+                                          child: SvgPicture.asset(
+
+                                              'assets/SvgNew/messages.svg'),
+                                        ),
                                         SvgPicture.asset(
                                             'assets/SvgNew/notfi.svg'),
                                         SvgPicture.asset(
