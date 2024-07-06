@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'package:wowondertimelineflutterapp/Util/AESEncryption/AES.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:wowondertimelineflutterapp/controllers/SharedPreferences.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetColorPostModel.dart';
-
 
 class ApiGetColorPost {
   static Future<List<GetColorPostModel>> color(String colorId) async {
@@ -17,15 +17,13 @@ class ApiGetColorPost {
       accounts[0]['sm1']: accounts[0]['sm2'],
     });
 
-    var resp = response.body;
-
-    var datajson = jsonDecode(resp);
-    var wwwdata = datajson['config']['post_colors'][colorId];
-    print('aksjdklsajdklsajdklasjld  $wwwdata');
+    var responseData = jsonDecode(response.body);
+    var ameno = decryptNewsOkl(responseData['config']);
+    var ss = jsonDecode(ameno);
+    var wwwdata = ss['post_colors'][colorId];
 
     posts.add(GetColorPostModel.fromJson(wwwdata));
 
-    // print(wwwdata);
     return posts;
   }
 }

@@ -142,7 +142,6 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                 pinned: true,
                 snap: true,
                 centerTitle: true,
-
                 actions: [
                   if (Enable_Profile_Share)
                     InkWell(
@@ -271,10 +270,13 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                           Share.share(datauser[0].url);
                                         },
                                         child: ShareDialogue(
-                                            'Share Profile link'.tr, Icons.ios_share_outlined),
+                                            'Share Profile link'.tr,
+                                            Icons.ios_share_outlined),
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                   ],
                                 ),
                               ],
@@ -302,7 +304,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                   Directionality(
                     textDirection: TextDirection.ltr,
                     child: Container(
-                      color: Get.isDarkMode ? ColorDarkComponents : Colors.white,
+                      color:
+                          Get.isDarkMode ? ColorDarkComponents : Colors.white,
                       child: Column(
                         children: [
                           Container(
@@ -312,7 +315,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                               children: [
                                 Container(
                                   width: Get.width,
-                                  height: Get.height * 0.22,
+                                  height: Get.height * 0.50,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(20),
@@ -335,7 +338,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                   child: Container(
                                     width: Get.width,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -346,37 +350,41 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                               CrossAxisAlignment.end,
                                           children: [
                                             Column(
-
                                               children: [
                                                 CircleAvatar(
                                                   maxRadius: 60,
-                                                  backgroundColor: Get.isDarkMode
-                                                      ? Colors.black
-                                                      : Colors.white,
+                                                  backgroundColor:
+                                                      Get.isDarkMode
+                                                          ? Colors.black
+                                                          : Colors.white,
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(3.0),
+                                                        const EdgeInsets.all(
+                                                            3.0),
                                                     child: CircleAvatar(
                                                       maxRadius: 60,
-                                                      backgroundColor: ColorTheme,
+                                                      backgroundColor:
+                                                          ColorTheme,
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(5.0),
+                                                            const EdgeInsets
+                                                                .all(5.0),
                                                         child: CircleAvatar(
                                                           maxRadius: 60,
-                                                          backgroundColor:
-                                                              Get.isDarkMode
-                                                                  ? Colors.black
-                                                                  : Colors.white,
+                                                          backgroundColor: Get
+                                                                  .isDarkMode
+                                                              ? Colors.black
+                                                              : Colors.white,
                                                           child: Padding(
                                                             padding:
-                                                                const EdgeInsets.all(
-                                                                    3.0),
+                                                                const EdgeInsets
+                                                                    .all(3.0),
                                                             child: CircleAvatar(
                                                               maxRadius: 60,
                                                               backgroundImage:
                                                                   CachedNetworkImageProvider(
-                                                                      widget.avat),
+                                                                      widget
+                                                                          .avat),
                                                             ),
                                                           ),
                                                         ),
@@ -384,13 +392,12 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                                     ),
                                                   ),
                                                 ),
-
-
                                               ],
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 10),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 10),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -402,10 +409,11 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                                     if (datauser[i].about != '')
                                                       Container(
                                                         width: Get.width * 0.6,
-                                                        padding: const EdgeInsets
-                                                            .symmetric(
-                                                            horizontal: 5,
-                                                            vertical: 10),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .symmetric(
+                                                                horizontal: 5,
+                                                                vertical: 10),
                                                         child: Text(
                                                           Stringlength(
                                                               text: datauser[i]
@@ -426,7 +434,6 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                     ),
                                   ),
                                 ),
-
                                 Positioned(
                                     top: Get.height * 0.16,
                                     right: 1,
@@ -452,32 +459,34 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                                     i++)
                                                   Friends_System
                                                       ? OnTapFrind(
-                                                          user_id:
-                                                              datauser[i].user_id,
+                                                          user_id: datauser[i]
+                                                              .user_id,
                                                           confirm_followers:
                                                               datauser[i]
                                                                   .confirm_followers,
                                                           is_following:
                                                               datauser[i]
                                                                   .is_following,
-                                                          can_follow: datauser[i]
-                                                              .can_follow,
+                                                          can_follow:
+                                                              datauser[i]
+                                                                  .can_follow,
                                                           message_privacy:
                                                               datauser[i]
                                                                   .message_privacy,
                                                           // controller.data[i].user_id;
                                                         )
                                                       : OnTapFoloow(
-                                                          user_id:
-                                                              datauser[i].user_id,
+                                                          user_id: datauser[i]
+                                                              .user_id,
                                                           confirm_followers:
                                                               datauser[i]
                                                                   .confirm_followers,
                                                           is_following:
                                                               datauser[i]
                                                                   .is_following,
-                                                          can_follow: datauser[i]
-                                                              .can_follow,
+                                                          can_follow:
+                                                              datauser[i]
+                                                                  .can_follow,
                                                           message_privacy:
                                                               datauser[i]
                                                                   .message_privacy,
@@ -494,10 +503,12 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                               for (var i = 0;
                                                   i < datauser.length;
                                                   i++)
-                                                Get.to(GetSingleUserMessageScreen(
+                                                Get.to(
+                                                    GetSingleUserMessageScreen(
                                                   avat: datauser[i].avatar,
                                                   userid: datauser[i].user_id,
-                                                  username: datauser[i].username,
+                                                  username:
+                                                      datauser[i].username,
                                                   name: datauser[i].name,
                                                   color: GetSetList[0]
                                                       ['btn_background_color'],
@@ -516,15 +527,18 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                                       const EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.center,
+                                                        MainAxisAlignment
+                                                            .center,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.center,
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: [
                                                       SvgPicture.asset(
                                                         SvgImages.Message,
                                                         height:
                                                             Get.height * 0.020,
-                                                        width: Get.width * 0.020,
+                                                        width:
+                                                            Get.width * 0.020,
                                                         color: Colors.white,
                                                       ),
                                                       SizedBox(
@@ -551,28 +565,46 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                             ),
                           ),
                           Row(
-
                             children: [
-SizedBox(width: Get.width *0.1,),
-                              Text(widget.name,style: TextStyle(fontWeight: FontWeight.w600),),
-                              SizedBox(width: 5,),
-                              if(datauser.length>0)
-                                if(datauser[0].verified=='1')Icon(Icons.verified,color: Colors.blueAccent,size: 18,),
-                              SizedBox(width: 5,),
-
-                              if(datauser.length>0)
-
-                                if(datauser[0].pro_type!='0')Container(
-
-                                    decoration: BoxDecoration(color: ColorTheme,borderRadius: BorderRadius.circular(5)),
-                                    child:Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 4),
-                                      child: Text('PRO',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                                    )),
-
+                              SizedBox(
+                                width: Get.width * 0.1,
+                              ),
+                              Text(
+                                widget.name,
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              if (datauser.length > 0)
+                                if (datauser[0].verified == '1')
+                                  Icon(
+                                    Icons.verified,
+                                    color: Colors.blueAccent,
+                                    size: 18,
+                                  ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              if (datauser.length > 0)
+                                if (datauser[0].pro_type != '0')
+                                  Container(
+                                      decoration: BoxDecoration(
+                                          color: ColorTheme,
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 4),
+                                        child: Text(
+                                          'PRO',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )),
                             ],
                           ),
-
                           for (var i = 0; i < datauser.length; i++)
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 0),
@@ -595,12 +627,15 @@ SizedBox(width: Get.width *0.1,),
                                             children: [
                                               Text(
                                                 datauser[i].post_count,
-                                                style: SafeGoogleFont(Fonts.font3,
-                                                    fontWeight: FontWeight.bold),
+                                                style: SafeGoogleFont(
+                                                    Fonts.font3,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                               Text(
                                                 'Posts'.tr,
-                                                style: SafeGoogleFont(Fonts.font3,
+                                                style: SafeGoogleFont(
+                                                    Fonts.font3,
                                                     fontWeight: FontWeight.w600,
                                                     color: Color(0xff64748B)),
                                               ),
@@ -616,14 +651,17 @@ SizedBox(width: Get.width *0.1,),
                                             children: [
                                               Text(
                                                 datauser[i].followers_count,
-                                                style: SafeGoogleFont(Fonts.font3,
-                                                    fontWeight: FontWeight.bold),
+                                                style: SafeGoogleFont(
+                                                    Fonts.font3,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                               Text(
                                                 Friends_System
                                                     ? 'Friend'.tr
                                                     : 'Followers'.tr,
-                                                style: SafeGoogleFont(Fonts.font3,
+                                                style: SafeGoogleFont(
+                                                    Fonts.font3,
                                                     fontWeight: FontWeight.w600,
                                                     color: Color(0xff64748B)),
                                               ),
@@ -650,7 +688,8 @@ SizedBox(width: Get.width *0.1,),
                                                   'Following'.tr,
                                                   style: SafeGoogleFont(
                                                       Fonts.font3,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                       color: Color(0xff64748B)),
                                                 ),
                                               ],
@@ -845,7 +884,7 @@ SizedBox(width: Get.width *0.1,),
                             children: [
                               for (var i = 0; i < data.length; i++)
                                 WidgetPosts(
-                                  blog:data[i].blog,
+                                  blog: data[i].blog,
                                   voted_id: data[i].voted_id,
                                   postFileName: data[i].postFileName,
                                   vy_live: data[i].vy_live,

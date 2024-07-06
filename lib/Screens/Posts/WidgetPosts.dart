@@ -470,10 +470,16 @@ class _WidgetPostsState extends State<WidgetPosts> {
                                                   ),
                                                 ),
                                               ),
-if(widget.blog.isNotEmpty) Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 4),
-  child: Text('created a new article',style: TextStyle(color: Colors.grey),),
-),
+                                              if (widget.blog.isNotEmpty)
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 4),
+                                                  child: Text(
+                                                    'created a new article',
+                                                    style: TextStyle(
+                                                        color: Colors.grey),
+                                                  ),
+                                                ),
                                               SizedBox(
                                                 width: Get.width * 0.01,
                                               ),
@@ -632,9 +638,9 @@ if(widget.blog.isNotEmpty) Padding(
                               yout: widget.yout,
                             ),
 
-                            if (widget.product_id.toString().isNotEmpty)
-                              if (widget.product_id != '0')
-                                ProductWidget(product: widget.product),
+                          if (widget.product_id.toString().isNotEmpty)
+                            if (widget.product_id != '0')
+                              ProductWidget(product: widget.product),
                           if (widget.event.toString().isNotEmpty)
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -788,6 +794,9 @@ if(widget.blog.isNotEmpty) Padding(
                           //       ],
                           //     ),
                           //   ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           if (widget.postText != '')
                             SizedBox(
                               width: Get.width * 0.01,
@@ -1264,20 +1273,16 @@ if(widget.blog.isNotEmpty) Padding(
                                                 style: TextStyle(
                                                     fontWeight:
                                                         FontWeight.bold),
-
-
                                               ),
                                             ),
                                             Padding(
                                               padding:
-                                              const EdgeInsets.symmetric(horizontal: 8.0),
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
                                               child: Text(
                                                 ReplaceCharacter(
                                                     widget.blog['description']),
-                                                style: TextStyle(
-                                                   ),
-
-
+                                                style: TextStyle(),
                                               ),
                                             ),
                                           ],
@@ -1461,11 +1466,12 @@ if(widget.blog.isNotEmpty) Padding(
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child:Directionality(
+                            child: Directionality(
                               textDirection: TextDirection.ltr,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   InkWell(
                                     onTap: () {
@@ -1496,7 +1502,6 @@ if(widget.blog.isNotEmpty) Padding(
                                                 cacheWidth: 100,
                                               ),
                                             ),
-
                                             Positioned(
                                                 left: 12,
                                                 child: Row(
@@ -1526,92 +1531,79 @@ if(widget.blog.isNotEmpty) Padding(
                                                     ),
                                                     Text(
                                                       '${widget.contLike}',
-                                                      style:
-                                                          TextStyle(fontSize: 12),
+                                                      style: TextStyle(
+                                                          fontSize: 12),
                                                     ),
                                                   ],
                                                 )),
-
-                                            // Image.asset(
-                                            //   images.Like,
-                                            //   height: 20,
-                                            //   width: 20,
-                                            // ),
-                                            // Image.asset(
-                                            //   images.Love,
-                                            //   height: 20,
-                                            //   width: 20,
-                                            // ),
                                           ],
                                         )),
                                   ),
-
-                                    Row(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(CommentScreen(
-                                              post_id: widget.post_id,
-                                              trueflasecommet:
-                                                  widget.trueflasecommet,
-                                              fetch_comments: 'fetch_comments',
-                                              contcoment: () {
-                                                setState(() {
-                                                  widget.contcoment++;
-                                                });
-                                              },
-                                            ));
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                widget.contcoment.toString(),
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                              SizedBox(
-                                                width: Get.width * 0.01,
-                                              ),
-                                              Text(
-                                                'Comment'.tr,
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                            ],
-                                          ),
+                                  Row(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(CommentScreen(
+                                            post_id: widget.post_id,
+                                            trueflasecommet:
+                                                widget.trueflasecommet,
+                                            fetch_comments: 'fetch_comments',
+                                            contcoment: () {
+                                              setState(() {
+                                                widget.contcoment++;
+                                              });
+                                            },
+                                          ));
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              widget.contcoment.toString(),
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                            SizedBox(
+                                              width: Get.width * 0.01,
+                                            ),
+                                            Text(
+                                              'Comment'.tr,
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          ],
                                         ),
-                                        Container(
-                                          width: 4,
-                                          height: 4,
-                                          margin:
-                                              EdgeInsets.symmetric(horizontal: 5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.grey[400],
-                                              borderRadius:
-                                                  BorderRadius.circular(50)),
+                                      ),
+                                      Container(
+                                        width: 4,
+                                        height: 4,
+                                        margin:
+                                            EdgeInsets.symmetric(horizontal: 5),
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[400],
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              widget.post_share.toString(),
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                            SizedBox(
+                                              width: Get.width * 0.008,
+                                            ),
+                                            Text(
+                                              'Shares'.tr,
+                                              style: TextStyle(fontSize: 12),
+                                            ),
+                                          ],
                                         ),
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                widget.post_share.toString(),
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                              SizedBox(
-                                                width: Get.width * 0.008,
-                                              ),
-                                              Text(
-                                                'Shares'.tr,
-                                                style: TextStyle(fontSize: 12),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

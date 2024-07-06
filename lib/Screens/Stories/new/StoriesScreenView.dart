@@ -41,9 +41,9 @@ class _NewStoreViwState extends State<NewStoreViw> {
     _pageController = PageController(initialPage: widget.initialPage);
     _pageController!.addListener(() {
       print("inside listener");
-       if (_pageController!.initialPage+1 == widget.cont.stor.length) {
-              Get.back();
-            }
+      if (_pageController!.initialPage + 1 == widget.cont.stor.length) {
+        Get.back();
+      }
     });
   }
 
@@ -60,7 +60,7 @@ class _NewStoreViwState extends State<NewStoreViw> {
       body: PageView.builder(
           padEnds: false,
           onPageChanged: (val) {
-            if (val+1 == widget.cont.stor.length) {
+            if (val + 1 == widget.cont.stor.length) {
               Get.back();
             }
           },
@@ -347,7 +347,7 @@ class _StoryScreenState extends State<StoryScreen>
                       _videoController?.pause();
 
                       Get.bottomSheet(
-                          backgroundColor:Colors.white,
+                          backgroundColor: Colors.white,
                           isScrollControlled: true,
                           ViewUserStories(
                             story_id: story.story_id,
@@ -656,7 +656,7 @@ class _ViewUserStoriesState extends State<ViewUserStories> {
         ),
         Center(
             child: Container(
-          color: Colors.white,
+          color: Colors.black,
           width: 100,
           height: 2,
         )),
@@ -680,7 +680,6 @@ class _ViewUserStoriesState extends State<ViewUserStories> {
                                 children: [
                                   CircleAvatar(
                                       maxRadius: 27,
-                                      backgroundColor: Colors.white,
                                       child: CircleAvatar(
                                           maxRadius: 25,
                                           backgroundImage:
@@ -692,7 +691,6 @@ class _ViewUserStoriesState extends State<ViewUserStories> {
                                     child: Text(
                                       vSt[i].name,
                                       style: TextStyle(
-                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16),
                                     ),

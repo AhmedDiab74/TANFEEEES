@@ -314,21 +314,32 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                                 ],
                                               ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: [
                                                 Text(
                                                   Stringlength(
                                                       text: widget.name,
                                                       length: 25),
-                                                  style: SafeGoogleFont(Fonts.font3,
-                                                      fontWeight: FontWeight.bold,
+                                                  style: SafeGoogleFont(
+                                                      Fonts.font3,
+                                                      fontWeight:
+                                                          FontWeight.bold,
                                                       fontSize: 19),
                                                 ),
-                                                SizedBox(width: 5,),
-                                                if(controller.data[0].verified=='1')Icon(Icons.verified,color: Colors.blueAccent,size: 18,),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                if (controller
+                                                        .data[0].verified ==
+                                                    '1')
+                                                  Icon(
+                                                    Icons.verified,
+                                                    color: Colors.blueAccent,
+                                                    size: 18,
+                                                  ),
                                               ],
                                             ),
-                                           
                                             for (var i = 0;
                                                 i < getimydata.data.length;
                                                 i++)
@@ -373,7 +384,7 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: [
-                                      if (Enable_Profile_Share)
+                                      if (false)
                                         Expanded(
                                           flex: 2,
                                           child: Container(
@@ -385,14 +396,6 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                                   ? ColorDarkBackground
                                                   : ColorBackIcons,
                                               child: Center(
-                                                // child: SvgPicture.asset(
-                                                //   Change_Color_Icons
-                                                //       ? ColorSvg.Messenger
-                                                //       : SvgImages.Message,
-                                                //   height: Get.height * 0.02,
-                                                //   width: Get.width * 0.02,
-                                                //   color: Colors.black,
-                                                // ),
                                                 child: Image.asset(
                                                   images.ShareImage,
                                                   height: Get.height * 0.03,
@@ -405,6 +408,9 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                             ),
                                           )),
                                         ),
+                                      Expanded(
+                                        
+                                        child: SizedBox()),
                                       Expanded(
                                         flex: 8,
                                         child: InkWell(
@@ -441,37 +447,39 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                           ),
                                         ),
                                       ),
-                                      Expanded(
-                                        flex: 2,
-                                        child: Container(
-                                            child: InkWell(
-                                          onTap: () {},
-                                          child: CircleAvatar(
-                                            radius: 26,
-                                            backgroundColor: Get.isDarkMode
-                                                ? ColorDarkBackground
-                                                : ColorBackIcons,
-                                            child: Center(
-                                              // child: SvgPicture.asset(
-                                              //   Change_Color_Icons
-                                              //       ? ColorSvg.Messenger
-                                              //       : SvgImages.Message,
-                                              //   height: Get.height * 0.02,
-                                              //   width: Get.width * 0.02,
-                                              //   color: Colors.black,
-                                              // ),
-                                              child: Image.asset(
-                                                images.AddPostsMyProfile,
-                                                height: Get.height * 0.04,
-                                                width: Get.width * 0.04,
-                                                color: Get.isDarkMode
-                                                    ? Colors.white
-                                                    : Colors.black,
+                                      Expanded(child: SizedBox()),
+                                      if (false)
+                                        Expanded(
+                                          flex: 2,
+                                          child: Container(
+                                              child: InkWell(
+                                            onTap: () {},
+                                            child: CircleAvatar(
+                                              radius: 26,
+                                              backgroundColor: Get.isDarkMode
+                                                  ? ColorDarkBackground
+                                                  : ColorBackIcons,
+                                              child: Center(
+                                                // child: SvgPicture.asset(
+                                                //   Change_Color_Icons
+                                                //       ? ColorSvg.Messenger
+                                                //       : SvgImages.Message,
+                                                //   height: Get.height * 0.02,
+                                                //   width: Get.width * 0.02,
+                                                //   color: Colors.black,
+                                                // ),
+                                                child: Image.asset(
+                                                  images.AddPostsMyProfile,
+                                                  height: Get.height * 0.04,
+                                                  width: Get.width * 0.04,
+                                                  color: Get.isDarkMode
+                                                      ? Colors.white
+                                                      : Colors.black,
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )),
-                                      ),
+                                          )),
+                                        ),
                                     ])),
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -933,7 +941,7 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                 children: [
                                   for (var i = 0; i < data.length; i++)
                                     WidgetPosts(
-                                      blog:data[i].blog,
+                                      blog: data[i].blog,
                                       voted_id: data[i].voted_id,
                                       postFileName: data[i].postFileName,
                                       vy_live: data[i].vy_live,
