@@ -22,8 +22,7 @@ String ColorSvgHome = 'assets/color-svg/home/';
 String ColorSvgPro = 'assets/color-svg/home/pro/';
 String ColorSvgChat = 'assets/color-svg/chat/';
 String ColorSvgPost = 'assets/color-svg/post/';
-String ColorSvgPostBottom = 'assets/color-svg/post/bottom/';
-
+String ColorSvgPostBottom = 'assets/color-svg//bottom/';
 class AnimatedImages {
   ///onBording Images
   static String DeleteChat = animation + 'delete-chat.json';

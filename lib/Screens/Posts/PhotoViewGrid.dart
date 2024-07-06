@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
-import 'package:wowondertimelineflutterapp/main.dart';
+
 import 'package:flutter/material.dart';
-import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
-import 'package:wowondertimelineflutterapp/Util/Functions.dart';
+
 import 'package:photo_view/photo_view.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

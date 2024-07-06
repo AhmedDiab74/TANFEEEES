@@ -201,3 +201,7 @@ sizedwidth(context) {
 sizedHeight(context) {
   return MediaQuery.of(context).size.height;
 }
+
+extension UriString on String {
+  Uri get toUri => Uri.parse(this);
+}

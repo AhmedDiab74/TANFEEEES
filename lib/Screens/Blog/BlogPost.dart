@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:wowondertimelineflutterapp/Screens/Blog/BlogComment.dart';
 import 'package:wowondertimelineflutterapp/Screens/Blog/CategoryPosts.dart';
@@ -46,7 +45,7 @@ class BlogPostScreen extends StatefulWidget {
 class _BlogPostScreenState extends State<BlogPostScreen> {
   double _fontSize = 16.0;
   final Comments = 1;
-  FlutterTts flutterTts = FlutterTts();
+
 
   void _increaseFontSize() {
     setState(() {

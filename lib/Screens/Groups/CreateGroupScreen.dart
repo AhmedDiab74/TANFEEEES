@@ -246,6 +246,10 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
               onTap: () async {
                 var creapi = await CreateGroupApi.create(group_name.text,
                     group_title.text, catid, about.text, PrivacyId);
+                    print(creapi);
+         if(creapi['api_status']=='400'){
+          Get.snackbar('error', creapi['errors']['error_text']);
+         }
                 setState(() {
                   if (creapi['errors'] != null) {
                     if (creapi['errors']['error_text'] ==

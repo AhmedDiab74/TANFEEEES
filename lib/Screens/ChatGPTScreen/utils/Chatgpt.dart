@@ -2,7 +2,6 @@ import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:dart_openai/dart_openai.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatGPT {
   static final ChatGPT _instance = ChatGPT._();

@@ -29,7 +29,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wowondertimelineflutterapp/Screens/Privacy/PrivacySettingScreen.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetAllMesageModel.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetAllMessageGroupsModel.dart';
-import 'package:flutter_emoji_gif_picker/views/emoji_gif_picker_icon.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 // ignore: must_be_immutable

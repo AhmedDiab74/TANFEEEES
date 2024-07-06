@@ -11,7 +11,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   geolocator_windows
   iris_method_channel
   nb_utils
-  pasteboard
   permission_handler_windows
   record_windows
   share_plus

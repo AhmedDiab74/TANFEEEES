@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wowondertimelineflutterapp/Colors2.dart';
 import 'package:wowondertimelineflutterapp/Screens/Chat/HomeScreenChat.dart';
-import 'package:wowondertimelineflutterapp/Screens/Stories/StoriesScreenView.dart';
+import 'package:wowondertimelineflutterapp/Screens/Notification/NotificationScreen.dart';
+import 'package:wowondertimelineflutterapp/Screens/Stories/AddStoriesScreen.dart';
+import 'package:wowondertimelineflutterapp/Screens/Stories/new/StoriesScreenView.dart';
 import 'package:wowondertimelineflutterapp/Widget/CustomPainterCir.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
@@ -271,8 +273,13 @@ class HomeScreen extends StatelessWidget {
 
                                               'assets/SvgNew/messages.svg'),
                                         ),
-                                        SvgPicture.asset(
-                                            'assets/SvgNew/notfi.svg'),
+                                        InkWell(
+                                          onTap: (){
+                                            Get.to(NotificationScreen());
+                                          },
+                                          child: SvgPicture.asset(
+                                              'assets/SvgNew/notfi.svg'),
+                                        ),
                                         SvgPicture.asset(
                                             'assets/SvgNew/add.svg')
                                       ],
@@ -283,7 +290,7 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        for (var i = 0; i < controller.stor.length; i++)
+                   
                           Positioned(
                               bottom: 0,
                               child: Padding(
@@ -294,55 +301,97 @@ class HomeScreen extends StatelessWidget {
                                     scrollDirection: Axis.horizontal,
                                     child: Row(
                                       children: [
-                                        for (var i = 0;
-                                            i < controller.stor.length;
-                                            i++)
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    Get.to(StoriesScreenView(
-                                                        user_id: controller
-                                                            .stor[controller
-                                                                    .stor
-                                                                    .length -
-                                                                1]
-                                                            .user_id,
-                                                        stior: controller.stor,
-                                                        i: i));
-                                                  },
-                                                  child: CustomPaint(
-                                                    painter:
-                                                        CircleBorderwith4Color(
-                                                      gap: 1,
-                                                      borderThinckness: 8,
-                                                      topRightColor:
-                                                          Greyscale800,
-                                                      bottomLeftColor:
-                                                          Greyscale600,
-                                                      topLeftColor:
-                                                          Greyscale400,
-                                                      bottomRightColor:
-                                                          Greyscale400,
+                                             Row(
+                                          children: [
+                                                  Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                                               Get.bottomSheet(
+                                                          AddStoriesScreen()); // Get.to(StoryPage());
+                                                      },
+                                                      child: CustomPaint(
+                                                        painter:
+                                                            CircleBorderwith4Color(
+                                                          gap: 1,
+                                                          borderThinckness: 8,
+                                                          topRightColor:
+                                                              Greyscale800,
+                                                          bottomLeftColor:
+                                                              Greyscale600,
+                                                          topLeftColor:
+                                                              Greyscale400,
+                                                          bottomRightColor:
+                                                              Greyscale400,
+                                                        ),
+                                                        child: CircleAvatar(
+                                                          maxRadius: 28,
+                                                          backgroundImage:
+                                                              CachedNetworkImageProvider(
+                                                                  mydata.data[0]
+                                                                      .avatar),
+                                                        ),
+                                                      ),
                                                     ),
-                                                    child: CircleAvatar(
-                                                      maxRadius: 28,
-                                                      backgroundImage:
-                                                          CachedNetworkImageProvider(
-                                                              controller.stor[i]
-                                                                  .avatar),
+                                                    SizedBox(
+                                                      height: 5,
                                                     ),
-                                                  ),
+                                                    Text('Add story')
+                                                  ],
                                                 ),
-                                                SizedBox(
-                                                  height: 5,
+                                              ),
+                                         
+                                         
+                                            for (var i = 0;
+                                                i < controller.stor.length;
+                                                i++)
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Column(
+                                                  children: [
+                                                    InkWell(
+                                                      onTap: () {
+                                                           Get.to(NewStoreViw(
+                                            cont: controller, initialPage: i));
+                                                      },
+                                                      child: CustomPaint(
+                                                        painter:
+                                                            CircleBorderwith4Color(
+                                                          gap: 1,
+                                                          borderThinckness: 8,
+                                                          topRightColor:
+                                                              Greyscale800,
+                                                          bottomLeftColor:
+                                                              Greyscale600,
+                                                          topLeftColor:
+                                                              Greyscale400,
+                                                          bottomRightColor:
+                                                              Greyscale400,
+                                                        ),
+                                                        child: CircleAvatar(
+                                                          maxRadius: 28,
+                                                          backgroundImage:
+                                                              CachedNetworkImageProvider(
+                                                                  controller.stor[i]
+                                                                      .avatar),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Text(controller.stor[i].name)
+                                                  ],
                                                 ),
-                                                Text(controller.stor[i].name)
-                                              ],
-                                            ),
-                                          ),
+                                              ),
+                                         
+                                         
+                                          ],
+                                        ),
+                                     
+                                    
                                       ],
                                     ),
                                   ),

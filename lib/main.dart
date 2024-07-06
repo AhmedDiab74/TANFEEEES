@@ -1,9 +1,12 @@
 import 'dart:io';
+import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Screens/UserScreen/GetMyUserDataCont.dart';
 import 'package:wowondertimelineflutterapp/SetValue.dart';
 import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:wowondertimelineflutterapp/Util/Servers/notifi_service.dart';
 import 'package:wowondertimelineflutterapp/Widget/Socket.dart';
 import 'package:wowondertimelineflutterapp/Widget/Unfous.dart';
 import 'package:wowondertimelineflutterapp/Util/Cont/Cont.dart';
@@ -11,13 +14,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:wowondertimelineflutterapp/Util/routes/routes.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiSetGen.dart';
-import 'package:wowondertimelineflutterapp/Util/Servers/notifi_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:wowondertimelineflutterapp/Screens/ChatGPTScreen/utils/Chatgpt.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/OneSignalNotification.dart';
 import 'package:wowondertimelineflutterapp/Screens/ChatGPTScreen/stores/AIChatStore.dart';
-import 'package:flutter_emoji_gif_picker/flutter_emoji_gif_picker.dart';
 import 'package:wowondertimelineflutterapp/Screens/ChatGpt.dart/providers/chats_provider.dart';
 import 'package:wowondertimelineflutterapp/Screens/ChatGpt.dart/providers/models_provider.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -34,8 +35,7 @@ void main() async {
   await GetStorage.init();
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   final String? tok = prefs.getString('tok');
-  EmojiGifPickerPanel.setup(
-      giphyApiKey: 'ZuPQ8uVYjs2cRUVJKZn9ZRMCF2gdDFGY', mode: Mode.light);
+
   open();
   performEncryption();
   configLoading();
@@ -125,3 +125,6 @@ Future<void> configLoading() async {
 List dashSettings = [];
 
 final siteConfig = dashSettings[0];
+
+
+final mydata = Get.put<GetMyUserDataCont>(GetMyUserDataCont(), permanent: true);
