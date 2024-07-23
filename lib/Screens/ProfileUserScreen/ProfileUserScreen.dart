@@ -884,10 +884,17 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                             children: [
                               for (var i = 0; i < data.length; i++)
                                 WidgetPosts(
+                                    postListening: data[i].postListening,
+                            postTraveling:  data[i].postTraveling,
+                            postWatching: data[i].postWatching,
+                            postPlaying:  data[i].postPlaying,
+                                  postMap:data[i].postMap,
+                                  can_not_see_monetized:  data[i].can_not_see_monetized,
                                   blog: data[i].blog,
                                   voted_id: data[i].voted_id,
                                   postFileName: data[i].postFileName,
                                   vy_live: data[i].vy_live,
+                                              postSticker:data[i].postSticker,
                                   blur: data[i].blur,
                                   color_id: data[i].color_id,
                                   stream_name: data[i].stream_name,

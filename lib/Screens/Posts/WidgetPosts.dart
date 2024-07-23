@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wowondertimelineflutterapp/Screens/Pages/HomePagesScreen.dart';
+import 'package:wowondertimelineflutterapp/SetValue.dart';
 import 'package:wowondertimelineflutterapp/Util/DetectbaleText.dart';
+import 'package:wowondertimelineflutterapp/Util/Functions.dart';
 import 'package:wowondertimelineflutterapp/Util/deetion.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
@@ -56,6 +58,7 @@ class WidgetPosts extends StatefulWidget {
     required this.p1080p,
     required this.p2048p,
     required this.p240p,
+    required this.can_not_see_monetized,
     required this.p360p,
     required this.p4096p,
     required this.p480p,
@@ -107,6 +110,12 @@ class WidgetPosts extends StatefulWidget {
     required this.color_id,
     required this.vy_live,
     required this.postFileName,
+    required this.postMap,
+    required this.postListening,
+    required this.postTraveling,
+    required this.postWatching,
+    required this.postPlaying,
+    required this.postSticker,
   });
 
   final reomvePost;
@@ -121,6 +130,7 @@ class WidgetPosts extends StatefulWidget {
   String postFile;
   String p720p;
   String p480p;
+  final String postSticker;
   String p1080p;
   String p240p;
   String p360p;
@@ -143,6 +153,7 @@ class WidgetPosts extends StatefulWidget {
   final int iint;
   final adminPost;
   Container more;
+  int can_not_see_monetized;
   String postRecord;
   final photoMulti2;
   final photo_album;
@@ -174,7 +185,11 @@ class WidgetPosts extends StatefulWidget {
   String stream_name;
   final String color_id;
   final String postFileName;
-
+  final String postMap;
+  final String postListening;
+  final String postTraveling;
+  final String postWatching;
+  final String postPlaying;
   @override
   State<WidgetPosts> createState() => _WidgetPostsState();
 }
@@ -483,7 +498,51 @@ class _WidgetPostsState extends State<WidgetPosts> {
                                               SizedBox(
                                                 width: Get.width * 0.01,
                                               ),
+                                              if (widget.postMap.isNotEmpty)
+                                                WidgetMapTravling(
+                                                  icon: Icons.location_on,
+                                                  title: widget.postMap,
+                                                ),
+                                              if (widget
+                                                  .postListening.isNotEmpty)
+                                                WidgetMapTravling(
+                                                  icon: Icons.music_note,
+                                                  title: 'is listening to' +
+                                                      ' ' +
+                                                      widget.postListening,
+                                                ),
+                                              if (widget
+                                                  .postTraveling.isNotEmpty)
+                                                WidgetMapTravling(
+                                                  icon: Icons
+                                                      .travel_explore_outlined,
+                                                  title: 'is traveling to' +
+                                                      ' ' +
+                                                      widget.postTraveling,
+                                                ),
+                                              if (widget
+                                                  .postWatching.isNotEmpty)
+                                                WidgetMapTravling(
+                                                  icon: Icons.remove_red_eye,
+                                                  title: 'is watching' +
+                                                      ' ' +
+                                                      widget.postWatching,
+                                                ),
+                                              if (widget.postPlaying.isNotEmpty)
+                                                WidgetMapTravling(
+                                                  icon: Icons.games,
+                                                  title: 'is Playing' +
+                                                      ' ' +
+                                                      widget.postPlaying,
+                                                ),
+                                              //  postListening: data[i].postListening,
+                                              //         postTraveling:  data[i].postTraveling,
+                                              //         postWatching: data[i].postWatching,
+                                              //         postPlaying:  data[i].postPlaying,
 
+                                              SizedBox(
+                                                width: Get.width * 0.01,
+                                              ),
                                               //Membership
                                               if (widget.postPrivacy != '4')
                                                 if (widget.is_pro == '1')
@@ -637,10 +696,94 @@ class _WidgetPostsState extends State<WidgetPosts> {
                             postYoutubeScreen(
                               yout: widget.yout,
                             ),
-
+                          if (widget.can_not_see_monetized == 1)
+                            Container(
+                              color: Color(0xffEFF5F6),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: SvgPicture.asset(
+                                        'assets/svg/all/lockedpost.svg',
+                                        height: 50,
+                                        color: ColorTheme,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: Text(
+                                        'This post is monetized; feel free to subscribe to access the content.',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            color: ColorTheme),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      child: InkWell(
+                                          onTap: () {
+                                            // WidgetOntap('monetization/$username');
+                                          },
+                                          child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: ColorTheme),
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                      'assets/svg/all/wellt.svg',
+                                                      height: 20,
+                                                      width: 20,
+                                                      color: Colors.white,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    const Text(
+                                                      'Subscribe',
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ))),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           if (widget.product_id.toString().isNotEmpty)
                             if (widget.product_id != '0')
-                              ProductWidget(product: widget.product),
+                              if (widget.product.length > 0)
+                                ProductWidget(product: widget.product),
                           if (widget.event.toString().isNotEmpty)
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -993,6 +1136,10 @@ class _WidgetPostsState extends State<WidgetPosts> {
                                     ),
                                   ),
 
+                                if (widget.postSticker.isNotEmpty)
+                                  Center(
+                                      child: CachedNetworkImage(
+                                          imageUrl: widget.postSticker)),
                                 if (widget.stream_name.isNotEmpty)
                                   InkWell(
                                     onTap: () {
@@ -1212,7 +1359,7 @@ class _WidgetPostsState extends State<WidgetPosts> {
                                     postRecord: widget.postRecord,
                                   ),
                                 //post Audio Sond
-                                if (widget.postFile.isAudioFileName)
+                                if (isAudio(widget.postFile.toString()))
                                   WidgetSondPostFile(
                                     postFile: widget.postFile,
                                   ),
@@ -1407,6 +1554,59 @@ class _WidgetPostsState extends State<WidgetPosts> {
                             ),
                           ),
 
+      
+                              if (isFile(widget.postFile))
+                           
+              
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(UrlGo(widget.postFile));
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(0),
+                                    child: Container(
+                                      color: Get.isDarkMode
+                                          ? ColorDarkTextBox
+                                          : Colors.grey[200],
+                                      width: Get.width,
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 30, horizontal: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundColor: ColorTheme,
+                                            child: Icon(
+                                              Icons.file_copy,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: Get.width * 0.02,
+                                          ),
+                                          Container(
+                                            width: Get.width * 0.75,
+                                            child: Center(
+                                              child: Text(
+                                                widget.postFileName,
+                                                textAlign: TextAlign.start,
+                                                style: SafeGoogleFont(
+                                                    Fonts.font1,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                                maxLines: 3,
+                                                softWrap: true,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
 ////pdf
                           if (widget.postFile.endsWith('pdf'))
                             InkWell(
@@ -1454,6 +1654,7 @@ class _WidgetPostsState extends State<WidgetPosts> {
                                 ),
                               ),
                             ),
+
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
@@ -1831,6 +2032,25 @@ class _WidgetPostsState extends State<WidgetPosts> {
               ),
       );
     });
+  }
+}
+
+class WidgetMapTravling extends StatelessWidget {
+  WidgetMapTravling({
+    super.key,
+    required this.icon,
+    required this.title,
+  });
+  IconData icon;
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon),
+        Text(title),
+      ],
+    );
   }
 }
 

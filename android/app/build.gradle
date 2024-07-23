@@ -27,7 +27,7 @@ if (flutterVersionName == null) {
        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
    }
 android {
-    namespace "app.wowonderflutter.com"
+    namespace "app.wowonderflutternew.com"
     compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
@@ -50,7 +50,7 @@ android {
     defaultConfig {
          multiDexEnabled true
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "app.wowonderflutter.com"
+        applicationId "app.wowonderflutternew.com"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 24

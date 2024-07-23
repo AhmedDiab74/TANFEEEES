@@ -11,7 +11,6 @@ import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiSavedItems.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/PostsModel.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/PostActionsApi.dart';
 
-
 class SaveItemsScreen extends StatefulWidget {
   const SaveItemsScreen({Key? key}) : super(key: key);
 
@@ -71,7 +70,15 @@ class _SaveItemsScreenState extends State<SaveItemsScreen> {
                         Column(
                           children: [
                             WidgetPosts(
-                              blog:data[i].blog,
+                              postSticker: data[i].postSticker,
+                              postListening: data[i].postListening,
+                              postTraveling: data[i].postTraveling,
+                              postWatching: data[i].postWatching,
+                              postPlaying: data[i].postPlaying,
+                              postMap: data[i].postMap,
+                              can_not_see_monetized:
+                                  data[i].can_not_see_monetized,
+                              blog: data[i].blog,
                               voted_id: data[i].voted_id,
                               postFileName: data[i].postFileName,
                               vy_live: data[i].vy_live,

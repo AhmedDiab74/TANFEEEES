@@ -5,6 +5,8 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiPostsVideo.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/PostsModel.dart';
 
+import '../../Util/Servers/Api/ApiAddViewPost.dart';
+
 class PostsVideoCont extends GetxController {
   var isLoding = true;
   RxBool like = false.obs;
@@ -41,9 +43,11 @@ class PostsVideoCont extends GetxController {
   void GetPosts() async {
     ApiPostsVideo.Getposts('0').then((value) {
       data.value = value.toList();
+      ApiAddViewsVideo.add(value[0].post_id);
     });
     var list = await ApiPostsVideo.Getposts('0');
     lastId = list[list.length - 1].post_id;
+
 
     update();
   }

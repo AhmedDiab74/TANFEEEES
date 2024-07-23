@@ -824,7 +824,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
   bool lodingPostsMore = false;
   List<PostModel> data = [];
   RefreshController _refreshController =
-  RefreshController(initialRefresh: false);
+      RefreshController(initialRefresh: false);
   void GetPost() async {
     lodingPostsSet();
     GetDataPage();
@@ -926,15 +926,15 @@ class _HomePageScreenState extends State<HomePageScreen> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-                      Get.to(
-                    CreatePostScreen(
-                      update: GetPost,
-                      namePage: datapage[0].page_title,
-                      avat: datapage[0].avatar,
-                      typeBackPost: 'Page',
-                    ),
-                    arguments: ({'page_id': widget.page_id}));
-              },
+            Get.to(
+                CreatePostScreen(
+                  update: GetPost,
+                  namePage: datapage[0].page_title,
+                  avat: datapage[0].avatar,
+                  typeBackPost: 'Page',
+                ),
+                arguments: ({'page_id': widget.page_id}));
+          },
           backgroundColor: Get.isDarkMode ? Colors.black : ColorTheme,
           child: Icon(
             Icons.add,
@@ -954,464 +954,462 @@ class _HomePageScreenState extends State<HomePageScreen> {
           },
           body: lodingPosts
               ? Center(
-            child: CircularProgressIndicator(),
-          )
+                  child: CircularProgressIndicator(),
+                )
               : SmartRefresher(
-            onRefresh: refesh,
-            onLoading: onLoding,
-            enablePullDown: true,
-            enablePullUp: true,
-            controller: _refreshController,
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Container(
-                    width: sizedwidth(context),
-                    height: sizedHeight(context) * 0.39,
-                    child: Stack(
+                  onRefresh: refesh,
+                  onLoading: onLoding,
+                  enablePullDown: true,
+                  enablePullUp: true,
+                  controller: _refreshController,
+                  child: SingleChildScrollView(
+                    child: Column(
                       children: [
                         Container(
                           width: sizedwidth(context),
-                          height: sizedHeight(context) * 0.25,
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              image: DecorationImage(
-                                  image: CachedNetworkImageProvider(
-                                    datapage[0].cover,
-                                  ),
-                                  fit: BoxFit.cover)),
-                        ),
-                        Positioned(
-                          left: 0,
-                          bottom: 0,
-                          right: 0,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 8),
-                            child: Container(
-                              width: sizedwidth(context),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 130,
-                                    width: 130,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                        BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                            image:
-                                            CachedNetworkImageProvider(
-                                                datapage[0].avatar))),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 20, horizontal: 8),
-                                    child: Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            datapage[0].page_title,
-                                            style: TextStyle(
-                                                fontWeight:
-                                                FontWeight.bold,
-                                                fontSize: 16),
+                          height: sizedHeight(context) * 0.39,
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: sizedwidth(context),
+                                height: sizedHeight(context) * 0.25,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    image: DecorationImage(
+                                        image: CachedNetworkImageProvider(
+                                          datapage[0].cover,
+                                        ),
+                                        fit: BoxFit.cover)),
+                              ),
+                              Positioned(
+                                left: 0,
+                                bottom: 0,
+                                right: 0,
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 8),
+                                  child: Container(
+                                    width: sizedwidth(context),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          height: 130,
+                                          width: 130,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                  image:
+                                                      CachedNetworkImageProvider(
+                                                          datapage[0].avatar))),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 20, horizontal: 8),
+                                          child: Container(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  datapage[0].page_title,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 16),
+                                                ),
+                                                if (datapage[0].verified == '1')
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 5),
+                                                    child: Icon(
+                                                      Icons.verified,
+                                                      color: ColorTheme,
+                                                      size: 16,
+                                                    ),
+                                                  )
+                                              ],
+                                            ),
                                           ),
-                                          if (datapage[0].verified == '1')
-                                            Padding(
-                                              padding: const EdgeInsets
-                                                  .symmetric(
-                                                  horizontal: 5),
-                                              child: Icon(
-                                                Icons.verified,
-                                                color: ColorTheme,
-                                                size: 16,
-                                              ),
-                                            )
-                                        ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          width: sizedwidth(context),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    likePage = !likePage;
+                                    for (var i = 0; i < datapage.length; i++)
+                                      if (likePage) {
+                                        countLike++;
+                                      } else {
+                                        countLike--;
+                                      }
+                                    setState(() {});
+                                  });
+                                  ApiLikePage.like(widget.page_id);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color:
+                                          likePage ? ColorTheme : Colors.grey),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 8),
+                                    child: Text(
+                                      likePage ? 'Liked' : 'Like',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              for (var i = 0; i < datapage.length; i++)
+                                if (datapage[i].is_page_onwer)
+                                  InkWell(
+                                    onTap: () {
+                                      Get.to(EditePage(
+                                        updat: GetDataPage,
+                                        page_id: widget.page_id,
+                                      ));
+                                    },
+                                    child: Container(
+                                      width: Get.width * 0.30,
+                                      decoration: BoxDecoration(
+                                        color: ColorTheme,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                            child: Text(
+                                          'Edit'.tr,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white,
+                                              fontSize: 17),
+                                        )),
                                       ),
                                     ),
                                   ),
-                                ],
+                              SizedBox(
+                                width: 10,
                               ),
+                              if (datapage[0].call_action_type_url.isNotEmpty)
+                                InkWell(
+                                  onTap: () {
+                                    GoUrl(datapage[0].call_action_type_url);
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: ColorTheme),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 8),
+                                      child: Text(
+                                        datapage[0].call_action_type_text,
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: sizedwidth(context),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 0.1,
+                                      color: Color.fromARGB(13, 76, 73, 73))
+                                ]),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                    'About :',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                  ),
+                                  child: Text(
+                                    datapage[0].about,
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                )
+                              ],
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: sizedwidth(context),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              likePage = !likePage;
-                              for (var i = 0; i < datapage.length; i++)
-                                if (likePage) {
-                                  countLike++;
-                                } else {
-                                  countLike--;
-                                }
-                              setState(() {});
-                            });
-                            ApiLikePage.like(widget.page_id);
-                          },
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color:
-                                likePage ? ColorTheme : Colors.grey),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 0.1,
+                                      color: Color.fromARGB(13, 76, 73, 73))
+                                ]),
+                            width: sizedwidth(context),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 8),
-                              child: Text(
-                                likePage ? 'Liked' : 'Like',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Abouts(
+                                      title: '${countLike} People Like',
+                                      icon: Icon(Icons.linked_camera)),
+                                  Abouts(
+                                    title: '${datapage[0].post_count} Posts',
+                                    icon: Icon(
+                                      Icons.post_add_sharp,
+                                    ),
+                                  ),
+                                  Abouts(
+                                    title: 'Jobs',
+                                    icon: Icon(Icons.work),
+                                  ),
+                                  Abouts(
+                                    title: 'Invait',
+                                    icon: Icon(Icons.join_inner),
+                                  ),
+                                  Abouts(
+                                    title: 'Other',
+                                    icon: Icon(Icons.more_horiz_sharp),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        if (datapage[0].facebook.isNotEmpty)
+                                          SocialMedia(
+                                              ontap: () {
+                                                UrlGo(
+                                                    'https://facebook.com/${datapage[0].facebook}');
+                                              },
+                                              icons: Icons.facebook),
+                                        if (datapage[0].twitter.isNotEmpty)
+                                          SocialMedia(
+                                              icons: Ionicons.logo_twitter,
+                                              ontap: () {
+                                                UrlGo('https://twitter.com/' +
+                                                    datapage[0].twitter);
+                                              }),
+                                        if (datapage[0].youtube.isNotEmpty)
+                                          SocialMedia(
+                                              icons: Ionicons.logo_youtube,
+                                              ontap: () {
+                                                UrlGo(
+                                                    'https://www.youtube.com/@' +
+                                                        datapage[0].youtube);
+                                              }),
+                                        if (datapage[0].linkedin.isNotEmpty)
+                                          SocialMedia(
+                                              icons: Ionicons.logo_linkedin,
+                                              ontap: () {
+                                                UrlGo(
+                                                    'https://www.linkedin.com/in/' +
+                                                        datapage[0].linkedin);
+                                              }),
+                                        if (datapage[0].vk.isNotEmpty)
+                                          SocialMedia(
+                                              icons: Ionicons.logo_vk,
+                                              ontap: () {
+                                                UrlGo('https://vk.com/' +
+                                                    datapage[0].vk);
+                                              }),
+                                        if (datapage[0].instgram.isNotEmpty)
+                                          SocialMedia(
+                                              icons: Ionicons.logo_instagram,
+                                              ontap: () {
+                                                UrlGo(
+                                                    'https://www.instagram.com/' +
+                                                        datapage[0].instgram);
+                                              }),
+                                      ],
+                                    ),
+                                  )
+                                ],
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        for (var i = 0; i < datapage.length; i++)
-                          if (datapage[i].is_page_onwer)
-                            InkWell(
-                              onTap: () {
-                                Get.to(EditePage(
-                                  updat: GetDataPage,
-                                  page_id: widget.page_id,
-                                ));
-                              },
-                              child: Container(
-                                width: Get.width * 0.30,
-                                decoration: BoxDecoration(
-                                  color: ColorTheme,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Center(
-                                      child: Text(
-                                        'Edit'.tr,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            fontSize: 17),
-                                      )),
-                                ),
-                              ),
-                            ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        if (datapage[0].call_action_type_url.isNotEmpty)
-                          InkWell(
-                            onTap: () {
-                              GoUrl(datapage[0].call_action_type_url);
+                        Divider(),
+                        for (var i = 0; i < data.length; i++)
+                          WidgetPosts(
+                            postMap: data[i].postMap,
+                            can_not_see_monetized:
+                                data[i].can_not_see_monetized,
+                            blog: data[i].blog,
+                            voted_id: data[i].voted_id,
+                            postFileName: data[i].postFileName,
+                            vy_live: data[i].vy_live,
+                            blur: data[i].blur,
+                            color_id: data[i].color_id,
+                            stream_name: data[i].stream_name,
+                            headline: data[i].headline,
+                            postPrivacy: data[i].postPrivacy,
+                            Boosted: false,
+                            yout: data[i].postYoutube,
+                            trueflasecommet: data[i].comments_status,
+                            event: data[i].event,
+                            product_id: data[i].product_id,
+                            product: data[i].product,
+                            more: Container(
+                                child: IconButton(
+                                    onPressed: () {
+                                      Get.bottomSheet(
+                                        WidgetMorePosts(
+                                          url_post: data[i].postLink,
+                                          refreshPost: () {
+                                            GetPost();
+                                          },
+                                          postText: data[i].postText,
+                                          pos: data[i].post_id,
+                                          hidePost: () {
+                                            setState(() {
+                                              data.removeAt(i);
+                                            });
+                                          },
+                                          remove: () {
+                                            QuickAlert.show(
+                                              onConfirmBtnTap: () {
+                                                PostActionsApi.reaction(
+                                                        data[i].post_id,
+                                                        'delete')
+                                                    .asStream();
+                                                setState(() {
+                                                  data.removeAt(i);
+                                                });
+
+                                                Get.back();
+                                                Get.back();
+                                              },
+                                              context: context,
+                                              type: QuickAlertType.confirm,
+                                              text:
+                                                  'Do you want to delete the post'
+                                                      .tr,
+                                              confirmBtnText: 'Yes'.tr,
+                                              cancelBtnText: 'No'.tr,
+                                              confirmBtnColor: Colors.red,
+                                            );
+                                          },
+                                          adminPost: data[i].admin,
+                                          avat: data[i].avatar,
+                                          name: data[i].name,
+                                          user_id: data[i].user_id,
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(Icons.more_vert))),
+                            user_id: data[i].user_id,
+                            reomvePost: () {
+                              setState(() {
+                                data.removeAt(i);
+                              });
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: ColorTheme),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 8),
-                                child: Text(
-                                  datapage[0].call_action_type_text,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                              ),
-                            ),
+                            postSticker:data[i].postSticker,
+                            data: data,
+                            adminPost: data[i].admin,
+                            iint: i,
+                            imReaction: data[i].type,
+                            reaction: data[i].reaction,
+                            post_id: data[i].post_id,
+                            postType: data[i].postType,
+                            verified: data[i].verified,
+                            postFeeling: data[i].postFeeling,
+                            time: data[i].post_time,
+                            name: data[i].name,
+                            avat: data[i].avatar,
+                            postText: data[i].postText,
+                            postFile: data[i].postFile,
+                            shared_info: data[i].shared_info,
+                            p1080p: data[i].p1080,
+                            p2048p: data[i].p2048,
+                            p240p: data[i].p240,
+                            p360p: data[i].p360,
+                            p4096p: data[i].p4096,
+                            p480p: data[i].p480,
+                            p720p: data[i].p720,
+                            pro_type: data[i].pro_type,
+                            is_pro: data[i].is_pro,
+                            options: data[i].options,
+                            postRecord: data[i].postRecord,
+                            contLike: data[i].reaction,
+                            contcoment: int.parse(data[i].post_comments),
+                            post_share: int.parse(data[i].post_share),
+                            islike: data[i].reaction1,
+                            photoMulti2: data[i].photoMulti2,
+                            photo_album: data[i].photo_album,
+                            postimage: data[i].postFile,
+                            type: data[i].type,
+                            page_id: data[i].page_id,
+                            group_id: data[i].group_id,
+                            avatar_group: data[i].avatargroupe,
+                            name_group: data[i].group_title,
+                            cover: data[i].cover,
+                            comment_cont: data[i].comments_status,
+                            url_post: data[i].urlsss,
+                            ad_media: data[i].ad_media,
+                            biddingAds: data[i].biddingAds,
+                            descriptionAds: data[i].descriptionAds,
+                            nameAds: data[i].nameAds,
+                            user_dataAds: data[i].user_dataAds,
+                            postListening: data[i].postListening,
+                            postTraveling: data[i].postTraveling,
+                            postWatching: data[i].postWatching,
+                            postPlaying: data[i].postPlaying,
                           ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: sizedwidth(context),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 0.1,
-                                color: Color.fromARGB(13, 76, 73, 73))
-                          ]),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'About :',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            child: Text(
-                              datapage[0].about,
-                              style:
-                              TextStyle(fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 8,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 0.1,
-                                color: Color.fromARGB(13, 76, 73, 73))
-                          ]),
-                      width: sizedwidth(context),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
-                          children: [
-                            Abouts(
-                                title: '${countLike} People Like',
-                                icon: Icon(Icons.linked_camera)),
-                            Abouts(
-                              title: '${datapage[0].post_count} Posts',
-                              icon: Icon(
-                                Icons.post_add_sharp,
-                              ),
-                            ),
-                            Abouts(
-                              title: 'Jobs',
-                              icon: Icon(Icons.work),
-                            ),
-                            Abouts(
-                              title: 'Invait',
-                              icon: Icon(Icons.join_inner),
-                            ),
-                            Abouts(
-                              title: 'Other',
-                              icon: Icon(Icons.more_horiz_sharp),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 4),
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                children: [
-                                  if (datapage[0].facebook.isNotEmpty)
-                                    SocialMedia(
-                                        ontap: () {
-                                          UrlGo(
-                                              'https://facebook.com/${datapage[0].facebook}');
-                                        },
-                                        icons: Icons.facebook),
-                                  if (datapage[0].twitter.isNotEmpty)
-                                    SocialMedia(
-                                        icons: Ionicons.logo_twitter,
-                                        ontap: () {
-                                          UrlGo('https://twitter.com/' +
-                                              datapage[0].twitter);
-                                        }),
-                                  if (datapage[0].youtube.isNotEmpty)
-                                    SocialMedia(
-                                        icons: Ionicons.logo_youtube,
-                                        ontap: () {
-                                          UrlGo(
-                                              'https://www.youtube.com/@' +
-                                                  datapage[0].youtube);
-                                        }),
-                                  if (datapage[0].linkedin.isNotEmpty)
-                                    SocialMedia(
-                                        icons: Ionicons.logo_linkedin,
-                                        ontap: () {
-                                          UrlGo(
-                                              'https://www.linkedin.com/in/' +
-                                                  datapage[0].linkedin);
-                                        }),
-                                  if (datapage[0].vk.isNotEmpty)
-                                    SocialMedia(
-                                        icons: Ionicons.logo_vk,
-                                        ontap: () {
-                                          UrlGo('https://vk.com/' +
-                                              datapage[0].vk);
-                                        }),
-                                  if (datapage[0].instgram.isNotEmpty)
-                                    SocialMedia(
-                                        icons: Ionicons.logo_instagram,
-                                        ontap: () {
-                                          UrlGo(
-                                              'https://www.instagram.com/' +
-                                                  datapage[0].instgram);
-                                        }),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Divider(),
-                  for (var i = 0; i < data.length; i++)
-                                                        WidgetPosts(
-                                        blog:data[i].blog,
-                                        voted_id: data[i].voted_id,
-                                        postFileName: data[i].postFileName,
-                                        vy_live: data[i].vy_live,
-                                        blur: data[i].blur,
-                                        color_id: data[i].color_id,
-                                        stream_name: data[i].stream_name,
-                                        headline: data[i].headline,
-                                        postPrivacy: data[i].postPrivacy,
-                                        Boosted: false,
-                                        yout: data[i].postYoutube,
-                                        trueflasecommet:
-                                            data[i].comments_status,
-                                        event: data[i].event,
-                                        product_id: data[i].product_id,
-                                        product: data[i].product,
-                                        more: Container(
-                                            child: IconButton(
-                                                onPressed: () {
-                                                  Get.bottomSheet(
-                                                    WidgetMorePosts(
-                                                      url_post:
-                                                          data[i].postLink,
-                                                      refreshPost: () {
-                                                        GetPost();
-                                                      },
-                                                      postText:
-                                                          data[i].postText,
-                                                      pos: data[i].post_id,
-                                                      hidePost: () {
-                                                        setState(() {
-                                                          data.removeAt(i);
-                                                        });
-                                                      },
-                                                      remove: () {
-                                                        QuickAlert.show(
-                                                          onConfirmBtnTap: () {
-                                                            PostActionsApi.reaction(
-                                                                    data[i]
-                                                                        .post_id,
-                                                                    'delete')
-                                                                .asStream();
-                                                            setState(() {
-                                                              data.removeAt(i);
-                                                            });
-
-                                                            Get.back();
-                                                            Get.back();
-                                                          },
-                                                          context: context,
-                                                          type: QuickAlertType
-                                                              .confirm,
-                                                          text:
-                                                              'Do you want to delete the post'
-                                                                  .tr,
-                                                          confirmBtnText:
-                                                              'Yes'.tr,
-                                                          cancelBtnText:
-                                                              'No'.tr,
-                                                          confirmBtnColor:
-                                                              Colors.red,
-                                                        );
-                                                      },
-                                                      adminPost: data[i].admin,
-                                                      avat: data[i].avatar,
-                                                      name: data[i].name,
-                                                      user_id: data[i].user_id,
-                                                    ),
-                                                  );
-                                                },
-                                                icon: Icon(Icons.more_vert))),
-                                        user_id: data[i].user_id,
-                                        reomvePost: () {
-                                          setState(() {
-                                            data.removeAt(i);
-                                          });
-                                        },
-                                        data: data,
-                                        adminPost: data[i].admin,
-                                        iint: i,
-                                        imReaction: data[i].type,
-                                        reaction: data[i].reaction,
-                                        post_id: data[i].post_id,
-                                        postType: data[i].postType,
-                                        verified: data[i].verified,
-                                        postFeeling: data[i].postFeeling,
-                                        time: data[i].post_time,
-                                        name: data[i].name,
-                                        avat: data[i].avatar,
-                                        postText: data[i].postText,
-                                        postFile: data[i].postFile,
-                                        shared_info: data[i].shared_info,
-                                        p1080p: data[i].p1080,
-                                        p2048p: data[i].p2048,
-                                        p240p: data[i].p240,
-                                        p360p: data[i].p360,
-                                        p4096p: data[i].p4096,
-                                        p480p: data[i].p480,
-                                        p720p: data[i].p720,
-                                        pro_type: data[i].pro_type,
-                                        is_pro: data[i].is_pro,
-                                        options: data[i].options,
-                                        postRecord: data[i].postRecord,
-                                        contLike: data[i].reaction,
-                                        contcoment:
-                                            int.parse(data[i].post_comments),
-                                        post_share:
-                                            int.parse(data[i].post_share),
-                                        islike: data[i].reaction1,
-                                        photoMulti2: data[i].photoMulti2,
-                                        photo_album: data[i].photo_album,
-                                        postimage: data[i].postFile,
-                                        type: data[i].type,
-                                        page_id: data[i].page_id,
-                                        group_id: data[i].group_id,
-                                        avatar_group: data[i].avatargroupe,
-                                        name_group: data[i].group_title,
-                                        cover: data[i].cover,
-                                        comment_cont: data[i].comments_status,
-                                        url_post: data[i].urlsss,
-                                        ad_media: data[i].ad_media,
-                                        biddingAds: data[i].biddingAds,
-                                        descriptionAds: data[i].descriptionAds,
-                                        nameAds: data[i].nameAds,
-                                        user_dataAds: data[i].user_dataAds,
-                                      ),
-                ],
-              ),
-            ),
-          ),
+                ),
         ));
   }
 
@@ -1457,25 +1455,24 @@ class SocialMedia extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
         child: InkWell(
-          onTap: () {
-            if (ontap != null) ontap();
-          },
-          child: Container(
-            width: sizedwidth(context),
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: ColorTheme, borderRadius: BorderRadius.circular(50)),
-            child: Icon(
-              icons,
-              color: Colors.white,
-              size: 18,
-            ),
-          ),
-        ));
+      onTap: () {
+        if (ontap != null) ontap();
+      },
+      child: Container(
+        width: sizedwidth(context),
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+            color: ColorTheme, borderRadius: BorderRadius.circular(50)),
+        child: Icon(
+          icons,
+          color: Colors.white,
+          size: 18,
+        ),
+      ),
+    ));
   }
 }
-
 
 GoUrl(url) async {
   if (!await launchUrl(
@@ -1487,7 +1484,6 @@ GoUrl(url) async {
     throw Exception('Could not launch $url');
   }
 }
-
 
 class About extends StatelessWidget {
   const About({
@@ -1515,7 +1511,7 @@ class About extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(7),
                   decoration: BoxDecoration(
-                    // color: ColorTheme,
+                      // color: ColorTheme,
                       borderRadius: BorderRadius.circular(50)),
                   child: Icon(
                     icons,
@@ -1529,15 +1525,15 @@ class About extends StatelessWidget {
                 if (title != null)
                   Expanded(
                       child: Text(
-                        ReplaceCharacter(title!),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 10,
-                        softWrap: true,
-                        style: SafeGoogleFont(
-                          Fonts.font1,
-                          fontSize: 15,
-                        ),
-                      ))
+                    ReplaceCharacter(title!),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 10,
+                    softWrap: true,
+                    style: SafeGoogleFont(
+                      Fonts.font1,
+                      fontSize: 15,
+                    ),
+                  ))
               ],
             ),
             SizedBox(
@@ -1549,4 +1545,3 @@ class About extends StatelessWidget {
     );
   }
 }
-

@@ -1,266 +1,15 @@
-import 'dart:io';
-import 'dart:math';
-import 'dart:ui' as ui;
-import 'dart:typed_data';
-import 'package:get/get.dart';
-import 'package:wowondertimelineflutterapp/String.dart';
-import 'package:wowondertimelineflutterapp/Themes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:wowondertimelineflutterapp/Util/OpacityTransition.dart';
-import 'package:video_editor/video_editor.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:vs_story_designer/vs_story_designer.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiCreateStores.dart';
-
-class AddStoriesScreen extends StatefulWidget {
-  const AddStoriesScreen({super.key});
-
-  @override
-  State<AddStoriesScreen> createState() => _AddStoriesScreenState();
-}
-
-class _AddStoriesScreenState extends State<AddStoriesScreen> {
-  final ImagePicker _picker = ImagePicker();
-
-  void _pickVideo() async {
-    final XFile? file = await _picker.pickVideo(source: ImageSource.gallery);
-
-    if (mounted && file != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => VideoEditor(file: File(file.path)),
-        ),
-      );
-    }
-  }
-
-  XFile? ImagePost;
-  final ImagePicker picker = ImagePicker();
-  Future<void> UplodeImage(send) async {
-    await Permission.storage.request();
-    await Permission.photos.request();
-    final XFile? image = await picker.pickImage(source: send);
-
-    print(picker);
-    setState(() {
-      ImagePost = image;
-    });
-    if (ImagePost != null)
-      Get.dialog(Directionality(
-        textDirection: TextDirection.ltr,
-        child: Scaffold(
-          body: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Get.back(closeOverlays: true);
-                        },
-                        icon: Icon(Icons.arrow_back_ios_new_sharp)),
-                    InkWell(
-                      onTap: () async {
-                        await ApiCreateStores.send(ImagePost!.path, 'image');
-                        Get.back(closeOverlays: true);
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: colorTextBoardingDark1,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Post'.tr,
-                            style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: Get.height * 0.70,
-                width: Get.width,
-                child: Image.file(
-                  File(ImagePost!.path),
-                  fit: BoxFit.cover,
-                ),
-              )
-            ],
-          ),
-        ),
-      ));
-    print(ImagePost!.path);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: Get.width,
-      height: Get.height * 0.30,
-      decoration: BoxDecoration(
-          color:
-              Get.isDarkMode ? Color.fromARGB(255, 31, 30, 30) : Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 20,
-          right: 20,
-          bottom: 15,
-        ),
-        child: Column(
-          children: [
-            SizedBox(height: Get.height * 0.04),
-            InkWell(
-              onTap: () async {
-                String? mediaPath = await _prepareImage();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => VSStoryDesigner(
-                              galleryThumbnailQuality: 1028,
-                              onDoneButtonStyle: Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Icon(
-                                    Icons.send,
-                                    color: Colors.black,
-                                  ),
-                                ),
-                              ),
-
-                              centerText: "Start Creating Your Story".tr,
-                              middleBottomWidget: Column(
-                                children: [
-                                  Icon(Icons.file_download),
-                                  Text(
-                                    'Swipe the screen to add a photo'.tr,
-                                    style:
-                                        GoogleFonts.cairo(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                              themeType: ThemeType
-                                  .light, // OPTIONAL, Default ThemeType.dark
-                              // galleryThumbnailQuality: 250,
-                              onDone: (uri) async {
-                                if (uri.isNotEmpty) {
-                                  await ApiCreateStores.send(uri, 'image');
-                                  Get.back(closeOverlays: true);
-                                  Get.back();
-                                }
-                                // ignore: deprecated_member_use
-                              },
-                            )));
-              },
-              child: Row(
-                children: [
-                  Container(
-                    height: Get.height * 0.06,
-                    width: Get.width * 0.14,
-                    decoration: BoxDecoration(
-                        color: Color(0xffFEEEF0),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/SDF.png',
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.03,
-                  ),
-                  Text(
-                    'Images / Gallery'.tr,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: Get.height * 0.02),
-            InkWell(
-              onTap: _pickVideo,
-              child: Row(
-                children: [
-                  Container(
-                    height: Get.height * 0.06,
-                    width: Get.width * 0.14,
-                    decoration: BoxDecoration(
-                        color: Color(0xffFEEEF0),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(7.0),
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/youtube.png',
-                          color: colorTextBoardingDark1,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.03,
-                  ),
-                  Text(
-                    'Video / Gallery'.tr,
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  GlobalKey _globalKey = new GlobalKey();
-
-  Future<String?> _prepareImage() async {
-    ByteData? byteData;
-
-    try {
-      RenderRepaintBoundary? boundary = _globalKey.currentContext
-          ?.findRenderObject() as RenderRepaintBoundary?;
-
-      ui.Image? image = await boundary?.toImage();
-      byteData = await image?.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List bytes = byteData!.buffer.asUint8List();
-
-      final directory = (await getTemporaryDirectory()).path;
-      String imgPath = '$directory/${Random().nextInt(999999)}.jpg';
-      File imgFile = new File(imgPath);
-      await imgFile.writeAsBytes(bytes);
-      return imgFile.path;
-    } catch (e) {
-      return null;
-    }
-  }
-}
-
 // //-------------------//
 // //VIDEO EDITOR SCREEN//
 // //-------------------//
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:video_editor/video_editor.dart';
+import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
+import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiCreateReels.dart';
+
 class VideoEditor extends StatefulWidget {
   const VideoEditor({super.key, required this.file});
 
@@ -277,18 +26,17 @@ class _VideoEditorState extends State<VideoEditor> {
 
   late final VideoEditorController _controller = VideoEditorController.file(
     widget.file,
-    maxDuration: Duration(seconds: Story_Max_Upload),
+    minDuration: Duration(seconds: 1),
+    maxDuration: Duration(seconds: 60),
   );
 
   @override
   void initState() {
     super.initState();
-    _controller.initialize().then((_) => setState(() {})).catchError(
-      (error) {
-        // handle minumum duration bigger than video duration error
-        Navigator.pop(context);
-      },
-    );
+    _controller.initialize().then((_) => setState(() {})).catchError((error) {
+      // handle minumum duration bigger than video duration error
+      Navigator.pop(context);
+    }, test: (e) => e is VideoMinDurationError);
   }
 
   @override
@@ -306,7 +54,6 @@ class _VideoEditorState extends State<VideoEditor> {
           duration: const Duration(seconds: 1),
         ),
       );
-
   void _exportVideo() async {
     _exportingProgress.value = 0;
     _isExporting.value = true;
@@ -317,22 +64,16 @@ class _VideoEditorState extends State<VideoEditor> {
         _isExporting.value = false;
         if (!mounted) return;
         Get.back();
-        await ApiCreateStores.send(file.path, 'video');
+        await ApiCreateReels.cratepost(
+            pathvideo: file.path, filename: 'asasasassaa');
       },
     );
   }
 
-  // void _exportCover() async {
-  //   await _controller.extractCover(
-  //     onError: (e, s) => _showErrorSnackBar("Error on cover exportation :("),
-  //     onCompleted: (cover) {
-  //       if (!mounted) return;
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
+    // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -512,8 +253,8 @@ class _VideoEditorState extends State<VideoEditor> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'Post',
-                      style: GoogleFonts.poppins(
+                      'Create Reels',
+                      style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
@@ -568,9 +309,161 @@ class _VideoEditorState extends State<VideoEditor> {
           horizontalMargin: height / 4,
           child: TrimTimeline(
             controller: _controller,
+            padding: const EdgeInsets.only(top: 10),
           ),
         ),
       )
     ];
+  }
+}
+
+class OpacityTransition extends StatefulWidget {
+  /// It is a FadeTransition but this will be shown when receiving a Boolean value.
+  const OpacityTransition({
+    Key? key,
+    required this.visible,
+    required this.child,
+    this.duration = const Duration(milliseconds: 200),
+    this.curve = Curves.linear,
+  }) : super(key: key);
+
+  /// It is the child that will be affected by the SwipeTransition
+  final Widget child;
+
+  /// It is the curve that the SwipeTransition performs
+  final Curve curve;
+
+  /// Is the time it takes to make the transition.
+  final Duration duration;
+
+  /// If true, it will show the widget.
+  /// If false, it will hide the widget.
+  final bool visible;
+
+  @override
+  _OpacityTransitionState createState() => _OpacityTransitionState();
+}
+
+class _OpacityTransitionState extends State<OpacityTransition> {
+  @override
+  Widget build(BuildContext context) {
+    return BooleanTween<double>(
+      tween: LerpTween(),
+      animate: widget.visible,
+      curve: widget.curve,
+      duration: widget.duration,
+      builder: (_, opacity, child) => Opacity(
+        opacity: opacity,
+        child: opacity > 0.0 ? child : null,
+      ),
+      child: widget.child,
+    );
+  }
+}
+
+class BooleanTween<T> extends StatefulWidget {
+  ///It is an AnimatedBuilder.
+  ///If it is TRUE, it will execute the Tween from begin to end
+  ///(controller.forward()),
+  ///if it is FALSE it will execute the Tween from end to begin (controller.reverse())
+  const BooleanTween({
+    Key? key,
+    required this.animate,
+    required this.builder,
+    this.child,
+    this.curve = Curves.linear,
+    this.duration = const Duration(milliseconds: 200),
+    this.reverseCurve,
+    this.reverseDuration,
+    required this.tween,
+  }) : super(key: key);
+
+  ///If it is **TRUE**, it will execute the Tween from begin to end.
+  ///
+  ///If it is **FALSE** it will execute the Tween from end to begin
+  final bool animate;
+
+  ///Called every time the animation changes value.
+  ///Return a Widget and receive the interpolation value as a parameter.
+  final ValueWidgetBuilder<T> builder;
+
+  final Widget? child;
+
+  /// It is the curve that will carry out the interpolation.
+  final Curve curve;
+
+  /// It is the time it takes to execute the animation from beginning to end or vice versa.
+
+  final Duration duration;
+
+  /// It is the curve that will carry out the interpolation.
+  final Curve? reverseCurve;
+
+  /// It is the time it takes to execute the animation from beginning to end or vice versa.
+  final Duration? reverseDuration;
+
+  /// A linear interpolation between a beginning and ending value.
+  ///
+  /// [Tween] is useful if you want to interpolate across a range.
+  ///
+  ///You should use `LerpTween()` instead `Tween<double>(begin: 0.0, end: 1.0)`
+  final Tween<T> tween;
+
+  @override
+  _BooleanTweenState<T> createState() => _BooleanTweenState<T>();
+}
+
+class LerpTween extends Tween<double> {
+  LerpTween() : super(begin: 0.0, end: 1.0);
+}
+
+class _BooleanTweenState<T> extends State<BooleanTween<T>>
+    with SingleTickerProviderStateMixin {
+  late Animation<T> _animation;
+  late AnimationController _controller;
+
+  @override
+  void didUpdateWidget(BooleanTween oldWidget) {
+    super.didUpdateWidget(oldWidget as BooleanTween<T>);
+    if (!oldWidget.animate && widget.animate) {
+      _controller.forward();
+    } else if (oldWidget.animate && !widget.animate) {
+      _controller.reverse();
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      value: widget.animate ? 1.0 : 0.0,
+      vsync: this,
+      duration: widget.duration,
+      reverseDuration: widget.reverseDuration,
+    );
+    _animation = widget.tween.animate(CurvedAnimation(
+      parent: _controller,
+      curve: widget.curve,
+      reverseCurve: widget.reverseCurve,
+    ));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) => widget.builder(
+        context,
+        _animation.value,
+        child,
+      ),
+      child: widget.child,
+    );
   }
 }

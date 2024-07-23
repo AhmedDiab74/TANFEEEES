@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
 import 'package:flutter/material.dart';
+import 'package:wowondertimelineflutterapp/Screens/ScreenVideo/VideoEditor.dart';
+import 'package:wowondertimelineflutterapp/Screens/ScreenVideo/VideoPlayerCached.dart';
+import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiAddViewPost.dart';
 import 'package:wowondertimelineflutterapp/Util/TextUtil.dart';
 import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
 import 'package:like_button/like_button.dart';
@@ -26,7 +32,19 @@ class _VideoScreenState extends State<VideoScreen> {
   String likeText = 'like2';
   int initialPage = 0;
   int contt = 0;
+  final ImagePicker _picker = ImagePicker();
+  void _pickVideo() async {
+    final XFile? file = await _picker.pickVideo(source: ImageSource.gallery);
 
+    if (mounted && file != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => VideoEditor(file: File(file.path)),
+        ),
+      );
+    }
+  }
   @override
   void initState() {
     Get.put(PostsVideoCont());
@@ -70,6 +88,8 @@ class _VideoScreenState extends State<VideoScreen> {
                                   }),
                                 }
                             ];
+
+                            ApiAddViewsVideo.add(cont.data[val].post_id);
                           },
                           controller: PageController(
                             initialPage: initialPage,
@@ -82,15 +102,11 @@ class _VideoScreenState extends State<VideoScreen> {
                             return Stack(
                               textDirection: TextDirection.ltr,
                               children: [
-                                cont.data[index].postFile.isEmpty
-                                    ? Center(
-                                        child: postYoutubeScreen(
-                                            yout: cont.data[index].postYoutube),
-                                      )
-                                    : Center(
-                                        child: _VideoPlayTest(
-                                            post_id: cont.data[index].post_id,
-                                            vid: cont.data[index].postFile)),
+                                Center(
+                                    child: VideoPlayerCached(
+                                  imageTemp: cont.data[index].postFileThumb,
+                                  urls: cont.data[index].postFile,
+                                )),
                                 Positioned(
                                   bottom: Get.height * 0.08,
                                   child: Container(
@@ -304,12 +320,16 @@ class _VideoScreenState extends State<VideoScreen> {
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20),
                                           ),
-                                          Image.asset(
-                                            images.addAppa,
-                                            color: Colors.white,
-                                            height: 30,
-                                            width: 30,
-                                          ),
+                                          InkWell(
+                                            onTap:_pickVideo,
+                                            child: CircleAvatar(
+                                              child: Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                              ),
+                                              backgroundColor: Colors.black,
+                                            ),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -414,121 +434,4 @@ class _LikeWidgetState extends State<LikeWidget> {
   //         return result;
   //       });
   // }
-}
-
-class _VideoPlayTest extends StatefulWidget {
-  _VideoPlayTest({required this.vid, required this.post_id, super.key});
-
-  String vid;
-  String post_id;
-
-  @override
-  State<_VideoPlayTest> createState() => __VideoPlayTestState();
-}
-
-class __VideoPlayTestState extends State<_VideoPlayTest> {
-  late VideoPlayerController videoPlayerController;
-  late CustomVideoPlayerController _customVideoPlayerController;
-
-  @override
-  void initState() {
-    super.initState();
-    videoPlayerController = VideoPlayerController.network(widget.vid)
-      ..initialize().then((value) => setState(() {}));
-    _customVideoPlayerController = CustomVideoPlayerController(
-        context: context,
-        videoPlayerController: videoPlayerController,
-        customVideoPlayerSettings: _customVideoPlayerSettings);
-    videoPlayerController.play();
-  }
-
-  final CustomVideoPlayerSettings _customVideoPlayerSettings =
-      const CustomVideoPlayerSettings(
-    //TODO: play around with these parameters
-    autoFadeOutControls: false,
-    controlBarAvailable: true,
-    playbackSpeedButtonAvailable: false,
-    // // controlBarMargin: const EdgeInsets.all(10),
-    // controlBarPadding: const EdgeInsets.all(0),
-    showPlayButton: false,
-    // playButton: const Icon(
-    //   Icons.play_circle,
-    //   color: Colors.white,
-    // ),
-    // pauseButton: const Icon(
-    //   Icons.pause_circle,
-    //   color: Colors.white,
-    // ),
-    // enterFullscreenButton: const Icon(
-    //   Icons.fullscreen,
-    //   color: Colors.white,
-    // ),
-    // exitFullscreenButton: const Icon(
-    //   Icons.fullscreen_exit,
-    //   color: Colors.white,
-    // ),
-    controlBarDecoration: BoxDecoration(),
-    settingsButton: SizedBox(),
-    showFullscreenButton: false,
-    showDurationPlayed: false,
-    showDurationRemaining: true,
-    //enterFullscreenOnStart: true,
-    // exitFullscreenOnEnd: false,
-    // durationRemainingTextStyle: const TextStyle(color: Colors.black),
-    // durationPlayedTextStyle: const TextStyle(color: Colors.black, fontSize: 18),
-    // systemUIModeAfterFullscreen: SystemUiMode.leanBack,
-    // systemUIModeInsideFullscreen: SystemUiMode.edgeToEdge,
-    // customVideoPlayerProgressBarSettings: CustomVideoPlayerProgressBarSettings(
-    //   reachableProgressBarPadding: EdgeInsets.all(10),
-    //   progressBarHeight: 10,
-    //   progressBarBorderRadius: 30,
-    //   bufferedColor: Colors.red,
-    //   progressColor: Colors.green,
-    //   backgroundColor: Colors.purple,
-    //   allowScrubbing: false,
-    //   showProgressBar: false,
-    // ),
-  );
-
-  @override
-  void dispose() {
-    _customVideoPlayerController.dispose();
-    super.dispose();
-  }
-
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          width: Get.width,
-          height: Get.height,
-          child: CustomVideoPlayer(
-            customVideoPlayerController: _customVideoPlayerController,
-          ),
-        ),
-        InkWell(
-          onTap: () {
-            setState(() {
-              videoPlayerController.value.isPlaying
-                  ? videoPlayerController.pause()
-                  : videoPlayerController.play();
-            });
-          },
-          child: CircleAvatar(
-            maxRadius: videoPlayerController.value.isPlaying ? 300 : null,
-            backgroundColor: videoPlayerController.value.isPlaying
-                ? Color.fromARGB(0, 0, 0, 0)
-                : Colors.black,
-            child: videoPlayerController.value.isPlaying
-                ? SizedBox()
-                : Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
-                  ),
-          ),
-        ),
-      ],
-    );
-  }
 }

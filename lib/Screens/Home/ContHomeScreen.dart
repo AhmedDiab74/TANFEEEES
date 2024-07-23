@@ -16,7 +16,6 @@ import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetUserStoriesMod
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class ContHomeScreen extends GetxController {
-
   var lastId = '0'.obs;
   RxBool lodingPosts = false.obs;
   RxBool lodingPostsMore = false.obs;
@@ -34,7 +33,6 @@ class ContHomeScreen extends GetxController {
   }
 
   void onInit() {
-
     GetPost();
     Story_Theme_Version;
     print('ThamesVersion ' + Story_Theme_Version.toString());
@@ -189,6 +187,11 @@ class ContHomeScreen extends GetxController {
                 update();
               }),
             });
+    update();
+  }
+
+  removePost(index) {
+    data.removeAt(index);
     update();
   }
 

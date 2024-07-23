@@ -321,15 +321,18 @@ import 'package:wowondertimelineflutterapp/main.dart';
 // //
 // //     final welcome = welcomeFromMap(jsonString);
 
-
 class PostModel {
   String postText;
+    final publisher;
+  String videoViews;
+
   String stream_name;
   String name;
   final blog;
   String color_id;
   String postFile;
   final vy_live;
+  String postSticker;
   final product;
   int voted_id;
   String blur;
@@ -367,6 +370,7 @@ class PostModel {
   String pro_type;
   String postFileName;
   int reaction1;
+  int can_not_see_monetized;
 
   int reaction2;
 
@@ -404,6 +408,11 @@ class PostModel {
   String is_pro;
   String postPrivacy;
 
+  final String postListening;
+  final String postTraveling;
+  final String postWatching;
+  final String postPlaying;
+
   ///معلومات المشاركة
   // String nameshared;
   // String avatarshared;
@@ -413,10 +422,20 @@ class PostModel {
   // String biddingAds;
   // String descriptionAds;
   PostModel({
+    required this.videoViews,
+
+    required this.publisher,
+
+    required this.can_not_see_monetized,
+    required this.postListening,
+    required this.postTraveling,
+    required this.postWatching,
+    required this.postPlaying,
     required this.blog,
     required this.vy_live,
     required this.user_dataAds,
     required this.descriptionAds,
+    required this.postSticker,
     required this.blur,
     required this.nameAds,
     required this.biddingAds,
@@ -495,7 +514,15 @@ class PostModel {
   });
 
   factory PostModel.fromJson(Map<String, dynamic> map) => PostModel(
-    blog:map['blog']==null?'':map['blog'],
+      videoViews: map['videoViews'] == null ? '0' : map['videoViews'],
+
+      publisher:map['publisher']==null?'':map['publisher'],
+
+        can_not_see_monetized: map['can_not_see_monetized'] == null
+            ? 0
+            : map['can_not_see_monetized'],
+
+        blog: map['blog'] == null ? '' : map['blog'],
         voted_id: map['voted_id'] == null ? 0 : map['voted_id'],
         postFileName: map['postFileName'] == null ? '' : map['postFileName'],
         vy_live: map['vy-live'] == null ? '' : map['vy-live'],
@@ -522,7 +549,10 @@ class PostModel {
         postText_API: map['postText'] == null ? '' : map['postText'],
         postPhoto: map['postPhoto'] == null ? '' : map['postPhoto'],
         color_id: map['color_id'] == null ? '' : map['color_id'],
-        postSwowondertimelineflutterapper: map['postSwowondertimelineflutterapper'] == null ? '' : map['postSwowondertimelineflutterapper'],
+        postSwowondertimelineflutterapper:
+            map['postSwowondertimelineflutterapper'] == null
+                ? ''
+                : map['postSwowondertimelineflutterapper'],
         postRecord: map['postRecord'] == null ? '' : map['postRecord'],
 
         comments_status:
@@ -690,6 +720,11 @@ class PostModel {
             : map['publisher']['pro_type'] == null
                 ? ''
                 : map['publisher']['pro_type'],
+        postListening: mapString(map['postListening']),
+        postTraveling: mapString(map['postTraveling']),
+        postWatching: mapString(map['postWatching']),
+        postPlaying: mapString(map['postPlaying']),
+        postSticker:mapString(map['postSticker'],)
       );
 }
 
@@ -698,8 +733,10 @@ class PostModel {
 ///
 ///
 
-
 // To parse this JSON data, do
 //
 //     final welcome = welcomeFromMap(jsonString);
 
+mapString(map) {
+  return map == null ? '' : map;
+}

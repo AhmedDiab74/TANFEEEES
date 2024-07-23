@@ -29,7 +29,7 @@ class ApiPosts {
 
     List<PostModel> posts = <PostModel>[];
     File file = new File(dir.path + "/$vont" + fileName);
-    try {
+
       var response = await http.post(url, body: {
         accounts[0]['sm1']: accounts[0]['sm2'],
         accounts[0]['ty']: 'get_news_feed',
@@ -62,18 +62,16 @@ class ApiPosts {
         posts.add(PostModel.fromJson(item));
       }
       return posts;
-    } catch (eror) {
-      print('No NetWork');
-    }
+ 
 
-    vont;
-    var jsonData = file.readAsStringSync();
-    var dataReed = jsonDecode(jsonData);
-    var datadecde = dataReed['data'];
-    for (var item in datadecde) {
-      posts.add(PostModel.fromJson(item));
-    }
+    // vont;
+    // var jsonData = file.readAsStringSync();
+    // var dataReed = jsonDecode(jsonData);
+    // var datadecde = dataReed['data'];
+    // for (var item in datadecde) {
+    //   posts.add(PostModel.fromJson(item));
+    // }
 
-    return posts;
+    // return posts;
   }
 }

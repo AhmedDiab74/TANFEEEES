@@ -9,7 +9,6 @@ import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiCreateEvent.dart'
 import 'package:permission_handler/permission_handler.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
-
 class EventsAddScreen extends StatefulWidget {
   EventsAddScreen({super.key, required this.updite});
   dynamic updite;

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:954615029850:android:43359d4f17ad34540f3863",
         "android_client_info": {
-          "package_name": "app.wowonderflutter.com"
+          "package_name": "app.wowonderflutternew.com"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "954615029850-9r90773end5gfv80pucdpt73a12a745a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "app.wowonderflutter.com",
+            "package_name": "app.wowonderflutternew.com",
             "certificate_hash": "9eb506f91d17867a01ec4a642ebab93db5c86240"
           }
         },
@@ -42,7 +42,7 @@
               "client_id": "954615029850-l2v45oenqocai4hqeralprh2inqvorlu.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "app.wowonderflutter.com"
+                "bundle_id": "app.wowonderflutternew.com"
               }
             }
           ]
@@ -78,7 +78,7 @@
               "client_id": "954615029850-l2v45oenqocai4hqeralprh2inqvorlu.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "app.wowonderflutter.com"
+                "bundle_id": "app.wowonderflutternew.com"
               }
             }
           ]

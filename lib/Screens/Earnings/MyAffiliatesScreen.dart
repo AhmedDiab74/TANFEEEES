@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:wowondertimelineflutterapp/Util/TextUtil.dart';
 import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wowondertimelineflutterapp/Screens/UserScreen/GetMyUserDataCont.dart';
 
@@ -148,7 +147,7 @@ class _MyAffiliatesScreenState extends State<MyAffiliatesScreen> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  final result = await Share.shareWithResult(
+                                  final result = await Share.share(
                                       'Let\'s meet on $nameApp ${controller.web}/register?ref=${controller.data[controller.data.length - 1].username}');
 
                                   if (result.status ==

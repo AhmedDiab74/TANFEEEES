@@ -638,6 +638,13 @@ class _GroupsScreenState extends State<GroupsScreen> {
               Column(
                 children: [
                   WidgetPosts(
+                                postSticker:data[i].postSticker,
+                      postListening: data[i].postListening,
+                            postTraveling:  data[i].postTraveling,
+                            postWatching: data[i].postWatching,
+                            postPlaying:  data[i].postPlaying,
+                          postMap:data[i].postMap,
+                    can_not_see_monetized:  data[i].can_not_see_monetized,
                     blog:data[i].blog,
                     voted_id: data[i].voted_id,
                     postFileName: data[i].postFileName,

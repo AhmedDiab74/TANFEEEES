@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
+import 'package:wowondertimelineflutterapp/Screens/Home/ContHomeScreen.dart';
 import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:wowondertimelineflutterapp/Colors2.dart';
 
@@ -40,6 +41,7 @@ class _HomeNavBarState extends State<HomeNavBar> with TickerProviderStateMixin {
   var tabIndex = 0;
   var contFrind = '0';
 
+  final scrollController = ScrollController();
 
   void changePageTo(int index) {
     tabIndex = index;
@@ -107,6 +109,13 @@ class _HomeNavBarState extends State<HomeNavBar> with TickerProviderStateMixin {
                 Expanded(
                   child: InkWell(
                       onTap: () {
+                              if (tabIndex == 0) {
+                       
+                                    scrollController.animateTo(0,
+                                        duration: Duration(seconds: 1),
+                                        curve: Curves.easeIn);
+                                 
+                                  }
                         changePageTo(0);
                       },
                       child: Column(
@@ -144,6 +153,7 @@ class _HomeNavBarState extends State<HomeNavBar> with TickerProviderStateMixin {
                 ),
                 Expanded(
                   child: InkWell(
+                    
                       onTap: () {
                         changePageTo(2);
                       },
@@ -212,7 +222,7 @@ class _HomeNavBarState extends State<HomeNavBar> with TickerProviderStateMixin {
           },
           controller: PageController(initialPage: tabIndex),
           children: [
-            if (tabIndex == 0) HomeScreen(),
+            if (tabIndex == 0) HomeScreen(scrollController: scrollController,),
             if (tabIndex == 1) VideoScreen(),
             if (tabIndex == 2) FriendRequestsScreen(),
             if (tabIndex == 4) MoreScreen(),

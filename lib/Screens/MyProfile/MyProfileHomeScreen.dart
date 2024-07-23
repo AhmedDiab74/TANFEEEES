@@ -408,9 +408,7 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                             ),
                                           )),
                                         ),
-                                      Expanded(
-                                        
-                                        child: SizedBox()),
+                                      Expanded(child: SizedBox()),
                                       Expanded(
                                         flex: 8,
                                         child: InkWell(
@@ -941,6 +939,9 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                 children: [
                                   for (var i = 0; i < data.length; i++)
                                     WidgetPosts(
+                                      postMap:data[i].postMap,
+                                      can_not_see_monetized:
+                                          data[i].can_not_see_monetized,
                                       blog: data[i].blog,
                                       voted_id: data[i].voted_id,
                                       postFileName: data[i].postFileName,
@@ -961,6 +962,11 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                       shared_info: data[i].shared_info,
                                       url_post: data[i].urlsss,
                                       trueflasecommet: data[i].comments_status,
+                                                postListening: data[i].postListening,
+                            postTraveling: data[i].postTraveling,
+                            postWatching: data[i].postWatching,
+                            postPlaying: data[i].postPlaying,
+                                        postSticker:data[i].postSticker,
                                       more: Container(
                                           child: IconButton(
                                               onPressed: () {

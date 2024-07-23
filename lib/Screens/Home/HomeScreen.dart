@@ -2,7 +2,9 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'package:wowondertimelineflutterapp/Colors2.dart';
 import 'package:wowondertimelineflutterapp/Screens/Chat/HomeScreenChat.dart';
+import 'package:wowondertimelineflutterapp/Screens/Home/reelsHome.dart';
 import 'package:wowondertimelineflutterapp/Screens/Notification/NotificationScreen.dart';
+import 'package:wowondertimelineflutterapp/Screens/Search/SearchScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/Stories/AddStoriesScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/Stories/new/StoriesScreenView.dart';
 import 'package:wowondertimelineflutterapp/Widget/CustomPainterCir.dart';
@@ -46,7 +48,8 @@ import 'package:wowondertimelineflutterapp/Screens/Home/WidgetHomeAnnouncements.
 import 'package:wowondertimelineflutterapp/Screens/Home/WidgetWilccomeHomeScreen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key, this.scrollController});
+  ScrollController? scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -57,367 +60,253 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: Get.isDarkMode
           ? ColorDarkBackground
           : Theme.of(context).scaffoldBackgroundColor,
-      // body: Obx(
-      //   () =>
-      //   NestedScrollView(
-      //     floatHeaderSlivers: true,
-      //     headerSliverBuilder: (context, innerBoxIsScrolled) {
-      //       return [
-      //         SliverAppBar(
-      //           backgroundColor:
-      //               Get.isDarkMode ? ColorDarkComponents : Colors.white,
-      //           elevation: 2,
-      //           centerTitle: true,
-      //           pinned: true,
-      //           foregroundColor: Get.isDarkMode ? Colors.white : Colors.black,
-      //           title: Row(children: [
-      //             Image.asset(
-      //               images.logoApar,
-      //               color: Get.isDarkMode ? null : null,
-      //             ),
-      //             SizedBox(
-      //               width: Get.width * 0.02,
-      //             ),
-      //             Text(nameApp,
-      //                 style: SafeGoogleFont(Fonts.font3,
-      //                     fontWeight: FontWeight.bold,
-      //                     fontSize: 14,
-      //                     color: Get.isDarkMode ? Colors.white : Colors.black))
-      //           ]),
-      //           actions: [
-      //             Padding(
-      //               padding: const EdgeInsets.all(8.0),
-      //               child: Row(
-      //                 children: [
-      //                   InkWell(
-      //                     onTap: () {
-      //                       Get.to(
-      //                         SearchScreen(),
-      //                       );
-      //                     },
-      //                     child: Container(
-      //                       padding: EdgeInsets.all(10),
-      //                       decoration: BoxDecoration(
-      //                           color: Get.isDarkMode
-      //                               ? Color.fromARGB(44, 210, 202, 202)
-      //                               : ColorBackIcons,
-      //                           borderRadius: BorderRadius.circular(50)),
-      //                       child: SvgPicture.asset(
-      //                         SvgImages.Search,
-      //                         height: Get.height * 0.02,
-      //                         width: Get.width * 0.02,
-      //                         color: Get.isDarkMode ? Colors.white : ColorTheme,
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   SizedBox(
-      //                     width: Get.width * 0.02,
-      //                   ),
-      //                   InkWell(
-      //                       onTap: () {
-      //                         Get.to(NotificationScreen());
-      //                       },
-      //                       child: CircleAvatar(
-      //                         backgroundColor: Get.isDarkMode
-      //                             ? Color.fromARGB(44, 210, 202, 202)
-      //                             : ColorBackIcons,
-      //                         child: Stack(
-      //                           children: [
-      //                             Center(
-      //                               child: SvgPicture.asset(
-      //                                 SvgImages.Notifications,
-      //                                 height: Get.height * 0.02,
-      //                                 width: Get.width * 0.02,
-      //                                 color: Get.isDarkMode
-      //                                     ? Colors.white
-      //                                     : ColorTheme,
-      //                               ),
-      //                             ),
-      //                             controller.notfi.toString() == 'null'
-      //                                 ? SizedBox()
-      //                                 : controller.notfi.toString() == '0'
-      //                                     ? SizedBox()
-      //                                     : Positioned(
-      //                                         right: 3,
-      //                                         top: 5,
-      //                                         child: Container(
-      //                                           height: 10,
-      //                                           width: 10,
-      //                                           decoration: BoxDecoration(
-      //                                               color: Colors.red,
-      //                                               shape: BoxShape.circle,
-      //                                               border: Border.all(
-      //                                                 color: Colors.white,
-      //                                               )),
-      //                                         ),
-      //                                       ),
-      //                           ],
-      //                         ),
-      //                       )),
-      //                   SizedBox(
-      //                     width: Get.width * 0.02,
-      //                   ),
-      //                   if (ChatSystem == '1')
-      //                     InkWell(
-      //                       onTap: () {
-      //                         // Get.to(ChatScreenGpt());
-      //                         Get.to(HomeScreenChat());
-      //                       },
-      //                       child: Stack(
-      //                         children: [
-      //                           CircleAvatar(
-      //                             backgroundColor: Get.isDarkMode
-      //                                 ? Color.fromARGB(44, 210, 202, 202)
-      //                                 : ColorBackIcons,
-      //                             child: SvgPicture.asset(
-      //                               SvgImages.Message,
-      //                               height: Get.height * 0.02,
-      //                               width: Get.width * 0.02,
-      //                               color: Get.isDarkMode
-      //                                   ? Colors.white
-      //                                   : ColorTheme,
-      //                             ),
-      //                           ),
-      //                           controller.count_new_messagesApi2.toString() ==
-      //                                   'null'
-      //                               ? SizedBox()
-      //                               : controller.count_new_messagesApi2
-      //                                           .toString() ==
-      //                                       '0'
-      //                                   ? SizedBox()
-      //                                   : Positioned(
-      //                                       right: 3,
-      //                                       top: 0,
-      //                                       child: Container(
-      //                                         decoration: BoxDecoration(
-      //                                             color: Colors.red,
-      //                                             shape: BoxShape.circle),
-      //                                         child: Padding(
-      //                                           padding:
-      //                                               const EdgeInsets.all(4.0),
-      //                                           child: Text(
-      //                                             controller
-      //                                                 .count_new_messagesApi2
-      //                                                 .toString(),
-      //                                             style: TextStyle(
-      //                                                 color: Colors.white),
-      //                                           ),
-      //                                         ),
-      //                                       ),
-      //                                     )
-      //                         ],
-      //                       ),
-      //                     ),
-      //                 ],
-      //               ),
-      //             )
-      //           ],
-      //         ),
-      //       ];
-      //     },
       body: Obx(
         () => Column(
           children: [
             Expanded(
-              flex: -1,
-              child: Visibility(
-                child: Container(
-                  height: sizedHeight(context) * 0.27,
-                  child: AnimatedContainer(
-                    height: 14,
-                    curve: Curves.easeInOutQuart,
-                    duration: Duration(seconds: 5),
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: sizedwidth(context),
-                          height: sizedHeight(context) * 0.20,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(50)),
-                            image: DecorationImage(
-                                image:
-                                    AssetImage('assets/imagesNew/pattern.png'),
-                                fit: BoxFit.cover),
-                            color: Color(0xffD9FBE9),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/icon.png',
-                                          height: 25,
-                                          width: 40,
-                                        ),
-                                        Text(
-                                          nameApp,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 16),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(HomeScreenChat());
-                                          },
-                                          child: SvgPicture.asset(
-                                              'assets/SvgNew/messages.svg'),
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(NotificationScreen());
-                                          },
-                                          child: SvgPicture.asset(
-                                              'assets/SvgNew/notfi.svg'),
-                                        ),
-                                        SvgPicture.asset(
-                                            'assets/SvgNew/add.svg')
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                            bottom: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: sizedwidth(context) * 0.99,
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                InkWell(
-                                                  onTap: () {
-                                                    Get.bottomSheet(
-                                                        AddStoriesScreen()); // Get.to(StoryPage());
-                                                  },
-                                                  child: CustomPaint(
-                                                    painter:
-                                                        CircleBorderwith4Color(
-                                                      gap: 1,
-                                                      borderThinckness: 8,
-                                                      topRightColor:
-                                                          Greyscale800,
-                                                      bottomLeftColor:
-                                                          Greyscale600,
-                                                      topLeftColor:
-                                                          Greyscale400,
-                                                      bottomRightColor:
-                                                          Greyscale400,
-                                                    ),
-                                                    child: CircleAvatar(
-                                                      maxRadius: 28,
-                                                      backgroundImage:
-                                                          CachedNetworkImageProvider(
-                                                              mydata.data.length >
-                                                                      0
-                                                                  ? mydata
-                                                                      .data[0]
-                                                                      .avatar
-                                                                  : ''),
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text('Add story')
-                                              ],
-                                            ),
-                                          ),
-                                          for (var i = 0;
-                                              i < controller.stor.length;
-                                              i++)
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      Get.to(NewStoreViw(
-                                                          cont: controller,
-                                                          initialPage: i));
-                                                    },
-                                                    child: CustomPaint(
-                                                      painter:
-                                                          CircleBorderwith4Color(
-                                                        gap: 1,
-                                                        borderThinckness: 8,
-                                                        topRightColor:
-                                                            Greyscale800,
-                                                        bottomLeftColor:
-                                                            Greyscale600,
-                                                        topLeftColor:
-                                                            Greyscale400,
-                                                        bottomRightColor:
-                                                            Greyscale400,
-                                                      ),
-                                                      child: CircleAvatar(
-                                                        maxRadius: 28,
-                                                        backgroundImage:
-                                                            CachedNetworkImageProvider(
-                                                                controller
-                                                                    .stor[i]
-                                                                    .avatar),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 5,
-                                                  ),
-                                                  Text(controller.stor[i].name)
-                                                ],
-                                              ),
-                                            ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ))
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
               child: SmartRefresher(
+                scrollController: scrollController,
                 onRefresh: controller.refesh,
                 onLoading: controller.onLoding,
                 enablePullDown: true,
                 enablePullUp: true,
                 controller: controller.refreshController,
                 child: SingleChildScrollView(
+                  controller: scrollController,
                   child: Center(
                     child: Column(children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Expanded(
+                            flex: -1,
+                            child: Visibility(
+                              child: Container(
+                                height: sizedHeight(context) * 0.27,
+                                child: AnimatedContainer(
+                                  height: 14,
+                                  curve: Curves.easeInOutQuart,
+                                  duration: Duration(seconds: 5),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: sizedwidth(context),
+                                        height: sizedHeight(context) * 0.20,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(50)),
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/imagesNew/pattern.png'),
+                                              fit: BoxFit.cover),
+                                          color: Color(0xffD9FBE9),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Image.asset(
+                                                        'assets/icon.png',
+                                                        height: 25,
+                                                        width: 40,
+                                                      ),
+                                                      Text(
+                                                        nameApp,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 16),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.to(
+                                                              HomeScreenChat());
+                                                        },
+                                                        child: SvgPicture.asset(
+                                                          'assets/SvgNew/messages.svg',
+                                                          height: 30,
+                                                          width: 30,
+                                                        ),
+                                                      ),
+                                                      InkWell(
+                                                        onTap: () {
+                                                          Get.to(
+                                                              NotificationScreen());
+                                                        },
+                                                        child: SvgPicture.asset(
+                                                          'assets/SvgNew/notfi.svg',
+                                                          height: 30,
+                                                          width: 30,
+                                                        ),
+                                                      ),
+                                                      Row(children: [
+                                                        InkWell(
+                                                          onTap: () {
+                                                            Get.to(
+                                                              SearchScreen(),
+                                                            );
+                                                          },
+                                                          child:
+                                                              SvgPicture.asset(
+                                                            SvgImages.Search,
+                                                            height: 30,
+                                                            width: 30,
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                      ]),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Positioned(
+                                          bottom: 0,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Container(
+                                              width: sizedwidth(context) * 0.99,
+                                              child: SingleChildScrollView(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                child: Row(
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            children: [
+                                                              InkWell(
+                                                                onTap: () {
+                                                                  Get.bottomSheet(
+                                                                      AddStoriesScreen()); // Get.to(StoryPage());
+                                                                },
+                                                                child:
+                                                                    CustomPaint(
+                                                                  painter:
+                                                                      CircleBorderwith4Color(
+                                                                    gap: 1,
+                                                                    borderThinckness:
+                                                                        8,
+                                                                    topRightColor:
+                                                                        Greyscale800,
+                                                                    bottomLeftColor:
+                                                                        Greyscale600,
+                                                                    topLeftColor:
+                                                                        Greyscale400,
+                                                                    bottomRightColor:
+                                                                        Greyscale400,
+                                                                  ),
+                                                                  child:
+                                                                      CircleAvatar(
+                                                                    maxRadius:
+                                                                        28,
+                                                                    backgroundImage: CachedNetworkImageProvider(mydata.data.length >
+                                                                            0
+                                                                        ? mydata
+                                                                            .data[0]
+                                                                            .avatar
+                                                                        : ''),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 5,
+                                                              ),
+                                                              Text('Add story')
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        for (var i = 0;
+                                                            i <
+                                                                controller.stor
+                                                                    .length;
+                                                            i++)
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(8.0),
+                                                            child: Column(
+                                                              children: [
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    Get.to(NewStoreViw(
+                                                                        cont:
+                                                                            controller,
+                                                                        initialPage:
+                                                                            i));
+                                                                  },
+                                                                  child:
+                                                                      CustomPaint(
+                                                                    painter:
+                                                                        CircleBorderwith4Color(
+                                                                      gap: 1,
+                                                                      borderThinckness:
+                                                                          8,
+                                                                      topRightColor:
+                                                                          Greyscale800,
+                                                                      bottomLeftColor:
+                                                                          Greyscale600,
+                                                                      topLeftColor:
+                                                                          Greyscale400,
+                                                                      bottomRightColor:
+                                                                          Greyscale400,
+                                                                    ),
+                                                                    child:
+                                                                        CircleAvatar(
+                                                                      maxRadius:
+                                                                          28,
+                                                                      backgroundImage: CachedNetworkImageProvider(controller
+                                                                          .stor[
+                                                                              i]
+                                                                          .avatar),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                SizedBox(
+                                                                  height: 5,
+                                                                ),
+                                                                Text(controller
+                                                                    .stor[i]
+                                                                    .name)
+                                                              ],
+                                                            ),
+                                                          ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
                           // if (false)
                           //   Container(
                           //     color:
@@ -721,6 +610,19 @@ class HomeScreen extends StatelessWidget {
                                   Column(
                                     children: [
                                       WidgetPosts(
+                                        postSticker:
+                                            controller.data[i].postSticker,
+                                        postListening:
+                                            controller.data[i].postListening,
+                                        postTraveling:
+                                            controller.data[i].postTraveling,
+                                        postWatching:
+                                            controller.data[i].postWatching,
+                                        postPlaying:
+                                            controller.data[i].postPlaying,
+                                        postMap: controller.data[i].postMap,
+                                        can_not_see_monetized: controller
+                                            .data[i].can_not_see_monetized,
                                         blog: controller.boost[i].blog,
                                         voted_id: controller.boost[i].voted_id,
                                         postFileName:
@@ -764,16 +666,16 @@ class HomeScreen extends StatelessWidget {
                                                       remove: () {
                                                         QuickAlert.show(
                                                           onConfirmBtnTap: () {
-                                                            PostActionsApi.reaction(
+                                                            PostActionsApi
+                                                                .reaction(
                                                                     controller
                                                                         .boost[
                                                                             i]
                                                                         .post_id,
-                                                                    'delete')
-                                                                .asStream();
+                                                                    'delete');
 
-                                                            controller.data
-                                                                .removeAt(i);
+                                                            controller
+                                                                .removePost(i);
 
                                                             Get.back();
                                                             Get.back();
@@ -879,8 +781,164 @@ class HomeScreen extends StatelessWidget {
                                   Column(
                                     children: [
                                       if (i == 3) RecommendedFrind(),
-                                      _WidgetPosts(
-                                          controller: controller, i: i),
+                                      if (i == 7) ReelsRecomend(),
+                                      WidgetPosts(
+                                        postSticker:
+                                            controller.data[i].postSticker,
+                                        postListening:
+                                            controller.data[i].postListening,
+                                        postTraveling:
+                                            controller.data[i].postTraveling,
+                                        postWatching:
+                                            controller.data[i].postWatching,
+                                        postPlaying:
+                                            controller.data[i].postPlaying,
+                                        postMap: controller.data[i].postMap,
+                                        can_not_see_monetized: controller
+                                            .data[i].can_not_see_monetized,
+                                        blog: controller.data[i].blog,
+                                        voted_id: controller.data[i].voted_id,
+                                        postFileName:
+                                            controller.data[i].postFileName,
+                                        vy_live: controller.data[i].vy_live,
+                                        blur: controller.data[i].blur,
+                                        postPrivacy:
+                                            controller.data[i].postPrivacy,
+                                        color_id: controller.data[i].color_id,
+                                        stream_name:
+                                            controller.data[i].stream_name,
+                                        pro_type: controller.data[i].pro_type,
+                                        is_pro: controller.data[i].is_pro,
+                                        ad_media: controller.data[i].ad_media,
+                                        biddingAds:
+                                            controller.data[i].biddingAds,
+                                        descriptionAds:
+                                            controller.data[i].descriptionAds,
+                                        nameAds: controller.data[i].nameAds,
+                                        user_dataAds:
+                                            controller.data[i].user_dataAds,
+                                        headline: controller.data[i].headline,
+                                        Boosted: false,
+                                        yout: controller.data[i].postYoutube,
+                                        shared_info:
+                                            controller.data[i].shared_info,
+                                        url_post: controller.data[i].urlsss,
+                                        trueflasecommet:
+                                            controller.data[i].comments_status,
+                                        event: controller.data[i].event,
+                                        product_id:
+                                            controller.data[i].product_id,
+                                        product: controller.data[i].product,
+                                        more: Container(
+                                            child: IconButton(
+                                                onPressed: () {
+                                                  Get.bottomSheet(
+                                                    WidgetMorePosts(
+                                                      url_post: controller
+                                                          .data[i].urlsss,
+                                                      refreshPost: () {
+                                                        controller.GetPost();
+                                                      },
+                                                      postText: controller
+                                                          .data[i].postText,
+                                                      pos: controller
+                                                          .data[i].post_id,
+                                                      hidePost: () {
+                                                        controller.data
+                                                            .removeAt(i);
+                                                      },
+                                                      remove: () {
+                                                        QuickAlert.show(
+                                                          onConfirmBtnTap: () {
+                                                            PostActionsApi
+                                                                .reaction(
+                                                                    controller
+                                                                        .data[i]
+                                                                        .post_id,
+                                                                    'delete');
+                                                            controller
+                                                                .removePost(i);
+
+                                                            Get.back();
+                                                            Get.back();
+                                                          },
+                                                          context: context,
+                                                          type: QuickAlertType
+                                                              .confirm,
+                                                          text:
+                                                              'Do you want to delete the post'
+                                                                  .tr,
+                                                          confirmBtnText:
+                                                              'Yes'.tr,
+                                                          cancelBtnText:
+                                                              'No'.tr,
+                                                          confirmBtnColor:
+                                                              Colors.red,
+                                                        );
+                                                      },
+                                                      adminPost: controller
+                                                          .data[i].admin,
+                                                      avat: controller
+                                                          .data[i].avatar,
+                                                      name: controller
+                                                          .data[i].name,
+                                                      user_id: controller
+                                                          .data[i].user_id,
+                                                    ),
+                                                  );
+                                                },
+                                                icon: Icon(Icons.more_vert))),
+                                        user_id: controller.data[i].user_id,
+                                        reomvePost: () {
+                                          controller.data.removeAt(i);
+                                        },
+                                        data: controller.data,
+                                        adminPost: controller.data[i].admin,
+                                        iint: i,
+                                        imReaction: controller.data[i].type,
+                                        reaction: controller.data[i].reaction,
+                                        post_id: controller.data[i].post_id,
+                                        postType: controller.data[i].postType,
+                                        verified: controller.data[i].verified,
+                                        postFeeling:
+                                            controller.data[i].postFeeling,
+                                        time: controller.data[i].post_time,
+                                        name: controller.data[i].name,
+                                        avat: controller.data[i].avatar,
+                                        postText: controller.data[i].postText,
+                                        postFile: controller.data[i].postFile,
+                                        p1080p: controller.data[i].p1080,
+                                        p2048p: controller.data[i].p2048,
+                                        p240p: controller.data[i].p240,
+                                        p360p: controller.data[i].p360,
+                                        p4096p: controller.data[i].p4096,
+                                        p480p: controller.data[i].p480,
+                                        p720p: controller.data[i].p720,
+                                        options: controller.data[i].options,
+                                        postRecord:
+                                            controller.data[i].postRecord,
+                                        contLike: controller.data[i].reaction,
+                                        contcoment: int.parse(
+                                            controller.data[i].post_comments),
+                                        post_share: int.parse(
+                                            controller.data[i].post_share),
+                                        islike: controller.data[i].reaction1,
+                                        photoMulti2:
+                                            controller.data[i].photoMulti2,
+                                        photo_album:
+                                            controller.data[i].photo_album,
+                                        postimage: controller.data[i].postFile,
+                                        type: controller.data[i].type,
+                                        page_id: controller.data[i].page_id,
+                                        group_id: controller.data[i].group_id,
+                                        avatar_group:
+                                            controller.data[i].avatargroupe,
+                                        name_group:
+                                            controller.data[i].group_title,
+                                        cover: controller.data[i].cover,
+                                        comment_cont:
+                                            controller.data[i].comments_status,
+                                      ),
                                     ],
                                   )
                               ],
@@ -897,130 +955,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _WidgetPosts extends StatelessWidget {
-  const _WidgetPosts({
-    super.key,
-    required this.controller,
-    required this.i,
-  });
-
-  final ContHomeScreen controller;
-  final int i;
-
-  @override
-  Widget build(BuildContext context) {
-    return WidgetPosts(
-      blog: controller.data[i].blog,
-      voted_id: controller.data[i].voted_id,
-      postFileName: controller.data[i].postFileName,
-      vy_live: controller.data[i].vy_live,
-      blur: controller.data[i].blur,
-      postPrivacy: controller.data[i].postPrivacy,
-      color_id: controller.data[i].color_id,
-      stream_name: controller.data[i].stream_name,
-      pro_type: controller.data[i].pro_type,
-      is_pro: controller.data[i].is_pro,
-      ad_media: controller.data[i].ad_media,
-      biddingAds: controller.data[i].biddingAds,
-      descriptionAds: controller.data[i].descriptionAds,
-      nameAds: controller.data[i].nameAds,
-      user_dataAds: controller.data[i].user_dataAds,
-      headline: controller.data[i].headline,
-      Boosted: false,
-      yout: controller.data[i].postYoutube,
-      shared_info: controller.data[i].shared_info,
-      url_post: controller.data[i].urlsss,
-      trueflasecommet: controller.data[i].comments_status,
-      event: controller.data[i].event,
-      product_id: controller.data[i].product_id,
-      product: controller.data[i].product,
-      more: Container(
-          child: IconButton(
-              onPressed: () {
-                Get.bottomSheet(
-                  WidgetMorePosts(
-                    url_post: controller.data[i].urlsss,
-                    refreshPost: () {
-                      controller.GetPost();
-                    },
-                    postText: controller.data[i].postText,
-                    pos: controller.data[i].post_id,
-                    hidePost: () {
-                      controller.data.removeAt(i);
-                    },
-                    remove: () {
-                      QuickAlert.show(
-                        onConfirmBtnTap: () {
-                          PostActionsApi.reaction(
-                                  controller.data[i].post_id, 'delete')
-                              .asStream();
-
-                          controller.data.removeAt(i);
-
-                          Get.back();
-                          Get.back();
-                        },
-                        context: context,
-                        type: QuickAlertType.confirm,
-                        text: 'Do you want to delete the post'.tr,
-                        confirmBtnText: 'Yes'.tr,
-                        cancelBtnText: 'No'.tr,
-                        confirmBtnColor: Colors.red,
-                      );
-                    },
-                    adminPost: controller.data[i].admin,
-                    avat: controller.data[i].avatar,
-                    name: controller.data[i].name,
-                    user_id: controller.data[i].user_id,
-                  ),
-                );
-              },
-              icon: Icon(Icons.more_vert))),
-      user_id: controller.data[i].user_id,
-      reomvePost: () {
-        controller.data.removeAt(i);
-      },
-      data: controller.data,
-      adminPost: controller.data[i].admin,
-      iint: i,
-      imReaction: controller.data[i].type,
-      reaction: controller.data[i].reaction,
-      post_id: controller.data[i].post_id,
-      postType: controller.data[i].postType,
-      verified: controller.data[i].verified,
-      postFeeling: controller.data[i].postFeeling,
-      time: controller.data[i].post_time,
-      name: controller.data[i].name,
-      avat: controller.data[i].avatar,
-      postText: controller.data[i].postText,
-      postFile: controller.data[i].postFile,
-      p1080p: controller.data[i].p1080,
-      p2048p: controller.data[i].p2048,
-      p240p: controller.data[i].p240,
-      p360p: controller.data[i].p360,
-      p4096p: controller.data[i].p4096,
-      p480p: controller.data[i].p480,
-      p720p: controller.data[i].p720,
-      options: controller.data[i].options,
-      postRecord: controller.data[i].postRecord,
-      contLike: controller.data[i].reaction,
-      contcoment: int.parse(controller.data[i].post_comments),
-      post_share: int.parse(controller.data[i].post_share),
-      islike: controller.data[i].reaction1,
-      photoMulti2: controller.data[i].photoMulti2,
-      photo_album: controller.data[i].photo_album,
-      postimage: controller.data[i].postFile,
-      type: controller.data[i].type,
-      page_id: controller.data[i].page_id,
-      group_id: controller.data[i].group_id,
-      avatar_group: controller.data[i].avatargroupe,
-      name_group: controller.data[i].group_title,
-      cover: controller.data[i].cover,
-      comment_cont: controller.data[i].comments_status,
     );
   }
 }

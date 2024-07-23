@@ -205,3 +205,16 @@ sizedHeight(context) {
 extension UriString on String {
   Uri get toUri => Uri.parse(this);
 }
+
+
+
+   bool isAudio(String filePath) {
+    final ext = filePath.toLowerCase();
+
+    return ext.endsWith(".mp3") ||
+        ext.endsWith(".wav") ||
+        ext.endsWith(".wma") ||
+        ext.endsWith(".amr") ||
+             ext.endsWith(".m4a") ||
+        ext.endsWith(".ogg");
+  }

@@ -36,7 +36,7 @@ class GetMyUserDataCont extends GetxController {
       avat.value = ameen[0].avatar;
       avat.value = ameen[0].name;
     });
-    print('sdasdasd  ${data[0].gender}');
+
     update();
   }
 

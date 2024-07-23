@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiAddViewPost.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:flutter/material.dart';
@@ -68,18 +69,19 @@ class _BroadcastPageState extends State<BroadcastPage> {
 
   @override
   void initState() {
+        if(widget.isBroadcaster){
+      CreateLive();
+    }
     super.initState();
          initAgora();
     permission();
-   
 
-    // initialize agora sdk
-    // initializeAgora();
-    // CreateLive();
+
+  if(!widget.isBroadcaster)  ApiAddViewsVideo.add(widget.postid);
+
   }
 
-/////
-  ///
+
   List<CommentLiveModel> posts = <CommentLiveModel>[];
   List lives = [];
   Timer? _timer;
@@ -144,75 +146,27 @@ class _BroadcastPageState extends State<BroadcastPage> {
     }
   }
 
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
-  // Future<void> initializeAgora() async {
-  //   await _initAgoraRtcEngine();
 
-  //   if (widget.isBroadcaster)
-  //     streamId = await _engine?.createDataStream(false, false);
-
-  //   _engine!.setEventHandler(RtcEngineEventHandler(
-  //     joinChannelSuccess: (channel, uid, elapsed) {
-  //       setState(() {
-  //         print('onJoinChannel: $channel, uid: $uid');
-  //       });
-  //     },
-  //     leaveChannel: (stats) {
-  //       setState(() {
-  //         print('onLeaveChannel');
-  //         _users.clear();
-  //       });
-  //     },
-  //     userJoined: (uid, elapsed) {
-  //       setState(() {
-  //         _users.add(uid);
-  //         print('userJoined: $uid');
-  //       });
-  //       print(_users.length);
-  //     },
-  //     userOffline: (uid, elapsed) {
-  //       setState(() {
-  //         print('userOffline: $uid');
-  //         Get.back();
-
-  //         _users.remove(uid);
-  //       });
-  //     },
-  //     streamMessage: (_, __, message) {
-  //       final String info = "here is the message $message";
-  //       print(info);
-  //     },
-  //     streamMessageError: (_, __, error, ___, ____) {
-  //       final String info = "here is the error $error";
-  //       print(info);
-  //     },
-  //   ));
-
-  //   await _engine!.joinChannel(widget.token, widget.channelName, null, 0);
-  // }
-
-  // Future<void> _initAgoraRtcEngine() async {
-  //   // ignore: deprecated_member_use
-  //   _engine = await RtcEngine.createWithConfig(RtcEngineConfig(Agora_App_ID));
-  //   await _engine!.enableVideo();
-
-  //   await _engine!.setChannelProfile(ChannelProfile.LiveBroadcasting);
-  //   if (widget.isBroadcaster) {
-  //     await _engine!.setClientRole(ClientRole.Broadcaster);
-  //   } else {
-  //     await _engine!.setClientRole(ClientRole.Audience);
-  //   }
-  // }
    int? _remoteUid;
   bool _localUserJoined = false;
   late RtcEngine _engine;
 
- 
+  // Display remote user's video
+  Widget _remoteVideo() {
+    if (_remoteUid != null) {
+      return AgoraVideoView(
+        controller: VideoViewController.remote(
+          rtcEngine: _engine,
+          canvas: VideoCanvas(uid: _remoteUid),
+          connection: RtcConnection(channelId: widget.channelName,),
+        ),
+      );
+    } else {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+  }
 initAgora() async {
     // retrieve permissions
     await [Permission.microphone, Permission.camera].request();
@@ -221,7 +175,7 @@ initAgora() async {
     _engine = createAgoraRtcEngine();
     await _engine.initialize( RtcEngineContext(
       appId: Agora_App_ID,
-      channelProfile: ChannelProfileType.channelProfileCommunication,
+      channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
     ));
 
     _engine.registerEventHandler(
@@ -254,7 +208,7 @@ initAgora() async {
 
  await _engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
     await _engine.enableVideo();
-    await _engine.startPreview();  
+    await _engine.startPreview();
     await _engine.joinChannel(
       token: '',
       channelId: widget.channelName,
@@ -278,20 +232,21 @@ initAgora() async {
         body: Center(
           child: Stack(
             children: <Widget>[
-       
 
- 
-_remoteUid == null ?Center(child: CircularProgressIndicator()): Center(
-  child: Container(
+
+
+ Center(
+  child:  widget.isBroadcaster
+                    ? AgoraVideoView(
+                        controller: VideoViewController(
+                          rtcEngine: _engine,
+                          canvas: const VideoCanvas(uid: 0),
+                        ),
+                      )
+                   :_remoteUid == null ?Center(child: CircularProgressIndicator()): Container(
       width: Get.width,
       height: Get.height,
-      child: AgoraVideoView(
-            controller: VideoViewController.remote(
-              rtcEngine: _engine,
-              canvas: VideoCanvas(uid: _remoteUid),
-              connection:  RtcConnection(channelId: widget.channelName),
-            ),
-          ),
+      child: _remoteVideo(),
     ),
 ),
               // _broadcastView(),
@@ -870,12 +825,13 @@ _remoteUid == null ?Center(child: CircularProgressIndicator()): Center(
   void _onToggleMute() {
     setState(() {
       muted = !muted;
+    _engine.muteLocalAudioStream(muted);
     });
     // _engine!.muteLocalAudioStream(muted);
   }
 
   Future<void> _onSwitchCamera() async {
-    // if (streamId != null) _engine!.switchCamera();
+ _engine.switchCamera();
   }
 }
 

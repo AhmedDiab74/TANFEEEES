@@ -310,6 +310,9 @@ class _WidgetMorePostsState extends State<WidgetMorePosts> {
                                         ),
                                       ],
                                     ));
+                               
+                               
+                               
                                   },
                                   child: WidgetMoreOprions(
                                     images: images.EdtiPost,

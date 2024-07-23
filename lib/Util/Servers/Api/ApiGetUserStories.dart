@@ -20,7 +20,7 @@ class ApiGetUserStories {
     var resp = response.body;
     var datajson = jsonDecode(resp);
     var wwwdata = datajson['stories'];
-    print('aksjdaskljdklsjkld $datajson');
+   
 
     for (var item in wwwdata) {
       stor.add(GetUserStoriesModel.fromJson(item));

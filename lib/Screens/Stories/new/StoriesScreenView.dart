@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cached_video_player_plus/cached_video_player_plus.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:flutter_svg/svg.dart';
 
@@ -10,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:wowondertimelineflutterapp/Screens/Home/ContHomeScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/Stories/new/AdsStroryScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/Stories/new/HeartAnimation.dart';
-import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
+
 import 'package:wowondertimelineflutterapp/Util/Functions.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiDeleteStores.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiGetByIdStories.dart';
@@ -36,14 +35,10 @@ class _NewStoreViwState extends State<NewStoreViw> {
 
   @override
   void initState() {
-    print('klasjdklajskldjaskldjaksd ${widget.initialPage}');
     super.initState();
     _pageController = PageController(initialPage: widget.initialPage);
     _pageController!.addListener(() {
       print("inside listener");
-      if (_pageController!.initialPage + 1 == widget.cont.stor.length) {
-        Get.back();
-      }
     });
   }
 
@@ -60,16 +55,23 @@ class _NewStoreViwState extends State<NewStoreViw> {
       body: PageView.builder(
           padEnds: false,
           onPageChanged: (val) {
-            if (val + 1 == widget.cont.stor.length) {
+            if (val + 0 == widget.cont.stor.length) {
               Get.back();
             }
           },
           controller: _pageController,
           itemCount: widget.cont.stor.length + 1,
           itemBuilder: (context, index) {
+            //  if(widget.cont.stor.length-1==index -1){
+            //     Get.back();
+
+            //   }
             final User user = User(
-              name: widget.cont.stor[index].name,
-              profileImageUrl: widget.cont.stor[index].avatar,
+              name:
+                  widget.cont.stor != null ? widget.cont.stor[index].name : '',
+              profileImageUrl: widget.cont.stor != null
+                  ? widget.cont.stor[index].avatar
+                  : '',
             );
 
             List<Story> storiess = [
@@ -270,9 +272,10 @@ class _StoryScreenState extends State<StoryScreen>
                           ? GetAdsStory(
                               ad_id: story.id_ads,
                             )
-                          : CachedNetworkImage(
-                              imageUrl: story.url,
-                              fit: BoxFit.cover,
+                          : Center(
+                              child: CachedNetworkImage(
+                                imageUrl: story.url,
+                              ),
                             );
                     case MediaType.video:
                       if (_videoController != null &&
@@ -347,7 +350,7 @@ class _StoryScreenState extends State<StoryScreen>
                       _videoController?.pause();
 
                       Get.bottomSheet(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Colors.black,
                           isScrollControlled: true,
                           ViewUserStories(
                             story_id: story.story_id,
@@ -365,7 +368,7 @@ class _StoryScreenState extends State<StoryScreen>
                     },
                     child: Container(
                       width: sizedwidth(context),
-                      decoration: BoxDecoration(color: ColorTheme),
+                      decoration: BoxDecoration(color: Color(0xff191A21)),
                       child: Padding(
                         padding: const EdgeInsets.all(20),
                         child: Row(
@@ -427,7 +430,7 @@ class _StoryScreenState extends State<StoryScreen>
                             Container(
                               width: sizedwidth(context) * 0.70,
                               decoration: BoxDecoration(
-                                  color: ColorTheme,
+                                  color: Color(0xff23252D),
                                   borderRadius: BorderRadius.circular(20)),
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -589,16 +592,15 @@ class _StoryScreenState extends State<StoryScreen>
         _videoController = null;
         _videoController?.dispose();
         // ignore: deprecated_member_use
-        _videoController =
-            CachedVideoPlayerPlusController.networkUrl(story.url.toUri)
-              ..initialize().then((_) {
-                setState(() {});
-                if (_videoController!.value.isInitialized) {
-                  _animController?.duration = _videoController?.value.duration;
-                  _videoController?.play();
-                  _animController?.forward();
-                }
-              });
+        _videoController = CachedVideoPlayerPlusController.network(story.url)
+          ..initialize().then((_) {
+            setState(() {});
+            if (_videoController!.value.isInitialized) {
+              _animController?.duration = _videoController?.value.duration;
+              _videoController?.play();
+              _animController?.forward();
+            }
+          });
         break;
     }
     if (animateToPage) {
@@ -656,7 +658,7 @@ class _ViewUserStoriesState extends State<ViewUserStories> {
         ),
         Center(
             child: Container(
-          color: Colors.black,
+          color: Colors.white,
           width: 100,
           height: 2,
         )),
@@ -680,6 +682,7 @@ class _ViewUserStoriesState extends State<ViewUserStories> {
                                 children: [
                                   CircleAvatar(
                                       maxRadius: 27,
+                                      backgroundColor: Colors.white,
                                       child: CircleAvatar(
                                           maxRadius: 25,
                                           backgroundImage:
@@ -691,6 +694,7 @@ class _ViewUserStoriesState extends State<ViewUserStories> {
                                     child: Text(
                                       vSt[i].name,
                                       style: TextStyle(
+                                          color: Colors.white,
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16),
                                     ),

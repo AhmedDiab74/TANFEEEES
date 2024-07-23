@@ -1,5 +1,9 @@
 import 'dart:io';
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:get/get.dart';
+import 'package:giphy_picker/giphy_picker.dart';
+import 'package:wowondertimelineflutterapp/Screens/AddPost/bubbleAudio.dart';
+import 'package:wowondertimelineflutterapp/Util/Functions.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
 import 'package:wowondertimelineflutterapp/Themes.dart';
@@ -914,7 +918,223 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                   File(controller.videoUp!.path),
                                 ),
                                 looping: true)
-                            : SizedBox()
+                            : SizedBox(),
+                        if (controller.gifs != null)
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        controller.removeGif();
+                                      },
+                                      icon: Icon(Icons.cancel)),
+                                ],
+                              ),
+                              GiphyImage.original(gif: controller.gifs!),
+                            ],
+                          ),
+                                    if (controller.nameFilee != null)
+                  if (!controller.musicFile.toString().isAudioFileName)
+                    Container(
+                      width: sizedwidth(context),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.file_present,
+                                  color: Color.fromARGB(255, 173, 185, 44),
+                                  size: 60,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                SizedBox(
+                                  width: sizedwidth(context) * 0.60,
+                                  child: Text(controller.nameFilee.toString()),
+                                ),
+                              ],
+                            ),
+                            IconButton.outlined(
+                                onPressed: () {
+                                  controller.removeFile();
+                                },
+                                icon: Icon(Icons.cancel))
+                          ],
+                        ),
+                      ),
+                    ),
+               
+                                      if (controller.musicFile.toString().isAudioFileName)
+                  WaveBubble(
+                    path: controller.musicFile,
+                    isSender: true,
+  
+                  ),
+                if (controller.recordsCreate)
+                  Column(
+                    children: [
+                      Divider(),
+                      Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                controller.updateRecore(false);
+                              },
+                              icon: Icon(
+                                Icons.close,
+                                color: Colors.black,
+                              )),
+                        ],
+                      ),
+                      if (controller.isRecordingCompleted)
+                        if (isAudio(controller.pathRecord.toString()))
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              WaveBubble(
+                                path: controller.pathRecord,
+                                isSender: true,
+                             
+                              ),
+                            ],
+                          ),
+                      if (controller.isRecording)
+                        if (controller.pathRecord.toString().isAudioFileName)
+                          AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 200),
+                              child: AudioWaveforms(
+                                enableGesture: true,
+                                size: Size(
+                                    MediaQuery.of(context).size.width / 2, 50),
+                                recorderController:
+                                    controller.recorderController,
+                                waveStyle: const WaveStyle(
+                                  waveColor: Colors.white,
+                                  extendWaveform: true,
+                                  showMiddleLine: false,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                  color: const Color(0xFF1E1B26),
+                                ),
+                                padding: const EdgeInsets.only(left: 18),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                              )),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InkWell(
+                          onTap: controller.startOrStopRecording,
+                          child: CircleAvatar(
+                            maxRadius: 50,
+                            backgroundColor: Colors.red,
+                            child: Icon(
+                              controller.isRecordingCompleted
+                                  ? Icons.delete
+                                  : controller.isRecording
+                                      ? Icons.stop
+                                      : Icons.mic,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+            
+                        if (controller.postTr != null)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          controller.updateTr(null);
+                                        },
+                                        icon: Icon(Icons.cancel))
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      controller.postTr.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                        child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: const Color.fromARGB(
+                                                    28, 158, 158, 158)),
+                                            child: TextField(
+                                              controller:
+                                                  controller.travlintext,
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none),
+                                            )))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+
+                        if (controller.postMap)
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () {
+                                          controller.updatePostMap(false);
+                                        },
+                                        icon: Icon(Icons.cancel))
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Location',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                        child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: const Color.fromARGB(
+                                                    28, 158, 158, 158)),
+                                            child: TextField(
+                                              controller:
+                                                  controller.postMapText,
+                                              decoration: InputDecoration(
+                                                  border: InputBorder.none),
+                                            )))
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -1189,53 +1409,64 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.bottomSheet(
-                                      WidgetPhotoAnvideo(controller));
-                                },
-                                child: WidgetPostImagesNav(
-                                  images: 'SDF.png',
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.bottomSheet(
+                                        WidgetPhotoAnvideo(controller));
+                                  },
+                                  child: WidgetPostImagesNav(
+                                    images: 'SDF.png',
+                                  ),
                                 ),
                               ),
-                              WidgetPostImagesNav(
-                                images: 'friend.png',
-                              ),
-                              WidgetPostImagesNav(
-                                images: 'Iconly-Bold-Location.png',
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.bottomSheet(felling(controller));
-                                },
-                                child: WidgetPostImagesNav(
-                                  images: 'hg.png',
+                          
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    controller.updatePostMap(true);
+                                  },
+                                  child: WidgetPostImagesNav(
+                                    images: 'Iconly-Bold-Location.png',
+                                  ),
                                 ),
                               ),
-                              InkWellMreNave(
-                                controller: controller,
-                                onTapVideoImage: () {
-                                  Get.back();
-                                  Get.bottomSheet(
-                                      WidgetPhotoAnvideo(controller));
-                                },
-                                ontapPoll: () {
-                                  setState(() {
-                                    newPool = true;
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.bottomSheet(felling(controller));
+                                  },
+                                  child: WidgetPostImagesNav(
+                                    images: 'hg.png',
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: InkWellMreNave(
+                                  controller: controller,
+                                  onTapVideoImage: () {
                                     Get.back();
-                                  });
-                                },
-                                onTapFeling: () {
-                                  Get.back();
-                                  Get.bottomSheet(felling(controller));
-                                },
-                                onTapColorPost: () {
-                                  Get.back();
-                                  setState(() {
-                                    ColorPosts = !ColorPosts;
-                                    ColorPostsMenu = false;
-                                  });
-                                },
+                                    Get.bottomSheet(
+                                        WidgetPhotoAnvideo(controller));
+                                  },
+                                  ontapPoll: () {
+                                    setState(() {
+                                      newPool = true;
+                                      Get.back();
+                                    });
+                                  },
+                                  onTapFeling: () {
+                                    Get.back();
+                                    Get.bottomSheet(felling(controller));
+                                  },
+                                  onTapColorPost: () {
+                                    Get.back();
+                                    setState(() {
+                                      ColorPosts = !ColorPosts;
+                                      ColorPostsMenu = false;
+                                    });
+                                  },
+                                ),
                               ),
                             ],
                             // children: [
@@ -1301,7 +1532,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         }));
   }
 
-  Widget felling(controller) {
+  Widget felling(CreatePostCont controller) {
     return Container(
       //height: Get.height * 0.40,
       height: Get.height * 0.40,
@@ -1653,91 +1884,111 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             SizedBox(
               height: Get.height * 0.01,
             ),
-            Row(
-              children: [
-                WidgetPostImagesNavSvg(
-                  colorbool: true,
-                  colorr: Colors.blue,
-                  images: 'travel-svgrepo-com.svg',
-                ),
-                SizedBox(
-                  width: Get.width * 0.02,
-                ),
-                Text(
-                  'Traveling to'.tr,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.blue),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.01,
-            ),
-            Row(
-              children: [
-                WidgetPostImagesNavSvg(
-                  colorbool: true,
-                  colorr: colorTextBoardingDark1,
-                  images: 'watching-a-video-on-a-tablet-svgrepo-com.svg',
-                ),
-                SizedBox(
-                  width: Get.width * 0.02,
-                ),
-                Text(
-                  'Watching'.tr,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: colorTextBoardingDark1),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.01,
-            ),
-            Row(
-              children: [
-                WidgetPostImagesNavSvg(
-                  colorbool: false,
-                  colorr: Colors.blue,
-                  images: 'man-playing-handball-svgrepo-com.svg',
-                ),
-                SizedBox(
-                  width: Get.width * 0.02,
-                ),
-                Text(
-                  'Playing'.tr,
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.green),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.01,
-            ),
-            Row(
-              children: [
-                WidgetPostImagesNavSvg(
-                  colorbool: true,
-                  colorr: Colors.deepPurpleAccent,
-                  images: 'listening-svgrepo-com.svg',
-                ),
-                SizedBox(
-                  width: Get.width * 0.02,
-                ),
-                Text(
-                  'Listening to'.tr,
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.deepPurpleAccent,
+            InkWell(
+              onTap: () {
+                controller.updateTr('Traveling to');
+              },
+              child: Row(
+                children: [
+                  WidgetPostImagesNavSvg(
+                    colorbool: true,
+                    colorr: Colors.blue,
+                    images: 'travel-svgrepo-com.svg',
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: Get.width * 0.02,
+                  ),
+                  Text(
+                    'Traveling to'.tr,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blue),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            InkWell(
+              onTap: () {
+                controller.updateTr('Watching');
+              },
+              child: Row(
+                children: [
+                  WidgetPostImagesNavSvg(
+                    colorbool: true,
+                    colorr: colorTextBoardingDark1,
+                    images: 'watching-a-video-on-a-tablet-svgrepo-com.svg',
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.02,
+                  ),
+                  Text(
+                    'Watching'.tr,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: colorTextBoardingDark1),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            InkWell(
+              onTap: () {
+                controller.updateTr('Playing');
+              },
+              child: Row(
+                children: [
+                  WidgetPostImagesNavSvg(
+                    colorbool: false,
+                    colorr: Colors.blue,
+                    images: 'man-playing-handball-svgrepo-com.svg',
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.02,
+                  ),
+                  Text(
+                    'Playing'.tr,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.green),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Get.height * 0.01,
+            ),
+            InkWell(
+              onTap: () {
+                controller.updateTr('Listening to');
+              },
+              child: Row(
+                children: [
+                  WidgetPostImagesNavSvg(
+                    colorbool: true,
+                    colorr: Colors.deepPurpleAccent,
+                    images: 'listening-svgrepo-com.svg',
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.02,
+                  ),
+                  Text(
+                    'Listening to'.tr,
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -2093,7 +2344,7 @@ class InkWellMreNave extends StatelessWidget {
   }) : super(key: key);
   final ontapPoll;
   final onTapVideoImage;
-  final controller;
+  final CreatePostCont controller;
   final onTapFeling;
   final onTapColorPost;
 
@@ -2101,253 +2352,319 @@ class InkWellMreNave extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.bottomSheet(Stack(
-          children: [
+        Get.bottomSheet(
+            isScrollControlled: true,
             Container(
-              width: Get.width,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30))),
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                  bottom: 15,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(height: Get.height * 0.04),
-                    InkWell(
-                      onTap: onTapVideoImage,
-                      child: Row(
+              child: Stack(
+                children: [
+                  Container(
+                    width: Get.width,
+                    height: sizedHeight(context) * 0.70,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).scaffoldBackgroundColor,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30))),
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        left: 20,
+                        right: 20,
+                        bottom: 15,
+                      ),
+                      child: Column(
                         children: [
-                          Container(
-                            height: Get.height * 0.06,
-                            width: Get.width * 0.14,
-                            decoration: BoxDecoration(
-                                color: Color(0xffFEEEF0),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(7.0),
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/images/SDF.png',
+                          SizedBox(height: Get.height * 0.04),
+                          InkWell(
+                            onTap: onTapVideoImage,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/SDF.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.03,
+                                ),
+                                Text(
+                                  'Images / Video'.tr,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                        
+                          SizedBox(height: Get.height * 0.02),
+                          InkWell(
+                            onTap: () {
+                              controller.pickFile();
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                        child: Icon(
+                                  Icons.file_copy,
+                                      size: 30,
+                                    )),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.03,
+                                ),
+                                Text(
+                                  'File'.tr,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: Get.height * 0.02),
+                               InkWell(
+                            onTap: () {
+                                 controller.updateRecore(true);
+              Get.back();
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                        child: Icon(
+                                      Icons.record_voice_over,
+                                      size: 30,
+                                    )),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.03,
+                                ),
+                                Text(
+                                'Voice Record'.tr,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: Get.height * 0.02),
+                          InkWell(
+                            onTap: onTapFeling,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/hg.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.03,
+                                ),
+                                Text(
+                                  'feeling / activity'.tr,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: Get.height * 0.02),
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  controller.updatePostMap(true);
+                                  Get.back();
+                                },
+                                child: Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/Iconly-Bold-Location.png',
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                width: Get.width * 0.03,
+                              ),
+                              Text(
+                                'place'.tr,
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.w600),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: Get.width * 0.03,
-                          ),
-                          Text(
-                            'Images / Video'.tr,
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    // if (false) SizedBox(height: Get.height * 0.02),
-                    // if (false)
-                    //   Row(
-                    //     children: [
-                    //       Container(
-                    //         height: Get.height * 0.06,
-                    //         width: Get.width * 0.14,
-                    //         decoration: BoxDecoration(
-                    //             color: Color(0xffFEEEF0),
-                    //             borderRadius: BorderRadius.circular(10)),
-                    //         child: Padding(
-                    //           padding: const EdgeInsets.all(7.0),
-                    //           child: Center(
-                    //             child: Image.asset(
-                    //               'assets/images/friend.png',
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //       SizedBox(
-                    //         width: Get.width * 0.03,
-                    //       ),
-                    //       Text(
-                    //         'Mention to friends'.tr,
-                    //         style: TextStyle(
-                    //             fontSize: 15, fontWeight: FontWeight.w600),
-                    //       ),
-                    //     ],
-                    //   ),
-                    SizedBox(height: Get.height * 0.02),
-                    InkWell(
-                      onTap: onTapFeling,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: Get.height * 0.06,
-                            width: Get.width * 0.14,
-                            decoration: BoxDecoration(
-                                color: Color(0xffFEEEF0),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(7.0),
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/images/hg.png',
+                          SizedBox(height: Get.height * 0.02),
+                          InkWell(
+                            onTap: () {
+                              controller.GifUpode(context);
+                            },
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/GIF.png',
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width * 0.03,
-                          ),
-                          Text(
-                            'feeling / activity'.tr,
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: Get.height * 0.02),
-                    Row(
-                      children: [
-                        Container(
-                          height: Get.height * 0.06,
-                          width: Get.width * 0.14,
-                          decoration: BoxDecoration(
-                              color: Color(0xffFEEEF0),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Center(
-                              child: Image.asset(
-                                'assets/images/Iconly-Bold-Location.png',
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.03,
-                        ),
-                        Text(
-                          'place'.tr,
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: Get.height * 0.02),
-                    Row(
-                      children: [
-                        Container(
-                          height: Get.height * 0.06,
-                          width: Get.width * 0.14,
-                          decoration: BoxDecoration(
-                              color: Color(0xffFEEEF0),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(7.0),
-                            child: Center(
-                              child: Image.asset(
-                                'assets/images/GIF.png',
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: Get.width * 0.03,
-                        ),
-                        Text(
-                          'GIF',
-                          style: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: Get.height * 0.02),
-                    InkWell(
-                      onTap: ontapPoll,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: Get.height * 0.06,
-                            width: Get.width * 0.14,
-                            decoration: BoxDecoration(
-                                color: Color(0xffFEEEF0),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(7.0),
-                              child: Center(
-                                child: Image.asset(
-                                  'assets/images/Polls.png',
+                                SizedBox(
+                                  width: Get.width * 0.03,
                                 ),
-                              ),
+                                Text(
+                                  'GIF',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
                             ),
                           ),
-                          SizedBox(
-                            width: Get.width * 0.03,
+                          SizedBox(height: Get.height * 0.02),
+                          InkWell(
+                            onTap: ontapPoll,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                      child: Image.asset(
+                                        'assets/images/Polls.png',
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.03,
+                                ),
+                                Text(
+                                  'Polls'.tr,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
                           ),
-                          Text(
-                            'Polls'.tr,
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
+                             SizedBox(height: Get.height * 0.02),
+                          InkWell(
+                            onTap: onTapColorPost,
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: Get.height * 0.06,
+                                  width: Get.width * 0.14,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xffFEEEF0),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(7.0),
+                                    child: Center(
+                                      child: SvgPicture.asset(
+                                          SvgImages.ColorPostSvg),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.03,
+                                ),
+                                Text(
+                                  'ColorPost'.tr,
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                    InkWell(
-                      onTap: onTapColorPost,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: Get.height * 0.06,
-                            width: Get.width * 0.14,
-                            decoration: BoxDecoration(
-                                color: Color(0xffFEEEF0),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(7.0),
-                              child: Center(
-                                child: SvgPicture.asset(SvgImages.ColorPostSvg),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width * 0.03,
-                          ),
-                          Text(
-                            'ColorPost'.tr,
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.w600),
-                          ),
+                  ),
+                  SizedBox(),
+                  Positioned(
+                    left: Get.width * 0.30,
+                    right: Get.width * 0.30,
+                    top: Get.height * 0.01,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 1,
+                              spreadRadius: 1)
                         ],
+                        color: Get.isDarkMode ? Colors.white : Colors.black,
                       ),
+                      width: Get.width * 0.20,
+                      height: 3,
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
-            ),
-            SizedBox(),
-            Positioned(
-              left: Get.width * 0.30,
-              right: Get.width * 0.30,
-              top: Get.height * 0.01,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey, blurRadius: 1, spreadRadius: 1)
-                  ],
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                ),
-                width: Get.width * 0.20,
-                height: 3,
-              ),
-            )
-          ],
-        ));
+            ));
       },
       child: WidgetPostImagesNav(
         images: 'more_horiz_black_24dp (4).png',
