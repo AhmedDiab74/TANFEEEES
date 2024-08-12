@@ -24,7 +24,7 @@
 //   static const String assetsAnimationsNoData = 'assets/animations/no-data.lottie';
 //   static const String assetsCertificateSigningRequest = 'assets/CertificateSigningRequest.certSigningRequest';
 //   static const String assetsDevelopment = 'assets/development.cer';
-//   static const String assetsIcon = 'assets/icon.png';
+//   static const String assetsIcon = Get.isDarkMode ? 'assets/icon.png':'assets/iconlight.png';
 //   static const String assetsIcon2 = 'assets/icon2.png';
 //   static const String assetsImagesIconlyBoldLocation = 'assets/images/Iconly-Bold-Location.svg';
 //   static const String assetsImagesIconlyLightChat = 'assets/images/Iconly-Light-Chat.svg';

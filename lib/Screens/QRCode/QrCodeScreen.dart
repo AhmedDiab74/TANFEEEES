@@ -130,7 +130,9 @@ class _CreateScreenState extends State<CreateScreen> {
                       height: Get.height * 0.01,
                     ),
                     PrettyQr(
-                      image: AssetImage('assets/icon.png'),
+                      image: AssetImage(Get.isDarkMode
+                          ? 'assets/icon.png'
+                          : 'assets/iconlight.png'),
                       typeNumber: 3,
                       size: 200,
                       elementColor: Colors.black,

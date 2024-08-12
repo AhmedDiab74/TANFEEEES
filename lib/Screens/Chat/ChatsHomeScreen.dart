@@ -59,18 +59,19 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
     SocketNew.socket.on(
         'on_user_loggedin',
         (dataonLine) async => {
-       if(mounted){
-               getalhat(),
-       }
+              if (mounted)
+                {
+                  getalhat(),
+                }
             });
   }
 
   Future<void> soketGetdattt() async {
     //جلب الماحدثه الجديده
     SocketNew.socket.on('private_message', (datasss) {
-            if(mounted){
-               getalhat();
-       }
+      if (mounted) {
+        getalhat();
+      }
       print('ameen');
     });
   }
@@ -214,7 +215,9 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Image.asset(
-                                'assets/icon.png',
+                                Get.isDarkMode
+                                    ? 'assets/icon.png'
+                                    : 'assets/iconlight.png',
                                 width: Get.height * 0.06,
                               ),
                               SizedBox(

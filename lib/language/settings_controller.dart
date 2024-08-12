@@ -44,9 +44,9 @@ class SettingController extends GetxController {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text(
-              'Location services are disabled. Please enable the services')));
+      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //     content: Text(
+      //         'Location services are disabled. Please enable the services')));
       return false;
     }
     permission = await Geolocator.checkPermission();
@@ -230,6 +230,5 @@ void lang(String langs) async {
   final tok = await SharedP.Get('tok');
   if (tok != null) {
     await ApiLang.edite(langs);
-  } else {
-  }
+  } else {}
 }

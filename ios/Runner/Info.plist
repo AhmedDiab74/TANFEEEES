@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Wowonder Flutter</string>
+	<string>TANFEEEES</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Wowonder Flutter</string>
+	<string>TANFEEEES</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -42,7 +42,7 @@
 	<key>FacebookClientToken</key>
 	<string>e5cdd171c963cb8d185c41e46d8778e6</string>
 	<key>FacebookDisplayName</key>
-	<string>Wowonder Flutter</string>
+	<string>TANFEEEES</string>
 	<key>FlutterDeepLinkingEnabled</key>
 	<true/>
 	<key>GADApplicationIdentifier</key>
@@ -55,21 +55,21 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Wowonder Flutter user your calendar.</string>
+	<string>TANFEEEES user your calendar.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Wowonder Flutter uses access to your device's camera to do things like take and share photos, record videos, and use visual effects. You can change this from the settings at any time by going back to a setting at any time by going back to your device settings.</string>
+	<string>TANFEEEES uses access to your device's camera to do things like take and share photos, record videos, and use visual effects. You can change this from the settings at any time by going back to a setting at any time by going back to your device settings.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This app needs access to location when in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Your location is required for Wowonder Flutter</string>
+	<string>Your location is required for TANFEEEES</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Wowonder Flutter uses access to your device's microphone to do things like help you record audio, identify songs, use your voice for search, and use sound effects. You can change this setting at any time by going back to your device settings.</string>
+	<string>TANFEEEES uses access to your device's microphone to do things like help you record audio, identify songs, use your voice for search, and use sound effects. You can change this setting at any time by going back to your device settings.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Motion usage description</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>NSPhotoLibraryAddUsageDescription</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Wowonder Flutter uses access to your photos to do things like help you share visual effects, apply them to your photos and videos, and suggest photos and videos to share.</string>
+	<string>TANFEEEES uses access to your photos to do things like help you share visual effects, apply them to your photos and videos, and suggest photos and videos to share.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UIBackgroundModes</key>

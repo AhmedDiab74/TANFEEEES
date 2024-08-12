@@ -55,7 +55,7 @@
 </queries>
    <application
    tools:replace="android:label"
-        android:label="Wowonder Flutter"
+        android:label="TANFEEEES"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

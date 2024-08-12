@@ -1,3 +1,5 @@
+import 'package:wowondertimelineflutterapp/Screens/FriendsScreen/HomeFollowers.dart';
+
 import '../../String.dart';
 import 'package:get/get.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
@@ -519,25 +521,30 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                             width: Get.width * 0.001,
                                             color: Color(0xff64748B)),
                                         Expanded(
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                widget.contFollowers,
-                                                style: SafeGoogleFont(
-                                                    Fonts.font3,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                Friends_System
-                                                    ? 'Friend'.tr
-                                                    : 'Followers'.tr,
-                                                style: SafeGoogleFont(
-                                                    Fonts.font3,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: Color(0xff64748B)),
-                                              ),
-                                            ],
+                                          child: InkWell(
+                                            onTap: (){
+                                                           Get.to(    HomeFollowers(indexInt: 1,));
+                                            },
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  widget.contFollowers,
+                                                  style: SafeGoogleFont(
+                                                      Fonts.font3,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Text(
+                                                  Friends_System
+                                                      ? 'Friend'.tr
+                                                      : 'Followers'.tr,
+                                                  style: SafeGoogleFont(
+                                                      Fonts.font3,
+                                                      fontWeight: FontWeight.w600,
+                                                      color: Color(0xff64748B)),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                         if (Friends_System == false)
@@ -547,24 +554,29 @@ class _MyProfileHomeScreenState extends State<MyProfileHomeScreen> {
                                               color: Color(0xff64748B)),
                                         if (Friends_System == false)
                                           Expanded(
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  widget.contFollooing,
-                                                  style: SafeGoogleFont(
-                                                      Fonts.font3,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  'Following'.tr,
-                                                  style: SafeGoogleFont(
-                                                      Fonts.font3,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Color(0xff64748B)),
-                                                ),
-                                              ],
+                                            child: InkWell(
+                                              onTap: (){
+                                                 Get.to(    HomeFollowers());
+                                              },
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    widget.contFollooing,
+                                                    style: SafeGoogleFont(
+                                                        Fonts.font3,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  Text(
+                                                    'Following'.tr,
+                                                    style: SafeGoogleFont(
+                                                        Fonts.font3,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Color(0xff64748B)),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                       ]),

@@ -5,8 +5,6 @@ import 'package:wowondertimelineflutterapp/controllers/SharedPreferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ApiAddWallet
 
-
-
 class ApiAddWallet {
   static Future add({
     required String u,

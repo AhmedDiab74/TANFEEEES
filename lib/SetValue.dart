@@ -1,5 +1,5 @@
 bool dashB = false;
-final f_nameApp = 'Wowonder Flutter';
+final f_nameApp = 'TANFEEEES';
 
 final bool f_ChatSystem = true;
 final bool f_Movies = true;

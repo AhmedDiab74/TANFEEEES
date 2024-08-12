@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-const Color ColorTheme2 = Color(0xff3BBAA6);
+import 'package:get/get.dart';
+
+Color ColorTheme2 = Get.isDarkMode ? Color(0xff46FCFC) : Color(0xff0A0D1B);
 const Color mainColor = Color(0xff00BE84);
 const Color darkGreyClr = Color(0xFF080E1D);
 const Color languageSettings = Color(0xff080E1D);
@@ -14,6 +16,7 @@ const Color Greyscale600 = Color(0xff475569);
 const Color Greyscale700 = Color(0xff334155);
 const Color Greyscale800 = Color(0xff1E293B);
 const Color Greyscale900 = Color(0xff0F172A);
+
 ///colors black
 ///
 const Color Secondary50 = Color(0xffF0FEFE);

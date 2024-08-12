@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:wowondertimelineflutterapp/Screens/Advertising/AdvertisingScreen.dart';
+import 'package:wowondertimelineflutterapp/Screens/FriendsScreen/HomeFollowers.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/share.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
@@ -473,7 +474,7 @@ class _MoreScreenState extends State<MoreScreen> {
                           if (FriendsFollowers)
                             _continerMore(
                               ontap: () {
-                                Get.to(FriendsScreen());
+                                Get.to(HomeFollowers());
                               },
                               title: Friends_System
                                   ? 'Friends'.tr

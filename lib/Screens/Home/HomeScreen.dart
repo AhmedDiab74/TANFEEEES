@@ -117,7 +117,9 @@ class HomeScreen extends StatelessWidget {
                                                   Row(
                                                     children: [
                                                       Image.asset(
-                                                        'assets/icon.png',
+                                                        Get.isDarkMode
+                                                            ? 'assets/icon.png'
+                                                            : 'assets/iconlight.png',
                                                         height: 25,
                                                         width: 40,
                                                       ),

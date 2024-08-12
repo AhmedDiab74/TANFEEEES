@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
 String pathssvg = 'assets/svg/';
 
 String path = 'assets/';
@@ -253,7 +256,8 @@ class images {
   static String gift = pathChatGPT + 'gift.json';
   static String loading = pathChatGPT + 'loading.json';
   static String loading2 = pathChatGPT + 'loading2.json';
-  static String splash = pathChatGPT + 'splash.json';
+  // static String splash = pathChatGPT + 'splash.json';
+  static String splash = Get.isDarkMode ?'assets/images/logodark.jpg' :'assets/images/logolight.jpg';
 
   static String Like = pathReactions + 'like.png';
   static String Love = pathReactions + 'love.png';

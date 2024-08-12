@@ -11,7 +11,6 @@ import 'package:rating_dialog/rating_dialog.dart';
 import 'package:store_redirect/store_redirect.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-
 class SupportScreen extends StatefulWidget {
   const SupportScreen({super.key});
 
@@ -40,7 +39,7 @@ class _SupportScreenState extends State<SupportScreen> {
     ),
     // your app's logo?
     image: Image.asset(
-      'assets/icon.png',
+      Get.isDarkMode ? 'assets/icon.png' : 'assets/iconlight.png',
       height: 100,
       width: 100,
     ),
