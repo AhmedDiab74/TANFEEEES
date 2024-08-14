@@ -251,9 +251,9 @@ class _GetAllRectionScreenState extends State<GetAllRectionScreen> {
                                     ),
                                   ],
                                 ),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.more_horiz_rounded)),
+                                // IconButton(
+                                //     onPressed: () {},
+                                //     icon: Icon(Icons.more_horiz_rounded)),
                               ],
                             ),
                           ),
@@ -300,7 +300,6 @@ class _WidgetRaction extends StatelessWidget {
         Center(
           child: Image.asset(
             pathReactionsAnimated + '${iconimag}',
-
             width: 30,
             height: 30,
           ),

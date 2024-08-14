@@ -116,13 +116,13 @@ class HomeScreen extends StatelessWidget {
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      Image.asset(
-                                                        Get.isDarkMode
-                                                            ? 'assets/icon.png'
-                                                            : 'assets/iconlight.png',
-                                                        height: 25,
-                                                        width: 40,
-                                                      ),
+                                                      // Image.asset(
+                                                      //   Get.isDarkMode
+                                                      //       ? 'assets/icon.png'
+                                                      //       : 'assets/iconlight.png',
+                                                      //   height: 25,
+                                                      //   width: 40,
+                                                      // ),
                                                       Text(
                                                         nameApp,
                                                         style: TextStyle(

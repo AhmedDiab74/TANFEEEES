@@ -50,23 +50,23 @@ class _HomeScreenEarningsState extends State<HomeScreenEarnings> {
                 Get.to(MyBalanceScreen());
               },
             ),
+            // _TextSupport(
+            //   icon: SvgImages.Language,
+            //   text: 'My Points'.tr,
+            //   onTap: () {
+            //     Get.to(MyPointsScreen());
+            //   },
+            // ),
+            // _TextSupport(
+            //   icon: SvgImages.Language,
+            //   text: 'Withdrawals'.tr,
+            //   onTap: () {
+            //     Get.to(WithdrawalsScreen());
+            //   },
+            // ),
             _TextSupport(
               icon: SvgImages.Language,
-              text: 'My Points'.tr,
-              onTap: () {
-                Get.to(MyPointsScreen());
-              },
-            ),
-            _TextSupport(
-              icon: SvgImages.Language,
-              text: 'Withdrawals'.tr,
-              onTap: () {
-                Get.to(WithdrawalsScreen());
-              },
-            ),
-            _TextSupport(
-              icon: SvgImages.Language,
-              text: 'Send Monye'.tr,
+              text: 'Send Money'.tr,
               onTap: () {
                 Get.to(SendMonyeScreen());
               },

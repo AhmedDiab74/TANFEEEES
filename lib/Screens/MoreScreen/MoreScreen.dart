@@ -589,15 +589,15 @@ class _MoreScreenState extends State<MoreScreen> {
                                 title: 'Pokes'.tr,
                                 svg: SvgImages.Pokes,
                               ),
-                          if (seMore)
-                            if (Movies)
-                              _continerMore(
-                                ontap: () {
-                                  Get.to(MoviesScreen());
-                                },
-                                title: 'Movies'.tr,
-                                svg: SvgImages.Movies,
-                              ),
+                          // if (seMore)
+                          //   if (Movies)
+                          //     _continerMore(
+                          //       ontap: () {
+                          //         Get.to(MoviesScreen());
+                          //       },
+                          //       title: 'Movies'.tr,
+                          //       svg: SvgImages.Movies,
+                          //     ),
                         ],
                       ),
                     ),
