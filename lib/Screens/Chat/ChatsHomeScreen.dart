@@ -104,11 +104,10 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
           color: Colors.white,
         ),
       ),
-      backgroundColor: ColorTheme,
       appBar: AppBar(
         title: Text('Messenger'.tr),
         elevation: 0,
-        backgroundColor: Get.isDarkMode ? ColorDarkComponents : ColorTheme,
+        backgroundColor: Get.isDarkMode ? NavBarColorDark : ColorTheme,
         actions: [
           InkWell(
             onTap: () {
@@ -172,8 +171,10 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
                     child: Container(
                       width: Get.width,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.white),
+                        borderRadius: BorderRadius.circular(50),
+                        color:
+                            Get.isDarkMode ? Colors.white : Color(0xff2DE3E4),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 15),
                         child: Row(
@@ -181,7 +182,8 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
                           children: [
                             SvgPicture.asset(
                               SvgImages.Search,
-                              color: Colors.grey,
+                              color:
+                                  Get.isDarkMode ? Colors.grey : Colors.white,
                             ),
                             SizedBox(
                               width: Get.width * 0.02,
@@ -191,7 +193,9 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                       border: InputBorder.none,
-                                      hintText: 'Search'),
+                                      hintText: 'Search',
+                                      hintStyle:
+                                          TextStyle(color: Colors.black)),
                                 )),
                           ],
                         ),
@@ -209,7 +213,9 @@ class _ChatsHomeScreenState extends State<ChatsHomeScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 5),
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Get.isDarkMode
+                                ? Colors.white
+                                : Color(0xff2DE3E4),
                             borderRadius: BorderRadius.circular(10)),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,

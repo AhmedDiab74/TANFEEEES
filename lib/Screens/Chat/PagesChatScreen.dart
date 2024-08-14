@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:flutter/material.dart';
+import 'package:wowondertimelineflutterapp/Themes.dart';
 import 'package:wowondertimelineflutterapp/Util/TextUtil.dart';
 import 'package:wowondertimelineflutterapp/Widget/Socket.dart';
 import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
@@ -69,7 +69,7 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: ColorTheme,
+          backgroundColor: Get.isDarkMode ? NavBarColorDark : ColorTheme,
           elevation: 0,
         ),
         body: Stack(
@@ -80,7 +80,7 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
                 width: Get.width,
                 height: Get.height,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Get.isDarkMode ? centarColorDark : Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(50),
                   ),
@@ -93,7 +93,7 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
                 width: Get.width,
                 height: Get.height * 0.30,
                 decoration: BoxDecoration(
-                    color: ColorTheme,
+                    color: Get.isDarkMode ? NavBarColorDark : ColorTheme,
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(300))),
               ),
@@ -104,7 +104,7 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
                 width: Get.width,
                 height: Get.height * 0.17,
                 decoration: BoxDecoration(
-                    color: ColorTheme,
+                    color: Get.isDarkMode ? NavBarColorDark : ColorTheme,
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(50))),
                 child: Padding(
@@ -114,7 +114,9 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: ColorThemeOpacity,
+                            color: Get.isDarkMode
+                                ? Color(0xff2DE3E4)
+                                : Colors.white,
                             borderRadius: BorderRadius.circular(30)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -124,7 +126,9 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
                               Icon(
                                 Icons.search,
                                 size: 30,
-                                color: Colors.white,
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
                               Container(
                                   width: Get.width * 0.77,
@@ -167,7 +171,7 @@ class _PagesChatScreenState extends State<PagesChatScreen> {
                 width: Get.width,
                 height: Get.height * 0.75,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Get.isDarkMode ? centarColorDark : Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(50),
                     )),

@@ -1,8 +1,5 @@
 import 'dart:io';
-import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:wowondertimelineflutterapp/main.dart';
-import 'package:wowondertimelineflutterapp/String.dart';
 import 'package:wowondertimelineflutterapp/Themes.dart';
 import 'package:flutter/material.dart';
 import 'package:wowondertimelineflutterapp/Util/TextUtil.dart';
@@ -14,13 +11,10 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:wowondertimelineflutterapp/Screens/Chat/NoChatScreen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/FriendsApi.dart';
-import 'package:wowondertimelineflutterapp/Util/Servers/Api/GetAllChatsApi.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:wowondertimelineflutterapp/Screens/Chat/GetUserMessageScreen.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiGroupsChatList.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiGroupChatCreate.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetAllChatsModel.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetAllFriendsModel.dart';
 import 'package:wowondertimelineflutterapp/Screens/Chat/Groups/ChatGroupsScreenAll.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetNameGroupsChatModel.dart';
@@ -94,10 +88,7 @@ class _GroupsChatScreenState extends State<GroupsChatScreen> {
           actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))],
           title: Text(
             'Groups',
-            style: SafeGoogleFont(
-              Fonts.font2,
-              fontWeight: FontWeight.bold,
-            ),
+            style: SafeGoogleFont(Fonts.font2, fontWeight: FontWeight.bold),
           ),
           backgroundColor: Get.isDarkMode ? NavBarColorDark : ColorTheme,
           elevation: 0,
@@ -145,8 +136,8 @@ class _GroupsChatScreenState extends State<GroupsChatScreen> {
                       Container(
                         decoration: BoxDecoration(
                             color: Get.isDarkMode
-                                ? Color.fromARGB(255, 17, 16, 16)
-                                : ColorThemeOpacity,
+                                ? Color(0xff2DE3E4)
+                                : Colors.white,
                             borderRadius: BorderRadius.circular(30)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -156,7 +147,9 @@ class _GroupsChatScreenState extends State<GroupsChatScreen> {
                               Icon(
                                 Icons.search,
                                 size: 30,
-                                color: Colors.white,
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black,
                               ),
                               Container(
                                   width: Get.width * 0.77,
