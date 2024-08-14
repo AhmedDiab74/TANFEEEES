@@ -6,7 +6,6 @@ import 'package:wowondertimelineflutterapp/Widget/LoadingWidgetStroy.dart';
 import 'package:wowondertimelineflutterapp/Screens/Groups/WidgetFollowNew.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiFetchRecommended.dart';
-import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetUserDataModel.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/FetchRecommendedModel.dart';
 import 'package:wowondertimelineflutterapp/Screens/ProfileUserScreen/ProfileUserScreen.dart';
 
