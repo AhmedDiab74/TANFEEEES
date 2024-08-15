@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wowondertimelineflutterapp/Themes.dart';
 import 'package:wowondertimelineflutterapp/ThemesWoWonder.dart';
 
 class CallLogsScreen extends StatelessWidget {
@@ -9,7 +11,7 @@ class CallLogsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Call Logs'),
-        backgroundColor: ColorTheme,
+        backgroundColor: Get.isDarkMode ? NavBarColorDark : ColorTheme,
         elevation: 0,
         actions: [
           InkWell(

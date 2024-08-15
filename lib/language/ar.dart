@@ -337,7 +337,7 @@ Map<String, String> ar = {
   'See Less': 'رؤية أقل',
   'See More': 'شاهد المزيد',
   'Other Settings': 'اعدادات اخرى',
-  'General Account': 'حسابات عامة',
+  'General Account': 'اعدادات عامة',
   'Privacy': 'خصوصية',
   'Notifications': 'إشعارات',
   'My Information': 'معلوماتي',

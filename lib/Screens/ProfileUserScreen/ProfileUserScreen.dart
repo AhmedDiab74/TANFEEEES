@@ -3,7 +3,6 @@ import 'package:wowondertimelineflutterapp/Screens/Share/WidgetShare.dart';
 import 'package:wowondertimelineflutterapp/main.dart';
 import 'package:wowondertimelineflutterapp/Images.dart';
 import 'package:wowondertimelineflutterapp/String.dart';
-import 'package:wowondertimelineflutterapp/Themes.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:wowondertimelineflutterapp/Util/TextUtil.dart';
@@ -23,13 +22,12 @@ import 'package:wowondertimelineflutterapp/Util/Servers/Models/PostsModel.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/GetUserDataApi.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/PostActionsApi.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Api/ApiPostsProfile.dart';
-import 'package:wowondertimelineflutterapp/Screens/Chat/GetUserMessageScreen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetUserDataModel.dart';
-import 'package:adaptive_action_sheet/adaptive_action_sheet.dart';
 import 'package:wowondertimelineflutterapp/Screens/Chat/GetSingleUserMessageScreen.dart';
 import 'package:wowondertimelineflutterapp/Screens/ProfileUserScreen/WidgetReportUser.dart';
 
+// ignore: must_be_immutable
 class ProfileUserScreen extends StatefulWidget {
   ProfileUserScreen({
     super.key,
@@ -47,8 +45,6 @@ class ProfileUserScreen extends StatefulWidget {
   State<ProfileUserScreen> createState() => _ProfileUserScreenState();
 }
 
-ScrollController _scrollViewController = ScrollController();
-
 class _ProfileUserScreenState extends State<ProfileUserScreen> {
   RefreshController refreshController =
       RefreshController(initialRefresh: false);
@@ -56,7 +52,6 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
   int postViews = 0;
   bool lodingPosts = false;
   bool follow = false;
-  @override
   List<PostModel> data = [];
   void GetPosts() async {
     lodingPosts = true;
@@ -333,7 +328,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                   ),
                                 ),
                                 Positioned(
-                                  top: Get.height * 0.15,
+                                  top: Get.height * 0.115,
                                   left: Get.width * 0.05,
                                   child: Container(
                                     width: Get.width,
@@ -344,6 +339,7 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Row(
+                                          /////////profile
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
@@ -397,7 +393,8 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                             Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                      vertical: 10),
+                                                vertical: 10,
+                                              ),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -435,176 +432,306 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                                   ),
                                 ),
                                 Positioned(
-                                    top: Get.height * 0.16,
-                                    right: 1,
-                                    left: Get.width * 0.33,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                              child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                for (var i = 0;
-                                                    i < datauser.length;
-                                                    i++)
-                                                  Friends_System
-                                                      ? OnTapFrind(
-                                                          user_id: datauser[i]
-                                                              .user_id,
-                                                          confirm_followers:
-                                                              datauser[i]
-                                                                  .confirm_followers,
-                                                          is_following:
-                                                              datauser[i]
-                                                                  .is_following,
-                                                          can_follow:
-                                                              datauser[i]
-                                                                  .can_follow,
-                                                          message_privacy:
-                                                              datauser[i]
-                                                                  .message_privacy,
-                                                          // controller.data[i].user_id;
-                                                        )
-                                                      : OnTapFoloow(
-                                                          user_id: datauser[i]
-                                                              .user_id,
-                                                          confirm_followers:
-                                                              datauser[i]
-                                                                  .confirm_followers,
-                                                          is_following:
-                                                              datauser[i]
-                                                                  .is_following,
-                                                          can_follow:
-                                                              datauser[i]
-                                                                  .can_follow,
-                                                          message_privacy:
-                                                              datauser[i]
-                                                                  .message_privacy,
-                                                          // controller.data[i].user_id;
-                                                        ),
-                                              ],
+                                  ///////////name position
+                                  top: Get.height * 0.196,
+                                  right: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: Get.width * 0.1,
+                                        ),
+                                        Text(
+                                          widget.name,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w900),
+                                        ),
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        if (datauser.length > 0)
+                                          if (datauser[0].verified == '1')
+                                            Icon(
+                                              Icons.verified,
+                                              color: Colors.blueAccent,
+                                              size: 18,
                                             ),
-                                          )),
-                                          SizedBox(
-                                            width: Get.width * 0.01,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              for (var i = 0;
-                                                  i < datauser.length;
-                                                  i++)
-                                                Get.to(
-                                                    GetSingleUserMessageScreen(
-                                                  avat: datauser[i].avatar,
-                                                  userid: datauser[i].user_id,
-                                                  username:
-                                                      datauser[i].username,
-                                                  name: datauser[i].name,
-                                                  color: GetSetList[0]
-                                                      ['btn_background_color'],
-                                                ));
-                                              // Get.to(CreatePostScreen());
-                                            },
-                                            child: Container(
-                                                width: Get.width * 0.30,
+                                        SizedBox(
+                                          width: 5,
+                                        ),
+                                        if (datauser.length > 0)
+                                          if (datauser[0].pro_type != '0')
+                                            Container(
                                                 decoration: BoxDecoration(
-                                                  color: ColorTheme,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
-                                                ),
+                                                    color: ColorTheme,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
                                                 child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                        SvgImages.Message,
-                                                        height:
-                                                            Get.height * 0.020,
-                                                        width:
-                                                            Get.width * 0.020,
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 8,
+                                                      vertical: 4),
+                                                  child: Text(
+                                                    'PRO',
+                                                    style: TextStyle(
                                                         color: Colors.white,
-                                                      ),
-                                                      SizedBox(
-                                                        width: Get.width * 0.01,
-                                                      ),
-                                                      Text(
-                                                        'Message'.tr,
-                                                        style: SafeGoogleFont(
-                                                          Fonts.font3,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                    ],
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
                                                 )),
-                                          ),
-                                        ],
-                                      ),
-                                    )),
+                                      ],
+                                    ),
+                                    // Row(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Container(
+                                    //         child: Padding(
+                                    //       padding: const EdgeInsets.all(8.0),
+                                    //       child: Row(
+                                    //         mainAxisAlignment:
+                                    //             MainAxisAlignment.center,
+                                    //         crossAxisAlignment:
+                                    //             CrossAxisAlignment.center,
+                                    //         children: [
+                                    //           for (var i = 0;
+                                    //               i < datauser.length;
+                                    //               i++)
+                                    //             Friends_System
+                                    //                 ? OnTapFrind(
+                                    //                     user_id:
+                                    //                         datauser[i].user_id,
+                                    //                     confirm_followers:
+                                    //                         datauser[i]
+                                    //                             .confirm_followers,
+                                    //                     is_following:
+                                    //                         datauser[i]
+                                    //                             .is_following,
+                                    //                     can_follow: datauser[i]
+                                    //                         .can_follow,
+                                    //                     message_privacy:
+                                    //                         datauser[i]
+                                    //                             .message_privacy,
+                                    //                     // controller.data[i].user_id;
+                                    //                   )
+                                    //                 : OnTapFoloow(
+                                    //                     user_id:
+                                    //                         datauser[i].user_id,
+                                    //                     confirm_followers:
+                                    //                         datauser[i]
+                                    //                             .confirm_followers,
+                                    //                     is_following:
+                                    //                         datauser[i]
+                                    //                             .is_following,
+                                    //                     can_follow: datauser[i]
+                                    //                         .can_follow,
+                                    //                     message_privacy:
+                                    //                         datauser[i]
+                                    //                             .message_privacy,
+                                    //                     // controller.data[i].user_id;
+                                    //                   ),
+                                    //         ],
+                                    //       ),
+                                    //     )),
+                                    //     SizedBox(
+                                    //       width: Get.width * 0.01,
+                                    //     ),
+                                    //     InkWell(
+                                    //       onTap: () {
+                                    //         for (var i = 0;
+                                    //             i < datauser.length;
+                                    //             i++)
+                                    //           Get.to(GetSingleUserMessageScreen(
+                                    //             avat: datauser[i].avatar,
+                                    //             userid: datauser[i].user_id,
+                                    //             username: datauser[i].username,
+                                    //             name: datauser[i].name,
+                                    //             color: GetSetList[0]
+                                    //                 ['btn_background_color'],
+                                    //           ));
+                                    //         // Get.to(CreatePostScreen());
+                                    //       },
+                                    //       child: Container(
+                                    //           width: Get.width * 0.30,
+                                    //           decoration: BoxDecoration(
+                                    //             color: ColorTheme,
+                                    //             borderRadius:
+                                    //                 BorderRadius.circular(5),
+                                    //           ),
+                                    //           child: Padding(
+                                    //             padding:
+                                    //                 const EdgeInsets.all(8.0),
+                                    //             child: Row(
+                                    //               mainAxisAlignment:
+                                    //                   MainAxisAlignment.center,
+                                    //               crossAxisAlignment:
+                                    //                   CrossAxisAlignment.center,
+                                    //               children: [
+                                    //                 SvgPicture.asset(
+                                    //                   SvgImages.Message,
+                                    //                   height:
+                                    //                       Get.height * 0.020,
+                                    //                   width: Get.width * 0.020,
+                                    //                   color: Colors.white,
+                                    //                 ),
+                                    //                 SizedBox(
+                                    //                   width: Get.width * 0.01,
+                                    //                 ),
+                                    //                 Text(
+                                    //                   'Message'.tr,
+                                    //                   style: SafeGoogleFont(
+                                    //                     Fonts.font3,
+                                    //                     fontSize: 14,
+                                    //                     fontWeight:
+                                    //                         FontWeight.w600,
+                                    //                     color: Colors.white,
+                                    //                   ),
+                                    //                 ),
+                                    //               ],
+                                    //             ),
+                                    //           )),
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              SizedBox(
-                                width: Get.width * 0.1,
-                              ),
-                              Text(
-                                widget.name,
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              if (datauser.length > 0)
-                                if (datauser[0].verified == '1')
-                                  Icon(
-                                    Icons.verified,
-                                    color: Colors.blueAccent,
-                                    size: 18,
-                                  ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              if (datauser.length > 0)
-                                if (datauser[0].pro_type != '0')
-                                  Container(
-                                      decoration: BoxDecoration(
-                                          color: ColorTheme,
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 4),
-                                        child: Text(
-                                          'PRO',
-                                          style: TextStyle(
+                              Container(
+                                  child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    for (var i = 0; i < datauser.length; i++)
+                                      Friends_System
+                                          ? OnTapFrind(
+                                              user_id: datauser[i].user_id,
+                                              confirm_followers:
+                                                  datauser[i].confirm_followers,
+                                              is_following:
+                                                  datauser[i].is_following,
+                                              can_follow:
+                                                  datauser[i].can_follow,
+                                              message_privacy:
+                                                  datauser[i].message_privacy,
+                                              // controller.data[i].user_id;
+                                            )
+                                          : OnTapFoloow(
+                                              user_id: datauser[i].user_id,
+                                              confirm_followers:
+                                                  datauser[i].confirm_followers,
+                                              is_following:
+                                                  datauser[i].is_following,
+                                              can_follow:
+                                                  datauser[i].can_follow,
+                                              message_privacy:
+                                                  datauser[i].message_privacy,
+                                              // controller.data[i].user_id;
+                                            ),
+                                  ],
+                                ),
+                              )),
+                              InkWell(
+                                onTap: () {
+                                  for (var i = 0; i < datauser.length; i++)
+                                    Get.to(GetSingleUserMessageScreen(
+                                      avat: datauser[i].avatar,
+                                      userid: datauser[i].user_id,
+                                      username: datauser[i].username,
+                                      name: datauser[i].name,
+                                      color: GetSetList[0]
+                                          ['btn_background_color'],
+                                    ));
+                                  // Get.to(CreatePostScreen());
+                                },
+                                child: Container(
+                                    width: Get.width * 0.30,
+                                    decoration: BoxDecoration(
+                                      color: ColorTheme,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          SvgPicture.asset(
+                                            SvgImages.Message,
+                                            height: Get.height * 0.020,
+                                            width: Get.width * 0.020,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            width: Get.width * 0.01,
+                                          ),
+                                          Text(
+                                            'Message'.tr,
+                                            style: SafeGoogleFont(
+                                              Fonts.font3,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
                                               color: Colors.white,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      )),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )),
+                              ),
                             ],
                           ),
+                          // Row(
+                          //   children: [
+                          //     SizedBox(
+                          //       width: Get.width * 0.1,
+                          //     ),
+                          //     Text(
+                          //       widget.name,
+                          //       style: TextStyle(fontWeight: FontWeight.w600),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     if (datauser.length > 0)
+                          //       if (datauser[0].verified == '1')
+                          //         Icon(
+                          //           Icons.verified,
+                          //           color: Colors.blueAccent,
+                          //           size: 18,
+                          //         ),
+                          //     SizedBox(
+                          //       width: 5,
+                          //     ),
+                          //     if (datauser.length > 0)
+                          //       if (datauser[0].pro_type != '0')
+                          //         Container(
+                          //             decoration: BoxDecoration(
+                          //                 color: ColorTheme,
+                          //                 borderRadius:
+                          //                     BorderRadius.circular(5)),
+                          //             child: Padding(
+                          //               padding: const EdgeInsets.symmetric(
+                          //                   horizontal: 8, vertical: 4),
+                          //               child: Text(
+                          //                 'PRO',
+                          //                 style: TextStyle(
+                          //                     color: Colors.white,
+                          //                     fontWeight: FontWeight.bold),
+                          //               ),
+                          //             )),
+                          //   ],
+                          // ),
                           for (var i = 0; i < datauser.length; i++)
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 0),
@@ -884,17 +1011,18 @@ class _ProfileUserScreenState extends State<ProfileUserScreen> {
                             children: [
                               for (var i = 0; i < data.length; i++)
                                 WidgetPosts(
-                                    postListening: data[i].postListening,
-                            postTraveling:  data[i].postTraveling,
-                            postWatching: data[i].postWatching,
-                            postPlaying:  data[i].postPlaying,
-                                  postMap:data[i].postMap,
-                                  can_not_see_monetized:  data[i].can_not_see_monetized,
+                                  postListening: data[i].postListening,
+                                  postTraveling: data[i].postTraveling,
+                                  postWatching: data[i].postWatching,
+                                  postPlaying: data[i].postPlaying,
+                                  postMap: data[i].postMap,
+                                  can_not_see_monetized:
+                                      data[i].can_not_see_monetized,
                                   blog: data[i].blog,
                                   voted_id: data[i].voted_id,
                                   postFileName: data[i].postFileName,
                                   vy_live: data[i].vy_live,
-                                              postSticker:data[i].postSticker,
+                                  postSticker: data[i].postSticker,
                                   blur: data[i].blur,
                                   color_id: data[i].color_id,
                                   stream_name: data[i].stream_name,

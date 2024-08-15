@@ -112,7 +112,7 @@ class GeneralSettingsScreen extends StatelessWidget {
                         },
                         child: WidgetGenralSerringsAll(
                           icon: Icons.wallet,
-                          name: 'My account'.tr,
+                          name: 'My Account'.tr,
                         ),
                       ),
                       Container(

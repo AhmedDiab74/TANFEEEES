@@ -7,6 +7,7 @@ import 'package:wowondertimelineflutterapp/Util/Servers/Models/GetUserDataModel.
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:wowondertimelineflutterapp/Screens/ProfileUserScreen/ProfileUserScreen.dart';
 
+// ignore: must_be_immutable
 class QrCodeScreen extends StatefulWidget {
   QrCodeScreen({
     super.key,
@@ -85,9 +86,10 @@ class CreateScreen extends StatefulWidget {
     required this.id,
   }) : super(key: key);
 
-  String id;
-  String name;
-  String avat;
+  final String id;
+  final String name;
+  final String avat;
+
   @override
   _CreateScreenState createState() => _CreateScreenState();
 }
@@ -108,31 +110,29 @@ class _CreateScreenState extends State<CreateScreen> {
             right: Get.height * 0.1,
             child: Container(
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(
-                    20,
-                  )),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: Get.height * 0.1,
-                    ),
                     Text(
                       widget.name,
                       style: GoogleFonts.cairo(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
-                    SizedBox(
-                      height: Get.height * 0.01,
-                    ),
+                    SizedBox(height: 20),
+                    // ignore: deprecated_member_use
                     PrettyQr(
                       image: AssetImage(Get.isDarkMode
-                          ? 'assets/icon.png'
-                          : 'assets/iconlight.png'),
+                          ? 'assets/qrcoeblack.png'
+                          : 'assets/qrcode.png'), // صورة QR code جديدة بدون خلفية
                       typeNumber: 3,
                       size: 200,
                       elementColor: Colors.black,
@@ -164,55 +164,6 @@ class _CreateScreenState extends State<CreateScreen> {
         ],
       ),
     );
-    // Scaffold(
-    //   appBar: AppBar(
-    //     foregroundColor: Colors.black,
-    //     centerTitle: false,
-    //     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-    //     title: Text('Creating QR code'),
-    //   ),
-    //   body: Center(
-    //     child: Container(
-    //       decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-    //       child: Padding(
-    //         padding: const EdgeInsets.all(8.0),
-    //         child:
-    //       ),
-    //     ),
-    //   ),
-    //   // Column(
-    //   //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //   //   crossAxisAlignment: CrossAxisAlignment.center,
-    //   //   children: [
-    //   //     BarcodeWidget(
-    //   //       data: qrstr,
-
-    //   //       barcode: Barcode.qrCode(),
-    //   //       color: Colors.blue,
-    //   //       height: 250,
-    //   //       width: 250,
-    //   //     ),
-    //   //     Container(
-    //   //       alignment: Alignment.center,
-    //   //       width: MediaQuery.of(context).size.width * .8,
-    //   //       child: TextField(
-    //   //         onChanged: (val) {
-    //   //           setState(() {
-    //   //             qrstr = val;
-    //   //           });
-    //   //         },
-    //   //         decoration: InputDecoration(
-    //   //             hintText: 'Enter your data here',
-    //   //             border: OutlineInputBorder(
-    //   //                 borderSide: BorderSide(color: Colors.blue, width: 2))),
-    //   //       ),
-    //   //     ),
-    //   //     SizedBox(
-    //   //       width: MediaQuery.of(context).size.width,
-    //   //     )
-    //   //   ],
-    //   // ),
-    // );
   }
 }
 
